@@ -1,4 +1,7 @@
 // Connection à MySql
+const mysql = require("mysql")
+
+// Fonction pour se connecter à Mysql
 const database = async () => {
     try {
         await mysql.createConnection({
