@@ -1,40 +1,37 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Screen
-import HomeScreen from './Screens/HomeScreen'
-
-// CSS
-import "./App.css"
-
+// Screens
+import HomeScreen from "./Screens/HomeScreen";
+import RegistrationScreen from "./Screens/RegistrationScreen";
+import AccountLoginScreen from "./Screens/AccountLoginScreen";
 
 function App() {
     return (
-        <div className='grid-container'>
-            <Router>
-                {/* Header */}
+        <Router>
+            <div className="grid-container">
                 <header>
-                    <nav>
-                        <Link to="/">Accueil</Link>
-                    </nav>
+                    <div className="entete">
+                        <h1>GROUPOMANIA</h1>
+                    </div>
                 </header>
 
-                {/* Main */}
                 <main>
                     <Routes>
-                        <Route path="/" element={<HomeScreen></HomeScreen>}></Route>
+                        <Route path="/" element={<HomeScreen />} />
+                        <Route path="/RegistrationScreen" element={<RegistrationScreen />} />
+                        <Route path="/AccountLogin" element={<AccountLoginScreen />} />
                     </Routes>
                 </main>
 
-                {/* Footer */}
                 <footer>
-                    <div>
-                        <h2>Footer</h2>
+                    <div className="entete">
+                        <h2>Tout droits réservé GROUPOMANIA ®-2022-</h2>
                     </div>
                 </footer>
-            </Router>
-        </div>
-    )
+            </div>
+        </Router>
+    );
 }
 
-export default App
+export default App;

@@ -1,7 +1,0 @@
-.grid-container {
-    max-width: 140rem;
-    min-width: 35rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
