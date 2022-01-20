@@ -13,7 +13,7 @@ function HomeScreenItem() {
                         <h3>Vous n'êtes pas identifié</h3>
                     </div>
                     <div className="homeScreen_navLink_item">
-                        <Link to="/AccountLogin">Se connecter</Link> <strong>ou</strong>
+                        <Link to="/AccountScreen">Se connecter</Link> <strong>ou</strong>
                         <Link to="/RegistrationScreen">Créer un compte</Link>
                     </div>
                 </nav>

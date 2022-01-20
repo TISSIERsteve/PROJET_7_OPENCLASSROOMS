@@ -1,18 +1,18 @@
-/* RegistrationScreen.css */
-.form {
+/* AccountScreen.css */
+.form_item {
   max-width: 60rem;
-  margin: 0 auto;
+  margin: 10rem auto;
   background-color: rgb(240,233,233);
   padding: 1rem;
 }
 
-.form > div {
+.form_item > div {
   display: flex;
   flex-direction: column;
   margin: 1rem;
 }
 
-.form label {
+.form_item label {
   margin: 1rem 0;
 }
 
@@ -29,5 +29,3 @@ button:hover {
     font-weight: bold;
     color: rgb(212, 17, 17);
 }
-
-

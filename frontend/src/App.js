@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Screens
 import HomeScreen from "./Screens/HomeScreen";
 import RegistrationScreen from "./Screens/RegistrationScreen";
-import AccountLoginScreen from "./Screens/AccountLoginScreen";
+import AccountScreen from "./Screens/AccountScreen";
+
 
 function App() {
     return (
@@ -20,7 +21,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomeScreen />} />
                         <Route path="/RegistrationScreen" element={<RegistrationScreen />} />
-                        <Route path="/AccountLogin" element={<AccountLoginScreen />} />
+                        <Route path="/AccountScreen" element={<AccountScreen />}></Route>
                     </Routes>
                 </main>
 
