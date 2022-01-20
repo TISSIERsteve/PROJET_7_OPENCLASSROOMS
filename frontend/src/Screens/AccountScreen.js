@@ -38,7 +38,7 @@ function AccountScreen() {
                 </div>
                 <div>
                     <label />
-                    <button className="primary" type="submit">
+                    <button>
                         Se connecter
                     </button>
                 </div>

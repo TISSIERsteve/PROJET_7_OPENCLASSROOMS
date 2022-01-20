@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios"
 
@@ -6,104 +6,85 @@ import Axios from "axios"
 import "../Styles.css/Screens.css/RegistrationScreen.css";
 
 function RegistrationScreen() {
-
-    const [name, setName] = useState("")
-    const [firstname, setfirstname] = useState("")
-    const [email, setemail] = useState("")
-    const [password, setpassword] = useState("")
-    // const [confirmPassword, setconfirmPassword] = useState("")
-
+    const [nom, setNom] = useState("");
+    const [prenom, setPrenom] = useState("");
+    const [password, setpassword] = useState("");
+    const [email, setemail] = useState("");
 
     const addUser = () => {
-        Axios.post("http://locahost:3001/create", {
-            name: name,
-            firstname: firstname,
-            email: email,
+        Axios.post("http://localhost:3001/user", {
+            nom: nom,
+            prenom: prenom,
             password: password,
-            // confirmPassword: confirmPassword
+            email: email,
         })
-    }
+
+
+    };
 
     return (
-        <div className='registrationScreen'>
+        <div className="RegistrationScreen">
             <Link to='/'>
                 <i class='fas fa-arrow-left' />
             </Link>
 
             <div>
-                <form className="form" onSubmit>
+                <form className="form">
                     <div>
-                        <h1>Créer un compte</h1>
+                        <h2>Créer un compte</h2>
                     </div>
 
                     <div>
-                        <label htmlFor="name">Nom :</label>
-                        <input
+                        <label htmlFor="nom">Nom:</label>
+                        <input required
+                            placeholder="Entre nom"
+                            id="nom"
                             type="text"
-                            id="name"
-                            placeholder="Entrer nom"
-                            required
-                            onChange={(e) => {
-                                setName(e.target.value)
+                            onChange={(event) => {
+                                setNom(event.target.value);
                             }}
                         />
                     </div>
                     <div>
-                        <label htmlFor="firstname">Prénom :</label>
-                        <input
-                            type="text"
-                            id="firstname"
+                        <label htmlFor="prenom">Prénom:</label>
+                        <input required
                             placeholder="Entrer prénom"
-                            required
-                            onChange={(e) => {
-                                setfirstname(e.target.value)
+                            id="prenom"
+                            type="test"
+                            onChange={(event) => {
+                                setPrenom(event.target.value);
                             }}
                         />
                     </div>
                     <div>
-                        <label htmlFor="email">Adresse E-mail :</label>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Entrer email"
-                            required
-                            onChange={(e) => {
-                                setemail(e.target.value)
-                            }}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Mot de passe :</label>
-                        <input
-                            type="password"
+                        <label htmlFor="password">Mot de passe:</label>
+                        <input required
+                            placeholder="Renseigner un mot de passe"
                             id="password"
-                            placeholder="Entrer mot de passe"
-                            required
-                            onChange={(e) => {
-                                setpassword(e.target.value)
-                            }}
-                        />
-                    </div>
-                    {/* <div>
-                        <label htmlFor="confirmPassword">Confirmez mot de passe :</label>
-                        <input
                             type="password"
-                            id="confirmPassword"
-                            placeholder="Entrer mot de passe confirmez"
-                            required
-                            onChange={(e) => {
-                                setconfirmPassword(e.target.value)
+                            onChange={(event) => {
+                                setpassword(event.target.value);
                             }}
                         />
-                    </div> */}
-                    <div>
-                        <label />
-                        <button onClick={addUser}>
-                            Enregister
-                        </button>
                     </div>
                     <div>
-                        <label />
+                        <label htmlFor="email">Email:</label>
+                        <input required
+                            placeholder="Entrer une adresse mail"
+                            id="email"
+                            type="email"
+                            onChange={(event) => {
+                                setemail(event.target.value);
+                            }}
+                        />
+                    </div>
+
+                    <div>
+                        <label></label>
+                        <button onClick={addUser}>Enregistrer</button>
+                    </div>
+                    <div>
+                        <label></label>
                         <div>
                             Vous avez déjà un compte ?
                             <Link to="/AccountScreen"> S'identifier</Link>
@@ -113,6 +94,113 @@ function RegistrationScreen() {
             </div>
         </div>
     );
+
+    // const [nom, setNom] = useState("");
+    // const [prenom, setPrenom] = useState("");
+    // const [password, setPassword] = useState("");
+    // const [email, setEmail] = useState("");
+
+
+
+    // const addUser = () => {
+    //     Axios.post("http://locahost:3001/user", {
+    //         nom: nom,
+    //         prenom: prenom,
+    //         password: password,
+    //         email: email,
+    //         // confirmPassword: confirmPassword
+    //     })
+    // }
+
+    // return (
+    //     <div className='registrationScreen'>
+    //         <Link to='/'>
+    //             <i class='fas fa-arrow-left' />
+    //         </Link>
+
+    //         <div>
+    //             <form className="form" >
+    //                 <div>
+    //                     <h1>Créer un compte</h1>
+    //                 </div>
+
+    //                 <div>
+    //                     <label htmlFor="name">Nom :</label>
+    //                     <input
+    //                         type="text"
+    //                         id="name"
+    //                         placeholder="Entrer nom"
+    //                         required
+    //                         onChange={(e) => {
+    //                             setNom(e.target.value)
+    //                         }}
+    //                     />
+    //                 </div>
+    //                 <div>
+    //                     <label htmlFor="firstname">Prénom :</label>
+    //                     <input
+    //                         type="text"
+    //                         id="firstname"
+    //                         placeholder="Entrer prénom"
+    //                         required
+    //                         onChange={(e) => {
+    //                             setPrenom(e.target.value)
+    //                         }}
+    //                     />
+    //                 </div>
+    //                 <div>
+    //                     <label htmlFor="email">Adresse E-mail :</label>
+    //                     <input
+    //                         type="email"
+    //                         id="email"
+    //                         placeholder="Entrer email"
+    //                         required
+    //                         onChange={(e) => {
+    //                             setEmail(e.target.value)
+    //                         }}
+    //                     />
+    //                 </div>
+    //                 <div>
+    //                     <label htmlFor="password">Mot de passe :</label>
+    //                     <input
+    //                         type="password"
+    //                         id="password"
+    //                         placeholder="Entrer mot de passe"
+    //                         required
+    //                         onChange={(e) => {
+    //                             setPassword(e.target.value)
+    //                         }}
+    //                     />
+    //                 </div>
+    //                 {/* <div>
+    //                     <label htmlFor="confirmPassword">Confirmez mot de passe :</label>
+    //                     <input
+    //                         type="password"
+    //                         id="confirmPassword"
+    //                         placeholder="Entrer mot de passe confirmez"
+    //                         required
+    //                         onChange={(e) => {
+    //                             setconfirmPassword(e.target.value)
+    //                         }}
+    //                     />
+    //                 </div> */}
+    //                 <div>
+    //                     <label />
+    //                     <button onClick={addUser}>
+    //                         Enregister
+    //                     </button>
+    //                 </div>
+    //                 <div>
+    //                     <label />
+    //                     <div>
+    //                         Vous avez déjà un compte ?
+    //                         <Link to="/AccountScreen"> S'identifier</Link>
+    //                     </div>
+    //                 </div>
+    //             </form>
+    //         </div>
+    //     </div>
+    // );
 }
 
 export default RegistrationScreen;
