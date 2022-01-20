@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Axios from "axios"
 
 // CSS
 import "../Styles.css/Screens.css/RegistrationScreen.css";
 
 function RegistrationScreen() {
+
+    const [name, setName] = useState("")
+    const [firstname, setfirstname] = useState("")
+    const [email, setemail] = useState("")
+    const [password, setpassword] = useState("")
+    // const [confirmPassword, setconfirmPassword] = useState("")
+
+
+    const addUser = () => {
+        Axios.post("http://locahost:3001/create", {
+            name: name,
+            firstname: firstname,
+            email: email,
+            password: password,
+            // confirmPassword: confirmPassword
+        })
+    }
+
     return (
         <div className='registrationScreen'>
             <Link to='/'>
@@ -24,7 +43,9 @@ function RegistrationScreen() {
                             id="name"
                             placeholder="Entrer nom"
                             required
-                            onChange
+                            onChange={(e) => {
+                                setName(e.target.value)
+                            }}
                         />
                     </div>
                     <div>
@@ -34,7 +55,9 @@ function RegistrationScreen() {
                             id="firstname"
                             placeholder="Entrer prénom"
                             required
-                            onChange
+                            onChange={(e) => {
+                                setfirstname(e.target.value)
+                            }}
                         />
                     </div>
                     <div>
@@ -44,7 +67,9 @@ function RegistrationScreen() {
                             id="email"
                             placeholder="Entrer email"
                             required
-                            onChange
+                            onChange={(e) => {
+                                setemail(e.target.value)
+                            }}
                         />
                     </div>
                     <div>
@@ -54,22 +79,26 @@ function RegistrationScreen() {
                             id="password"
                             placeholder="Entrer mot de passe"
                             required
-                            onChange
+                            onChange={(e) => {
+                                setpassword(e.target.value)
+                            }}
                         />
                     </div>
-                    <div>
+                    {/* <div>
                         <label htmlFor="confirmPassword">Confirmez mot de passe :</label>
                         <input
                             type="password"
                             id="confirmPassword"
                             placeholder="Entrer mot de passe confirmez"
                             required
-                            onChange
+                            onChange={(e) => {
+                                setconfirmPassword(e.target.value)
+                            }}
                         />
-                    </div>
+                    </div> */}
                     <div>
                         <label />
-                        <button className="primary" type="submit">
+                        <button onClick={addUser}>
                             Enregister
                         </button>
                     </div>
