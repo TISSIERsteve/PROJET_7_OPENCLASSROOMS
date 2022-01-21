@@ -6,26 +6,40 @@ import Axios from "axios"
 import "../Styles.css/Screens.css/RegistrationScreen.css";
 
 function RegistrationScreen() {
+
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
     const [password, setpassword] = useState("");
     const [email, setemail] = useState("");
 
-    const addUser = () => {
-        Axios.post("http://localhost:3001/user", {
-            nom: nom,
-            prenom: prenom,
-            password: password,
-            email: email,
-        })
 
+    const nomRegex = /(.*[a-z]){3,30}/;
+    const prenomRegex = /(.*[a-z]){3,30}/;
+    const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+    const mailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
+    const addUser = (e) => {
+        if (nomRegex.test(nom) && prenomRegex.test(prenom) && pwdRegex.test(password) && mailRegex.test(email)) {
+            alert(`
+             Bravo
+             ${prenom} 
+             tu viens de t'inscrire sur GROUPOMANIA`)
+
+            Axios.post("http://localhost:3001/user", {
+                nom: nom,
+                prenom: prenom,
+                password: password,
+                email: email,
+            })
+        } else {
+            alert("Veuillez renseigner des champs valides")
+        }
     };
 
     return (
         <div className="RegistrationScreen">
             <Link to='/'>
-                <i class='fas fa-arrow-left' />
+                <i className='fas fa-arrow-left' />
             </Link>
 
             <div>
@@ -41,9 +55,20 @@ function RegistrationScreen() {
                             id="nom"
                             type="text"
                             onChange={(event) => {
-                                setNom(event.target.value);
+                                if (nomRegex.test(event.target.value)) {
+                                    setNom(event.target.value)
+                                    document.getElementById("span1").style.color = "green"
+                                    document.getElementById("span1").innerHTML =
+                                        "Nom Valide"
+                                } else {
+                                    document.getElementById("span1").style.fontWeight = "bold"
+                                    document.getElementById("span1").style.color = "red"
+                                    document.getElementById("span1").innerHTML =
+                                        "Veuillez renseigner un nom valide"
+                                }
                             }}
                         />
+                        <span id="span1"></span>
                     </div>
                     <div>
                         <label htmlFor="prenom">Prénom:</label>
@@ -52,9 +77,20 @@ function RegistrationScreen() {
                             id="prenom"
                             type="test"
                             onChange={(event) => {
-                                setPrenom(event.target.value);
+                                if (prenomRegex.test(event.target.value)) {
+                                    setPrenom(event.target.value)
+                                    document.getElementById("span2").style.color = "green"
+                                    document.getElementById("span2").innerHTML =
+                                        "Prénom Valide"
+                                } else {
+                                    document.getElementById("span2").style.fontWeight = "bold"
+                                    document.getElementById("span2").style.color = "red"
+                                    document.getElementById("span2").innerHTML =
+                                        "Veuillez renseigner un prénom valide"
+                                }
                             }}
                         />
+                        <span id="span2"></span>
                     </div>
                     <div>
                         <label htmlFor="password">Mot de passe:</label>
@@ -63,9 +99,20 @@ function RegistrationScreen() {
                             id="password"
                             type="password"
                             onChange={(event) => {
-                                setpassword(event.target.value);
+                                if (pwdRegex.test(event.target.value)) {
+                                    setpassword(event.target.value)
+                                    document.getElementById("span3").style.color = "green"
+                                    document.getElementById("span3").innerHTML =
+                                        "Mot de passe valide"
+                                } else {
+                                    document.getElementById("span3").style.fontWeight = "bold"
+                                    document.getElementById("span3").style.color = "red"
+                                    document.getElementById("span3").innerHTML =
+                                        "Veuillez renseigner un mot de passe valide"
+                                }
                             }}
                         />
+                        <span id="span3"></span>
                     </div>
                     <div>
                         <label htmlFor="email">Email:</label>
@@ -74,11 +121,21 @@ function RegistrationScreen() {
                             id="email"
                             type="email"
                             onChange={(event) => {
-                                setemail(event.target.value);
+                                if (mailRegex.test(event.target.value)) {
+                                    setemail(event.target.value)
+                                    document.getElementById("span4").style.color = "green"
+                                    document.getElementById("span4").innerHTML =
+                                        "Adresse e-mail valide"
+                                } else {
+                                    document.getElementById("span4").style.fontWeight = "bold"
+                                    document.getElementById("span4").style.color = "red"
+                                    document.getElementById("span4").innerHTML =
+                                        "Veuillez renseigner une adresse e-mail valide"
+                                }
                             }}
                         />
+                        <span id="span4"></span>
                     </div>
-
                     <div>
                         <label></label>
                         <button onClick={addUser}>Enregistrer</button>
@@ -94,113 +151,6 @@ function RegistrationScreen() {
             </div>
         </div>
     );
-
-    // const [nom, setNom] = useState("");
-    // const [prenom, setPrenom] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [email, setEmail] = useState("");
-
-
-
-    // const addUser = () => {
-    //     Axios.post("http://locahost:3001/user", {
-    //         nom: nom,
-    //         prenom: prenom,
-    //         password: password,
-    //         email: email,
-    //         // confirmPassword: confirmPassword
-    //     })
-    // }
-
-    // return (
-    //     <div className='registrationScreen'>
-    //         <Link to='/'>
-    //             <i class='fas fa-arrow-left' />
-    //         </Link>
-
-    //         <div>
-    //             <form className="form" >
-    //                 <div>
-    //                     <h1>Créer un compte</h1>
-    //                 </div>
-
-    //                 <div>
-    //                     <label htmlFor="name">Nom :</label>
-    //                     <input
-    //                         type="text"
-    //                         id="name"
-    //                         placeholder="Entrer nom"
-    //                         required
-    //                         onChange={(e) => {
-    //                             setNom(e.target.value)
-    //                         }}
-    //                     />
-    //                 </div>
-    //                 <div>
-    //                     <label htmlFor="firstname">Prénom :</label>
-    //                     <input
-    //                         type="text"
-    //                         id="firstname"
-    //                         placeholder="Entrer prénom"
-    //                         required
-    //                         onChange={(e) => {
-    //                             setPrenom(e.target.value)
-    //                         }}
-    //                     />
-    //                 </div>
-    //                 <div>
-    //                     <label htmlFor="email">Adresse E-mail :</label>
-    //                     <input
-    //                         type="email"
-    //                         id="email"
-    //                         placeholder="Entrer email"
-    //                         required
-    //                         onChange={(e) => {
-    //                             setEmail(e.target.value)
-    //                         }}
-    //                     />
-    //                 </div>
-    //                 <div>
-    //                     <label htmlFor="password">Mot de passe :</label>
-    //                     <input
-    //                         type="password"
-    //                         id="password"
-    //                         placeholder="Entrer mot de passe"
-    //                         required
-    //                         onChange={(e) => {
-    //                             setPassword(e.target.value)
-    //                         }}
-    //                     />
-    //                 </div>
-    //                 {/* <div>
-    //                     <label htmlFor="confirmPassword">Confirmez mot de passe :</label>
-    //                     <input
-    //                         type="password"
-    //                         id="confirmPassword"
-    //                         placeholder="Entrer mot de passe confirmez"
-    //                         required
-    //                         onChange={(e) => {
-    //                             setconfirmPassword(e.target.value)
-    //                         }}
-    //                     />
-    //                 </div> */}
-    //                 <div>
-    //                     <label />
-    //                     <button onClick={addUser}>
-    //                         Enregister
-    //                     </button>
-    //                 </div>
-    //                 <div>
-    //                     <label />
-    //                     <div>
-    //                         Vous avez déjà un compte ?
-    //                         <Link to="/AccountScreen"> S'identifier</Link>
-    //                     </div>
-    //                 </div>
-    //             </form>
-    //         </div>
-    //     </div>
-    // );
 }
 
 export default RegistrationScreen;
