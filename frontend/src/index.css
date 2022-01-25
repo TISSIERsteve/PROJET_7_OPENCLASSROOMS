@@ -24,6 +24,10 @@ a {
     text-decoration: none;
 }
 
+li {
+    list-style-type: none;
+}
+
 .grid-container {
     display: grid;
     grid-template-areas:
@@ -38,7 +42,7 @@ a {
 header {
     grid-area: header;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     font-weight: bold;
     color: #fff;
