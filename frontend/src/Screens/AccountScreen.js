@@ -1,17 +1,39 @@
-import React from 'react';
-import { Link } from "react-router-dom"
+import { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom"
+import Axios from 'axios';
 
 // Css
 import "../Styles.css/Screens.css/AccountScreen.css"
 
 function AccountScreen() {
+    const navigate = useNavigate()
+    const [email, setemail] = useState("");
+    const [password, setpassword] = useState("");
+
+    const accountUser = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await Axios.post(`http://localhost:3001/api/auth/login`, {
+                email,
+                password
+            })
+            localStorage.setItem("bearer", JSON.stringify(response.data.token))
+            navigate("/ProfileScreen", { replace: true })
+
+        } catch (err) {
+
+            console.log(err)
+        }
+    }
+
+
     return (
         <div>
             <Link to='/'>
-                <i class='fas fa-arrow-left' />
+                <i className='fas fa-arrow-left' />
             </Link>
 
-            <form className="form_item" onSubmit >
+            <form className="form_item">
                 <div>
                     <h1>Se connecter</h1>
                 </div>
@@ -23,7 +45,8 @@ function AccountScreen() {
                         id="email"
                         placeholder="Entrer email"
                         required
-                        onChange
+                        onChange={(event) => setemail(event.target.value)}
+                        value={email}
                     />
                 </div>
                 <div>
@@ -33,12 +56,13 @@ function AccountScreen() {
                         id="password"
                         placeholder="Enter password"
                         required
-                        onChange
+                        onChange={(event) => setpassword(event.target.value)}
+                        value={password}
                     />
                 </div>
                 <div>
                     <label />
-                    <button>
+                    <button onClick={accountUser}>
                         Se connecter
                     </button>
                 </div>

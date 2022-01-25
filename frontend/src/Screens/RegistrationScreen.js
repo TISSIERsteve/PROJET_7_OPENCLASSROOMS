@@ -25,7 +25,7 @@ function RegistrationScreen() {
              ${prenom} 
              tu viens de t'inscrire sur GROUPOMANIA`)
 
-            Axios.post("http://localhost:3001/user", {
+            Axios.post("http://localhost:3001/api/auth/signup", {
                 nom: nom,
                 prenom: prenom,
                 password: password,
