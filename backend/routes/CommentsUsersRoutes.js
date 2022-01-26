@@ -9,3 +9,5 @@ const router = express.Router()
 // router.get("/:id", commentsCtrl.getOneComment) // Obtenir un commentaire d'un utilisateur
 // router.post("/:id",commentsCtrl.createComment) // Créer un commentaire
 // router.delete("/:id", commentsCtrl.deleteComment) // Effacer un commentaire
+
+// module.exports = router

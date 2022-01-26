@@ -8,11 +8,11 @@ import "../Styles.css/Screens.css/ProfileScreen.css"
 
 function ProfileScreen() {
 
-    let prenom = JSON.parse(localStorage.prenom);
     const [commentaire, setcommentaire] = useState("")
     const commentRegex = /(.*[a-z]){5,30}/;
 
     const addComment = () => {
+        let prenom = JSON.parse(localStorage.prenom);
 
         if (commentRegex.test(commentaire)) {
             // window.location.reload()

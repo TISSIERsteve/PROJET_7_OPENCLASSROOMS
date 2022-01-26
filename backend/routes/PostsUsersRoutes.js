@@ -9,3 +9,5 @@ const router = express.Router()
 // router.get("/:id", postsCtrl.getOnePost) // Obtenir un post d'un utilisateur
 // router.post("/:id",postsCtrl.createPost) // Créer un post
 // router.delete("/:id", postsCtrl.deletPost) // Effacer un post
+
+// module.exports = router
