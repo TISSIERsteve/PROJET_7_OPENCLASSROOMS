@@ -1,4 +1,5 @@
 import React from 'react';
+import Axios from 'axios';
 import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -6,6 +7,22 @@ import { useState } from 'react';
 import "../Styles.css/Screens.css/ProfileScreen.css"
 
 function ProfileScreen() {
+    const [commentaire, setcommentaire] = useState("")
+    const commentRegex = /(.*[a-z]){5,30}/;
+
+    const addComment = () => {
+
+        if (commentRegex.test(commentaire)) {
+            console.log("yes");
+            // window.location.reload()
+            Axios.post("http://localhost:3001/api/messagesPerso", {
+                commentaire: commentaire
+            })
+        } else {
+            alert("Veuillez insérer un minimum de 5 caractères")
+        }
+    }
+
     if (localStorage.bearer) {
 
         const open = () => {
@@ -20,16 +37,6 @@ function ProfileScreen() {
             hour: "numeric",
             minute: "numeric",
         });
-
-        const commentRegex = /(.*[a-z]){3,30}/;
-        const [commentaire, setcommentaire] = useState("")
-
-        const addComment = (e) => {
-            if (commentRegex.test(commentaire)) {
-                console.log("ajout commentaire");
-            }
-
-        }
 
         return <div>
             <button onClick={open}
@@ -63,8 +70,7 @@ function ProfileScreen() {
                         onChange={(event) => {
                             if (commentRegex.test(event.target.value)) {
                                 setcommentaire(event.target.value)
-                            } else {
-                                console.log("erreur commentaire")
+                                return
                             }
                         }}
                     ></input>
