@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { useState } from 'react';
 
 // CSS
 import "../Styles.css/Screens.css/ProfileScreen.css"
@@ -20,6 +21,15 @@ function ProfileScreen() {
             minute: "numeric",
         });
 
+        const commentRegex = /(.*[a-z]){3,30}/;
+        const [commentaire, setcommentaire] = useState("")
+
+        const addComment = (e) => {
+            if (commentRegex.test(commentaire)) {
+                console.log("ajout commentaire");
+            }
+
+        }
 
         return <div>
             <button onClick={open}
@@ -43,17 +53,31 @@ function ProfileScreen() {
             </div>
             <div>
                 <div className='profileScreenPrenom'>
-                    Bonjour {storage}
+                    <label htmlFor='commentaire'>Bonjour {storage}</label>
                 </div>
                 <div className='profileScreen_BarreRecherche'>
-                    <input className='profileScreenInput' type="text" placeholder="Quoi de neuf aujourd' hui ?"></input>
+                    <input className='profileScreenInput'
+                        id='commentaire'
+                        type="text"
+                        placeholder="Quoi de neuf aujourd' hui, poster un commentaire ?"
+                        onChange={(event) => {
+                            if (commentRegex.test(event.target.value)) {
+                                setcommentaire(event.target.value)
+                            } else {
+                                console.log("erreur commentaire")
+                            }
+                        }}
+                    ></input>
+                    <i className="far fa-plus-square add"
+                        onClick={addComment}
+                    ></i>
                 </div>
             </div>
             <div className='container'>
                 <ul className='profileScreenTele'>
-                    <li><i class="fas fa-camera"></i>Photo</li>
-                    <li><i class="fas fa-video"></i>Vidéo</li>
-                    <li><i class="fas fa-comments"></i>Messages privés</li>
+                    <li><i className="fas fa-camera"></i>Photo</li>
+                    <li><i className="fas fa-video"></i>Vidéo</li>
+                    <li><i className="fas fa-comments"></i>Messages privés</li>
                 </ul>
             </div>
 
