@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-// const token = require("../middleware/AuthToken")
+// const token = require("../middleware/AuthTokenMiddleware")
 
 // ============================================ ROUTES ======================================================
 // const messagesCtrl = require("../controllers/MessagesUsers")

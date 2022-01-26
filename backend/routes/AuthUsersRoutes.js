@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 // ============================================ ROUTES =================================================
-const authCtrl = require("../controllers/AuthUsers")
+const authCtrl = require("../controllers/AuthUsersControllers")
 
 router.post("/signup", authCtrl.signup) // Création utilisateur
 router.post("/login", authCtrl.login) // Connexion utilisateur

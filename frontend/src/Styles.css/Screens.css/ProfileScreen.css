@@ -16,7 +16,7 @@
 .aside {
     position: absolute;
     width: 25rem;
-    height: 30rem;
+    height: 27.5rem;
     border: 1px solid black;
     margin-top: 2.5rem;
     background-color: #efefef;
@@ -41,4 +41,75 @@
 
 .aside li .fas:hover {
     color: red;
+}
+
+.profileScreenPrenom {
+    width: 30%;
+    margin: 1rem auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+.profileScreenInput {
+    width: 70%;
+    display: flex;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.profileScreenInput::placeholder {
+    text-align: left;
+    font-weight: bold;
+}
+
+.container {
+    background-color: rgb(209, 205, 207);
+    width: 100%;
+    margin: 2rem auto;
+    padding: 1rem;
+    border-bottom: 2px solid black;
+}
+
+.profileScreenDate {
+    position: absolute;
+    right: 1rem;
+    bottom: 6rem;
+    font-weight: bold;
+}
+
+ul.profileScreenTele {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.profileScreenTele {
+    display: flex;
+    justify-content: space-around;
+}
+
+.profileScreenTele li {
+    text-align: center;
+    width: 30%;
+    border-right: 1px solid black;
+}
+
+.profileScreenTele li:last-child {
+    border-right: none;
+}
+
+.fa-camera {
+    color: green;
+    margin-right: 0.5rem;
+}
+
+.fa-video {
+    color: red;
+    margin-right: 0.5rem;
+}
+
+.fa-comments {
+    color: darkmagenta;
+    margin-right: 0.5rem;
 }

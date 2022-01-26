@@ -40,6 +40,7 @@ exports.login = (req, res) => {
     // console.log(req.body);
     const password = req.body.password;
     const email = req.body.email;
+    // const prenom = req.body.prenom
 
     db.query(
         `SELECT * FROM user WHERE email = ?`,
@@ -47,7 +48,7 @@ exports.login = (req, res) => {
         async (err, result) => {
             if (err) {
                 // console.log(err);
-                res.status(403).json({ message: "Accès refusé" })
+                return res.status(403).json({ message: "Accès refusé" })
             }
             if (result.length) {
                 const passwordOk = bcrypt.compare(password, result[0].password)
@@ -62,7 +63,8 @@ exports.login = (req, res) => {
                         token,
                         user: {
                             id: result[0].user_id,
-                            email: result[0].email
+                            email: result[0].email,
+                            prenom: result[0].prenom
                         }
 
                     })
