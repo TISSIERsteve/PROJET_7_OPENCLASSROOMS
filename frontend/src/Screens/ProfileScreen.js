@@ -7,15 +7,17 @@ import { useState } from 'react';
 import "../Styles.css/Screens.css/ProfileScreen.css"
 
 function ProfileScreen() {
+
+    let prenom = JSON.parse(localStorage.prenom);
     const [commentaire, setcommentaire] = useState("")
     const commentRegex = /(.*[a-z]){5,30}/;
 
     const addComment = () => {
 
         if (commentRegex.test(commentaire)) {
-            console.log("yes");
             // window.location.reload()
             Axios.post("http://localhost:3001/api/messagesPerso", {
+                prenom: prenom,
                 commentaire: commentaire
             })
         } else {
@@ -25,10 +27,10 @@ function ProfileScreen() {
 
     if (localStorage.bearer) {
 
+        const storage = JSON.parse(localStorage.prenom)
         const open = () => {
             document.getElementById("open").classList.toggle("active")
         }
-        const storage = JSON.parse(localStorage.prenom)
 
         let jour = new Date().toLocaleDateString("fr-FR", {
             year: "numeric",
