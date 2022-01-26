@@ -19,7 +19,6 @@ exports.signup = (req, res) => {
             password: hash,
             email
         }
-        console.log(user);
 
         db.query(
             "INSERT INTO user set ?",

@@ -143,3 +143,10 @@ ul.profileScreenTele {
 .fa-comments:hover {
     transform: scale(1.3);
 }
+
+.sms {
+    border: 1px solid black;
+    padding: 0.5rem;
+    border-radius: 40%;
+    background-color: white;
+}

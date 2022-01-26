@@ -2,6 +2,20 @@ const db = require("../config/mysql")
 
 exports.getAllMessages = (req, res) => {
 
+    db.query("SELECT * FROM messageperso", (err, result) => {
+        if (err) {
+            res.status(403).json({ message: "Accès refusé du post de messageperso" })
+        } else {
+            res.status(200).json({
+                message: "Messageperso renvoyer sur page",
+                messageperso: {
+                    prenom: result[0].prenom,
+                    commentaire: result[0].commentaire
+                }
+            });
+        }
+    });
+    ;
 }
 
 exports.getOneMessage = (req, res) => {
@@ -16,17 +30,15 @@ exports.createMessage = (req, res) => {
         prenom,
         commentaire
     }
-    console.log(messageperso);
 
     db.query(
         "INSERT INTO messageperso set ?",
         messageperso,
         (err, result) => {
-            console.log(err);
             if (err) {
                 res.status(403).json({ message: "Accès refusé" })
             } else {
-                res.status(200).json({ message: "Succès utilisateur créer" });
+                res.status(200).json({ message: "Message créer" });
             }
         }
     );
