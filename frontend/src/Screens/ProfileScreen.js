@@ -16,7 +16,7 @@ function ProfileScreen() {
 
         if (commentRegex.test(commentaire)) {
             // window.location.reload()
-            Axios.post("http://localhost:3001/api/messagesPerso", {
+            Axios.post("http://localhost:3001/api/messagesPerso/:id", {
                 prenom: prenom,
                 commentaire: commentaire
             })

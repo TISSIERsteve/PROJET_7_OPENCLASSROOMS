@@ -10,16 +10,18 @@ exports.getOneMessage = (req, res) => {
 
 exports.createMessage = (req, res) => {
     const prenom = req.body.prenom;
+    console.log(prenom);
     const commentaire = req.body.commentaire;
+    console.log(commentaire);
 
-    const user = {
+    const messageperso = {
         prenom,
         commentaire
     }
 
     db.query(
-        "INSERT INTO user set ?",
-        user,
+        "INSERT INTO messageperso set ?",
+        messageperso,
         (err, result) => {
             console.log(err);
             if (err) {
