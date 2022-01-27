@@ -9,9 +9,12 @@ exports.getAllMessages = (req, res) => {
             res.status(200).json({
                 message: "Messageperso renvoyer sur page",
                 messageperso: {
-                    prenom: result[0].prenom,
-                    commentaire: result[0].commentaire
+                    // prenom: result[0].prenom,
+                    // commentaire: result[0].commentaire
+                    prenom: result.map((x) => x.prenom),
+                    commentaire: result.map((x) => x.commentaire)
                 }
+
             });
         }
     });

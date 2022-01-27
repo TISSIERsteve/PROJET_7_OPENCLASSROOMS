@@ -51,15 +51,15 @@ function ProfileScreen() {
                         result.map((x) =>
 
                             `
-                           <article>
-                           <li>Message de ${x.prenom}</li>
-                           <li>${x.commentaire}</li>
-                           </article
+                        <article>
+                            <a href="#">
+                                <h3 className="descriptionPrenom">Message de : ${x.prenom}</h3>
+                                <p className="descriptionCommentaire">Commentaire (s) : ${x.commentaire}</p>
+                            </a>
+                        </article>
                            `
 
-
                         )
-
                 });
         };
 
