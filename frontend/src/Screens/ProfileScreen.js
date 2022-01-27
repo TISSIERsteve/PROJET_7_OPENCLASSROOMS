@@ -8,7 +8,8 @@ import "../Styles.css/Screens.css/ProfileScreen.css"
 
 function ProfileScreen() {
 
-    // Barre de publication commentaire
+
+    // =========================== Barre de publication commentaire ==========================================
     const [commentaire, setcommentaire] = useState("")
     const commentRegex = /(.*[a-z]){5,30}/;
 
@@ -25,12 +26,12 @@ function ProfileScreen() {
             alert("Veuillez insérer un minimum de 5 caractères")
         }
     }
-    // Fin
+    // =========================================== Fin =======================================================
+    // Pour stocker les données de mon get axios
+    // const [comments, setComments] = useState([])
 
     // Si token dans locale storage
     if (localStorage.bearer) {
-
-        const result = []
 
         // Récupère le prénom
         const storage = JSON.parse(localStorage.prenom)
@@ -44,25 +45,9 @@ function ProfileScreen() {
         const getComments = () => {
             Axios.get("http://localhost:3001/api/messagesPerso/:id")
                 .then((response) => {
-                    console.log(response);
-                    result.push(response.data.messageperso);
-                    console.log(result);
-                    document.getElementById("items").innerHTML =
-                        result.map((x) =>
-
-                            `
-                        <article>
-                            <a href="#">
-                                <h3 className="descriptionPrenom">Message de : ${x.prenom}</h3>
-                                <p className="descriptionCommentaire">Commentaire (s) : ${x.commentaire}</p>
-                            </a>
-                        </article>
-                           `
-
-                        )
+                    setComments(response.data)
                 });
         };
-
 
         // Ajoute la date du jour
         let jour = new Date().toLocaleDateString("fr-FR", {
@@ -72,7 +57,7 @@ function ProfileScreen() {
             hour: "numeric",
             minute: "numeric",
         });
-
+        // =============================== JSX ======================
         return <div>
             <button onClick={open}
                 type="button"
@@ -88,7 +73,7 @@ function ProfileScreen() {
                                 window.location.reload()
                             }}
                         >
-                            Déconnection<i className="fas fa-power-off"></i>
+                            Déconnection <i className="fas fa-power-off"></i>
                         </li>
                     </ul>
                 </aside>
@@ -126,10 +111,25 @@ function ProfileScreen() {
                 {jour}
             </div>
 
-            <section id='items'></section>
+            {/*  Partie dynamique prénom et commentaires  */}
+            <section id='items'>
+
+                <div>
+                    {comments.length && comments.map((comment) => (
+                        <article>
+                            {comment.prenom}
+                            {comment.commentaire}
+
+                        </article>
+                    ))}
+                </div>
+
+            </section>
 
             {getComments()}
-        </div>;
+        </div >;
+
+        // Sinon return page accueil
     } else {
         return <Navigate to="/"></Navigate>
     }
