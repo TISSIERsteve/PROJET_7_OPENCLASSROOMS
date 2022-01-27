@@ -7,14 +7,10 @@ exports.getAllMessages = (req, res) => {
             res.status(403).json({ message: "Accès refusé du post de messageperso" })
         } else {
             res.status(200).json({
-                message: "Messageperso renvoyer sur page",
+                // message: "Messageperso renvoyer sur page",
                 messageperso: {
-                    // prenom: result[0].prenom,
-                    // commentaire: result[0].commentaire
-                    prenom: result.map((x) => x.prenom),
-                    commentaire: result.map((x) => x.commentaire)
+                    resultat: result.filter((x) => x.prenom),
                 }
-
             });
         }
     });

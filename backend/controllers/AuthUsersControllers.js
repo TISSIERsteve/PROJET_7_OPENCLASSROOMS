@@ -40,14 +40,13 @@ exports.login = (req, res) => {
     // console.log(req.body);
     const password = req.body.password;
     const email = req.body.email;
-    // const prenom = req.body.prenom
 
     db.query(
         `SELECT * FROM user WHERE email = ?`,
         [email],
         async (err, result) => {
             if (err) {
-                // console.log(err);
+                console.log(err);
                 return res.status(403).json({ message: "Accès refusé" })
             }
             if (result.length) {

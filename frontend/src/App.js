@@ -9,6 +9,16 @@ import ProfileScreen from "./Screens/ProfileScreen";
 
 
 function App() {
+
+    // Ajoute la date du jour
+    let jour = new Date().toLocaleDateString("fr-FR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+    });
+
     return (
         <Router>
             <div className="grid-container">
@@ -28,8 +38,11 @@ function App() {
                 </main>
 
                 <footer>
-                    <div className="entete">
+                    <div className="piedPage">
                         <h2>Tout droits réservé GROUPOMANIA ®-2022-</h2>
+                    </div>
+                    <div className='profileScreenDate'>
+                        {jour}
                     </div>
                 </footer>
             </div>
