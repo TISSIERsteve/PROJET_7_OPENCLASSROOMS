@@ -7,7 +7,6 @@ import Aside from "../Components/Aside"
 import Search from '../Components/Search';
 import ButtonAside from '../Components/ButtonAside';
 import SearchContainer from '../Components/SearchContainer';
-// import ProfileScreenItem from '../Components/ProfileScreenItem';
 
 // CSS
 import "../Styles.css/Screens.css/ProfileScreen.css"
@@ -16,7 +15,7 @@ function ProfileScreen() {
 
     // Si token dans locale storage j'affiche
     if (localStorage.bearer) {
-        // <ProfileScreenItem></ProfileScreenItem>
+
         // Récupère les publications de commentaire
         const getComments = () => {
             Axios.get("http://localhost:3001/api/messagesPerso/:id")

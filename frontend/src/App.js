@@ -6,6 +6,7 @@ import HomeScreen from "./Screens/HomeScreen";
 import RegistrationScreen from "./Screens/RegistrationScreen";
 import AccountScreen from "./Screens/AccountScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
+import PersoProfileScreen from "./Screens/PersoProfileScreen";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                         <Route path="/RegistrationScreen" element={<RegistrationScreen />} />
                         <Route path="/AccountScreen" element={<AccountScreen />}></Route>
                         <Route path="/ProfileScreen" element={<ProfileScreen></ProfileScreen>}></Route>
+                        <Route path="/PersoProfileScreen" element={<PersoProfileScreen></PersoProfileScreen>}></Route>
                     </Routes>
                 </main>
 

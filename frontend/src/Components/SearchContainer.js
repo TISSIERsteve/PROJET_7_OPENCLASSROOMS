@@ -1,5 +1,8 @@
 import React from 'react';
 
+// CSS
+import "../Styles.css/Components.css/SearchContainerComponent.css"
+
 function SearchContainer() {
     return <div>
         <ul className='profileScreenTele'>

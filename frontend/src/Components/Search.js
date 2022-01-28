@@ -2,6 +2,9 @@ import React from 'react';
 import Axios from "axios"
 import { useState } from 'react';
 
+// CSS
+import "../Styles.css/Components.css/SearchComponent.css"
+
 function Search() {
 
     // Récupère le prénom

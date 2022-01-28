@@ -37,7 +37,7 @@ exports.signup = (req, res) => {
 
 // Connexion au compte
 exports.login = (req, res) => {
-    // console.log(req.body);
+    console.log(req.body);
     const password = req.body.password;
     const email = req.body.email;
 
@@ -50,7 +50,8 @@ exports.login = (req, res) => {
                 return res.status(403).json({ message: "Accès refusé" })
             }
             if (result.length) {
-                const passwordOk = bcrypt.compare(password, result[0].password)
+                const passwordOk = await bcrypt.compare(password, result[0].password)
+                console.log(passwordOk);
                 if (passwordOk) {
                     const token = jwt.sign({
                         exp: Math.floor(Date.now() / 1000) + (60 * 60),

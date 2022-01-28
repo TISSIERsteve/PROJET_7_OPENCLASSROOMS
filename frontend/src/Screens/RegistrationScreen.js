@@ -64,7 +64,7 @@ function RegistrationScreen() {
                                     document.getElementById("span1").style.fontWeight = "bold"
                                     document.getElementById("span1").style.color = "red"
                                     document.getElementById("span1").innerHTML =
-                                        "Veuillez renseigner un nom valide"
+                                        "Veuillez renseigner minimun 3 caractères"
                                 }
                             }}
                         />
@@ -86,7 +86,7 @@ function RegistrationScreen() {
                                     document.getElementById("span2").style.fontWeight = "bold"
                                     document.getElementById("span2").style.color = "red"
                                     document.getElementById("span2").innerHTML =
-                                        "Veuillez renseigner un prénom valide"
+                                        "Veuillez renseigner minimun 3 caractères"
                                 }
                             }}
                         />
@@ -108,7 +108,7 @@ function RegistrationScreen() {
                                     document.getElementById("span3").style.fontWeight = "bold"
                                     document.getElementById("span3").style.color = "red"
                                     document.getElementById("span3").innerHTML =
-                                        "Veuillez renseigner un mot de passe valide"
+                                        "Veuillez renseigner 8 caractères minimun avec chiffres"
                                 }
                             }}
                         />

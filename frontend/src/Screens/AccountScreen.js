@@ -12,18 +12,20 @@ function AccountScreen() {
 
     const accountUser = async (e) => {
         e.preventDefault()
+
         try {
             const response = await Axios.post(`http://localhost:3001/api/auth/login`, {
                 email,
                 password
             })
-            console.log(response.data);
+
             localStorage.setItem("bearer", JSON.stringify(response.data.token))
             localStorage.setItem("prenom", JSON.stringify(response.data.user.prenom))
             navigate("/ProfileScreen", { replace: true })
 
         } catch (err) {
-
+            alert("E-mail ou mot de passe incorrect")
+            window.location.reload()
             console.log(err)
         }
     }

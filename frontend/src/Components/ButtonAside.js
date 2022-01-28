@@ -1,5 +1,8 @@
 import React from 'react';
 
+// CSS
+import "../Styles.css/Components.css/ButtonAsideComponent.css"
+
 function ButtonAside() {
 
     // Sidebar

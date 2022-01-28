@@ -1,4 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+// CSS
+import "../Styles.css/Components.css/AsideComponent.css"
 
 function Sidebar() {
     return <div>
@@ -10,8 +14,13 @@ function Sidebar() {
                         window.location.reload()
                     }}
                 >
-                    Déconnection <i className="fas fa-power-off"></i>
+                    <Link className='lienAside ' to="#"> Déconnection</Link>
+                    <i className="fas fa-power-off"></i>
                 </li>
+                <li>
+                    <Link className='lienAside' to="/PersoProfileScreen">Voir mes publications</Link>
+                </li>
+
             </ul>
         </aside>
     </div>;
