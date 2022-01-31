@@ -9,7 +9,7 @@ exports.getAllMessages = (req, res) => {
         } else {
             res.status(200).json({
                 messageperso: {
-                    resultat: result.filter((x) => x.prenom),
+                    resultat: result,
                 }
             });
         }
@@ -18,32 +18,37 @@ exports.getAllMessages = (req, res) => {
 
 // Obtenir nos messages personnels sur ProfilePersoScreen
 exports.getOneMessage = (req, res) => {
-    db.query("SELECT * FROM messageperso  WHERE fk_id_user = ?", (err, result) => {
+    // const id = req.params.id
+    // console.log(id);
 
-        if (err) {
-            res.status(403).json({ message: "Accès refusé du post de messageperso" })
-        } else {
-            res.status(200).json({
-                messagePersoUtilisateur: {
-                    resultatCommentaire: result,
-                }
-            });
-        }
-    });
+    db.query(`SELECT * FROM messageperso `,
+        // id,
+        (err, result) => {
+            if (err) {
+                res.status(403).json({ message: "Accès refusé du post de messageperso" })
+            } else {
+                res.status(200).json({
+                    id: result[0].id,
+                    commentaire: result.filter((x) => console.log(x))
+                });
+            }
+        });
 }
 
 // Créer et poster un message sur ProfileScreen
 exports.createMessage = (req, res) => {
     const prenom = req.body.prenom;
     const commentaire = req.body.commentaire;
+    const id = req.body.id
 
     const messageperso = {
+        id,
         prenom,
-        commentaire
+        commentaire,
     }
 
     db.query(
-        "INSERT INTO messageperso set ?",
+        'INSERT INTO messageperso set ?',
         messageperso,
         (err, result) => {
             if (err) {

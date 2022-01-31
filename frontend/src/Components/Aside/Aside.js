@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // CSS
-import "../Styles.css/Components.css/AsideComponent.css"
+import "../Aside/Aside.css"
 
 function Sidebar() {
     return <div>

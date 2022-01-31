@@ -1,7 +1,7 @@
 import React from 'react';
 
 // CSS
-import "../Styles.css/Components.css/ButtonAsideComponent.css"
+import "../ButtonAside/ButtonAside.css"
 
 function ButtonAside() {
 

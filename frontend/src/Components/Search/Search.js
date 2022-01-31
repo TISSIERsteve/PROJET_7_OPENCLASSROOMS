@@ -3,7 +3,7 @@ import Axios from "axios"
 import { useState } from 'react';
 
 // CSS
-import "../Styles.css/Components.css/SearchComponent.css"
+import "../Search/Search.css"
 
 function Search() {
 
@@ -15,12 +15,14 @@ function Search() {
 
     const addComment = () => {
         let prenom = JSON.parse(localStorage.prenom);
+        let id = JSON.parse(localStorage.id);
 
         if (commentRegex.test(commentaire)) {
             window.location.reload()
             Axios.post("http://localhost:3001/api/messagesPerso/:id", {
                 prenom: prenom,
-                commentaire: commentaire
+                commentaire: commentaire,
+                id: id
             })
         } else {
             alert("Veuillez insérer un minimum de 5 caractères")

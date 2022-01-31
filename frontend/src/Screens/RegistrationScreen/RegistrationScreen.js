@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Axios from "axios"
 
 // CSS
-import "../Styles.css/Screens.css/RegistrationScreen.css";
+import "../RegistrationScreen/RegistrationScreen.css";
 
 function RegistrationScreen() {
 
@@ -19,11 +19,9 @@ function RegistrationScreen() {
     const mailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
     const addUser = (e) => {
+        e.preventDefault()
+
         if (nomRegex.test(nom) && prenomRegex.test(prenom) && pwdRegex.test(password) && mailRegex.test(email)) {
-            alert(`
-             Bravo
-             ${prenom} 
-             tu viens de t'inscrire sur GROUPOMANIA`)
 
             Axios.post("http://localhost:3001/api/auth/signup", {
                 nom: nom,
@@ -31,15 +29,25 @@ function RegistrationScreen() {
                 password: password,
                 email: email,
             })
+
+                .then(() => {
+                    alert(`Bravo ${prenom} tu viens de t'inscrire sur GROUPOMANIA`)
+                })
+
+                .catch((err) => {
+                    alert("Vous êtes déjà enregistrer avec cette adresse e-mail")
+                })
+
         } else {
-            alert("Veuillez renseigner des champs valides")
+            alert("Merci de remplir tous les champs");
         }
-    };
+    }
+
 
     return (
         <div className="RegistrationScreen">
             <Link to='/'>
-                <i className='fas fa-arrow-left' />
+                <i className='fas fa-arrow-left flecheGauche' />
             </Link>
 
             <div>

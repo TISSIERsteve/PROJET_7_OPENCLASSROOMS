@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import Axios from 'axios';
 
 // Css
-import "../Styles.css/Screens.css/AccountScreen.css"
+import "../AccountScreen/AccountScreen.css"
 
 function AccountScreen() {
     const navigate = useNavigate()
@@ -19,8 +19,10 @@ function AccountScreen() {
                 password
             })
 
+            localStorage.setItem("id", JSON.stringify(response.data.user.id))
             localStorage.setItem("bearer", JSON.stringify(response.data.token))
             localStorage.setItem("prenom", JSON.stringify(response.data.user.prenom))
+
             navigate("/ProfileScreen", { replace: true })
 
         } catch (err) {
@@ -30,11 +32,10 @@ function AccountScreen() {
         }
     }
 
-
     return (
         <div>
             <Link to='/'>
-                <i className='fas fa-arrow-left' />
+                <i className='fas fa-arrow-left flecheGauche' />
             </Link>
 
             <form className="form_item">

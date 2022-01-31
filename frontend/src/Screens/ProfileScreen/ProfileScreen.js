@@ -3,13 +3,13 @@ import Axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
 // Components
-import Aside from "../Components/Aside"
-import Search from '../Components/Search';
-import ButtonAside from '../Components/ButtonAside';
-import SearchContainer from '../Components/SearchContainer';
+import Aside from "../../Components/Aside/Aside"
+import Search from '../../Components/Search/Search';
+import ButtonAside from '../../Components/ButtonAside/ButtonAside';
+import SearchContainer from '../../Components/SearchContainer/SearchContainer';
 
 // CSS
-import "../Styles.css/Screens.css/ProfileScreen.css"
+import "../ProfileScreen/ProfileScreen.css"
 
 function ProfileScreen() {
 
@@ -21,7 +21,7 @@ function ProfileScreen() {
             Axios.get("http://localhost:3001/api/messagesPerso/:id")
                 .then((response) => {
                     const result = (response.data.messageperso.resultat)
-                    console.log(result)
+
                     document.getElementById("items").innerHTML =
 
                         result.map((x) =>

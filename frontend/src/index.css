@@ -73,6 +73,11 @@ footer {
     color: #fff;
 }
 
+@media screen and (max-width: 710px) {
+    .profileScreenDate{
+        display: none;
+    }
+}
 
 
 

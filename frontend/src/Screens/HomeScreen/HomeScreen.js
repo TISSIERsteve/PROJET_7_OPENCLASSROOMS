@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // CSS
-import "../Styles.css/Screens.css/HomeScreen.css";
+import "../HomeScreen/HomeScreen.css";
 
 function HomeScreenItem() {
     return (
@@ -17,9 +17,9 @@ function HomeScreenItem() {
                         <Link to="/RegistrationScreen">Créer un compte</Link>
                     </div>
                 </nav>
-                <div>
+                {/* <div>
                     <img className="homeScreen_img1" src="./images/img5.png" alt="" />
-                </div>
+                </div> */}
             </main>
         </div>
     );
