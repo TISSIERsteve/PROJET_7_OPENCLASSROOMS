@@ -6,9 +6,9 @@ const router = express.Router()
 // ============================================ ROUTES ======================================================
 const messagesCtrl = require("../controllers/MessagesUsersControllers")
 
-router.post("/:id", messagesCtrl.createMessage) // Créer un message
-router.get("/:id", messagesCtrl.getAllMessages) // Obtenir tous les messages des utilisateurs
-router.get("/:id/perso", messagesCtrl.getOneMessage) // Obtenir un message personnel d'un utilisateur
-// router.delete("/:id", messagesCtrl.deleteMessage) // Effacer un message
+router.post("/", messagesCtrl.createMessage) // Créer un message
+router.get("/", messagesCtrl.getAllMessages) // Obtenir tous les messages des utilisateurs
+router.get("/:id", messagesCtrl.getOneMessage) // Obtenir un message personnel d'un utilisateur
+router.delete("/:id", messagesCtrl.deleteMessage) // Effacer un message
 
 module.exports = router

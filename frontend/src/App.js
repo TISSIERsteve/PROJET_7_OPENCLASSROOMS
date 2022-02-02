@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import Axios from "axios";
 
 // Screens
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
@@ -8,8 +9,9 @@ import AccountScreen from "./Screens/AccountScreen/AccountScreen";
 import ProfileScreen from "./Screens/ProfileScreen/ProfileScreen";
 import PersoProfileScreen from "./Screens/PersoProfileScreen/PersoProfileScreen";
 
-
 function App() {
+    console.log(localStorage.bearer);
+    // Axios.defaults.headers.common.Authorization = `Bearer` + localStorage.bearer
 
     // Ajoute la date du jour
     let jour = new Date().toLocaleDateString("fr-FR", {
@@ -17,7 +19,7 @@ function App() {
         month: "long",
         day: "numeric",
         hour: "numeric",
-        minute: "numeric",
+        minute: "numeric"
     });
 
     return (
@@ -32,10 +34,14 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/" element={<HomeScreen />} />
-                        <Route path="/RegistrationScreen" element={<RegistrationScreen />} />
-                        <Route path="/AccountScreen" element={<AccountScreen />}></Route>
-                        <Route path="/ProfileScreen" element={<ProfileScreen></ProfileScreen>}></Route>
-                        <Route path="/PersoProfileScreen" element={<PersoProfileScreen></PersoProfileScreen>}></Route>
+                        <Route
+                            path="/RegistrationScreen"
+                            element={<RegistrationScreen />}
+                        />
+                        <Route path="/AccountScreen" element={<AccountScreen />} />
+                        <Route path="/ProfileScreen" element={<ProfileScreen />} />
+                        <Route path="/PersoProfileScreen" element={<PersoProfileScreen />}
+                        />
                     </Routes>
                 </main>
 
@@ -43,7 +49,7 @@ function App() {
                     <div className="piedPage">
                         <h2>Tout droits réservé GROUPOMANIA ®-2022-</h2>
                     </div>
-                    <div className='profileScreenDate'>
+                    <div className="profileScreenDate">
                         {jour}
                     </div>
                 </footer>

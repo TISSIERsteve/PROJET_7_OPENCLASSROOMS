@@ -1,41 +1,45 @@
-import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom"
-import Axios from 'axios';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Axios from "axios";
 
 // Css
-import "../AccountScreen/AccountScreen.css"
+import "../AccountScreen/AccountScreen.css";
 
 function AccountScreen() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
 
-    const accountUser = async (e) => {
-        e.preventDefault()
+    const accountUser = async e => {
+        e.preventDefault();
 
         try {
-            const response = await Axios.post(`http://localhost:3001/api/auth/login`, {
-                email,
-                password
-            })
+            const response = await Axios.post(
+                `http://localhost:3001/api/auth/login`,
+                {
+                    email,
+                    password
+                }
+            );
 
-            localStorage.setItem("id", JSON.stringify(response.data.user.id))
-            localStorage.setItem("bearer", JSON.stringify(response.data.token))
-            localStorage.setItem("prenom", JSON.stringify(response.data.user.prenom))
+            // Axios.defaults.headers.common.Authorization = `Bearer` + response.data.token
+            localStorage.setItem("id", JSON.stringify(response.data.user.id));
+            localStorage.setItem("bearer", response.data.token);
+            localStorage.setItem("prenom", JSON.stringify(response.data.user.prenom));
 
-            navigate("/ProfileScreen", { replace: true })
+            navigate("/ProfileScreen", { replace: true });
 
         } catch (err) {
-            alert("E-mail ou mot de passe incorrect")
-            window.location.reload()
-            console.log(err)
+            alert("E-mail ou mot de passe incorrect");
+            window.location.reload();
+            // console.log(err);
         }
-    }
+    };
 
     return (
         <div>
-            <Link to='/'>
-                <i className='fas fa-arrow-left flecheGauche' />
+            <Link to="/">
+                <i className="fas fa-arrow-left flecheGauche" />
             </Link>
 
             <form className="form_item">
@@ -50,7 +54,7 @@ function AccountScreen() {
                         id="email"
                         placeholder="Entrer email"
                         required
-                        onChange={(event) => setemail(event.target.value)}
+                        onChange={event => setemail(event.target.value)}
                         value={email}
                     />
                 </div>
@@ -61,15 +65,13 @@ function AccountScreen() {
                         id="password"
                         placeholder="Enter password"
                         required
-                        onChange={(event) => setpassword(event.target.value)}
+                        onChange={event => setpassword(event.target.value)}
                         value={password}
                     />
                 </div>
                 <div>
                     <label />
-                    <button onClick={accountUser}>
-                        Se connecter
-                    </button>
+                    <button onClick={accountUser}>Se connecter</button>
                 </div>
                 <div>
                     <label />
@@ -86,4 +88,3 @@ function AccountScreen() {
 }
 
 export default AccountScreen;
-

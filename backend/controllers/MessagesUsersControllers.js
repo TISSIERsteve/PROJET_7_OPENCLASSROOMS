@@ -2,14 +2,15 @@ const db = require("../config/mysql")
 
 // Obtenir tous les posts des utilisateurs sur ProfileScreen
 exports.getAllMessages = (req, res) => {
-    db.query("SELECT * FROM messageperso", (err, result) => {
 
+    db.query("SELECT * FROM messageperso ORDER BY date ASC ", (err, result) => {
         if (err) {
             res.status(403).json({ message: "Accès refusé reception des messageperso" })
+
         } else {
             res.status(200).json({
                 messageperso: {
-                    resultat: result,
+                    resultat: result
                 }
             });
         }
@@ -18,18 +19,16 @@ exports.getAllMessages = (req, res) => {
 
 // Obtenir nos messages personnels sur ProfilePersoScreen
 exports.getOneMessage = (req, res) => {
-    // const id = req.params.id
-    // console.log(id);
+    const id = req.params.id
 
-    db.query(`SELECT * FROM messageperso `,
-        // id,
+    db.query(`SELECT * FROM messageperso WHERE fk_id_user = ? ORDER BY date ASC`,
+        [id],
         (err, result) => {
             if (err) {
                 res.status(403).json({ message: "Accès refusé du post de messageperso" })
             } else {
                 res.status(200).json({
-                    id: result[0].id,
-                    commentaire: result.filter((x) => console.log(x))
+                    result
                 });
             }
         });
@@ -42,9 +41,16 @@ exports.createMessage = (req, res) => {
     const id = req.body.id
 
     const messageperso = {
-        id,
         prenom,
         commentaire,
+        fk_id_user: id,
+        date: new Date().toLocaleDateString("fr-FR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric"
+        })
     }
 
     db.query(
@@ -61,5 +67,17 @@ exports.createMessage = (req, res) => {
 }
 
 exports.deleteMessage = (req, res) => {
+    const persoId = req.params.id
+    console.log(persoId);
 
+    db.query("DELETE FROM messageperso WHERE message_perso_id = ?",
+        [persoId],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(403).json({ message: "Accés refusé" })
+            } else {
+                res.status(200).json({ message: "Message supprimer" })
+            }
+        });
 }

@@ -18,12 +18,15 @@ function Search() {
         let id = JSON.parse(localStorage.id);
 
         if (commentRegex.test(commentaire)) {
-            window.location.reload()
-            Axios.post("http://localhost:3001/api/messagesPerso/:id", {
+            Axios.post("http://localhost:3001/api/messagesPerso", {
                 prenom: prenom,
                 commentaire: commentaire,
                 id: id
             })
+                .then(() => {
+                    window.location.reload()
+                })
+                .catch((e) => console.log(e))
         } else {
             alert("Veuillez insérer un minimum de 5 caractères")
         }
