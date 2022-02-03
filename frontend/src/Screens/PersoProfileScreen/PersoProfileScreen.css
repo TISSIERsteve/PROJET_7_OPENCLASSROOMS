@@ -1,5 +1,24 @@
+/* PersoProfileScreen */
+.profileScreenEntete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50rem;
+}
+
 .cardProfilePerso {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.trash {
+   display: flex;
+   justify-content: flex-end;
+}
+
+.poubelle:hover {
+    color: red;
+    transition: 1s;
+    transform: scale(1.2);
 }

@@ -3,7 +3,7 @@ const router = express.Router()
 // const token = require("../middleware/AuthTokenMiddleware")
 
 // ============================================ ROUTES ======================================================
-// const postsCtrl = require("../controllers/PostsUsers")
+// const postsCtrl = require("../controllers/PostsUsersControllers")
 
 // router.get("/:id", postsCtrl.getAllPosts) // Obtenir tous les posts des utilisateurs
 // router.get("/:id", postsCtrl.getOnePost) // Obtenir un post d'un utilisateur

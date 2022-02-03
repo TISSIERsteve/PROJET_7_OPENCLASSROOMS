@@ -6,6 +6,7 @@ import "../HomeScreen/HomeScreen.css";
 
 function HomeScreenItem() {
     return (
+        // Page principale
         <div className="homeScreen">
             <main>
                 <nav className="homeScreen_navLink">

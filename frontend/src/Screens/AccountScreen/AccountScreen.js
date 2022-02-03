@@ -6,10 +6,12 @@ import Axios from "axios";
 import "../AccountScreen/AccountScreen.css";
 
 function AccountScreen() {
+
     const navigate = useNavigate();
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
 
+    // Fonction connexion compte
     const accountUser = async e => {
         e.preventDefault();
 
@@ -32,16 +34,17 @@ function AccountScreen() {
         } catch (err) {
             alert("E-mail ou mot de passe incorrect");
             window.location.reload();
-            // console.log(err);
         }
     };
 
+    // JSX
     return (
         <div>
             <Link to="/">
                 <i className="fas fa-arrow-left flecheGauche" />
             </Link>
 
+            {/* Formulaire de connexion */}
             <form className="form_item">
                 <div>
                     <h1>Se connecter</h1>

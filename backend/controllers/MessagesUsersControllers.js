@@ -1,9 +1,9 @@
 const db = require("../config/mysql")
 
-// Obtenir tous les posts des utilisateurs sur ProfileScreen
+// Obtenir tous les messages des utilisateurs sur ProfileScreen
 exports.getAllMessages = (req, res) => {
 
-    db.query("SELECT * FROM messageperso ORDER BY date ASC ", (err, result) => {
+    db.query("SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %I à %H:%i vous avez publier') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ", (err, result) => {
         if (err) {
             res.status(403).json({ message: "Accès refusé reception des messageperso" })
 
@@ -21,7 +21,7 @@ exports.getAllMessages = (req, res) => {
 exports.getOneMessage = (req, res) => {
     const id = req.params.id
 
-    db.query(`SELECT * FROM messageperso WHERE fk_id_user = ? ORDER BY date ASC`,
+    db.query(`SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %I à %H:%i vous avez publier') AS date,commentaire, fk_id_user FROM messageperso WHERE fk_id_user = ? ORDER BY date DESC`,
         [id],
         (err, result) => {
             if (err) {
@@ -34,7 +34,7 @@ exports.getOneMessage = (req, res) => {
         });
 }
 
-// Créer et poster un message sur ProfileScreen
+// Créer un message sur ProfileScreen
 exports.createMessage = (req, res) => {
     const prenom = req.body.prenom;
     const commentaire = req.body.commentaire;
@@ -44,13 +44,6 @@ exports.createMessage = (req, res) => {
         prenom,
         commentaire,
         fk_id_user: id,
-        date: new Date().toLocaleDateString("fr-FR", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric"
-        })
     }
 
     db.query(
@@ -66,11 +59,12 @@ exports.createMessage = (req, res) => {
     );
 }
 
+// Effacer un message perso sur ProfilePersoScreen
 exports.deleteMessage = (req, res) => {
     const persoId = req.params.id
     console.log(persoId);
 
-    db.query("DELETE FROM messageperso WHERE message_perso_id = ?",
+    db.query("DELETE  messageperso WHERE message_perso_id = ?",
         [persoId],
         (err, result) => {
             if (err) {

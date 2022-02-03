@@ -79,14 +79,12 @@ exports.login = (req, res) => {
 
 // Désactiver compte
 exports.dessactive = (req, res) => {
-    console.log(req.params);
     const id = req.params.id
 
     db.query("DELETE FROM user WHERE user_id = ?",
         [id],
         (err, result) => {
             if (err) {
-                console.log(err);
                 res.status(403).json({ message: "Accés refusé" })
             } else {
                 res.status(200).json({ message: "Utilisateur supprimer" })

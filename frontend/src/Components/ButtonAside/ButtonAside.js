@@ -5,7 +5,7 @@ import "../ButtonAside/ButtonAside.css"
 
 function ButtonAside() {
 
-    // Sidebar
+    // Sidebar boutton
     const open = () => {
         document.getElementById("open").classList.toggle("active")
     }
@@ -18,5 +18,4 @@ function ButtonAside() {
         </button>
     </div>;
 }
-
 export default ButtonAside;

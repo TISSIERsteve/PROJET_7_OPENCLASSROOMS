@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 // CSS
 import "../RegistrationScreen/RegistrationScreen.css";
 
 function RegistrationScreen() {
+
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
     const [password, setpassword] = useState("");
@@ -16,6 +17,9 @@ function RegistrationScreen() {
     const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     const mailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
+    const navigate = useNavigate()
+
+    // Fonction enregistrer compte
     const addUser = e => {
         e.preventDefault();
 
@@ -33,7 +37,8 @@ function RegistrationScreen() {
             })
                 .then(() => {
                     alert(`Bravo ${prenom} tu viens de t'inscrire sur GROUPOMANIA`);
-                    window.location.reload()
+                    // window.location.reload()
+                    navigate("/AccountScreen", { replace: true });
                 })
                 .catch(err => {
                     alert("Vous êtes déjà enregistrer avec cette adresse e-mail");
@@ -43,12 +48,14 @@ function RegistrationScreen() {
         }
     };
 
+    // JSX
     return (
         <div className="RegistrationScreen">
             <Link to="/">
                 <i className="fas fa-arrow-left flecheGauche" />
             </Link>
 
+            {/* Formulaire d'inscription */}
             <div>
                 <form className="form">
                     <div>

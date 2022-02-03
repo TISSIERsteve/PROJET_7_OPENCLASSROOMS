@@ -1,0 +1,33 @@
+/* Post Comment */
+.profilesCommentsInput {
+    display: flex;
+    justify-content: center;
+}
+
+.profilesComments {
+    border: none;
+    background-color: rgb(243, 238, 241);
+    padding: 1rem;
+    width: 80%;
+    text-align: left;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.profilesComments::placeholder {
+    color: #000;
+}
+
+.valide {
+    font-size: 3rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 5rem;
+    color: green;
+}
+
+.valide:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    font-weight: bold;
+}

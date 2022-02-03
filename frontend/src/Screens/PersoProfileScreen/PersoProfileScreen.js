@@ -7,7 +7,7 @@ import "../PersoProfileScreen/PersoProfileScreen.css"
 
 function PersoProfileScreen() {
 
-    // ===================== Afficher tous ses comments =======================
+    // ===================== Afficher tous les messages =======================
     const identifiant = JSON.parse(localStorage.id)
     const [post, setpost] = useState('')
 
@@ -18,65 +18,53 @@ function PersoProfileScreen() {
             })
     }, [identifiant])
 
-    // ====================== Supprimer un commentaire ==========================
-    // const keys = Object.values(post)
-    // console.log(keys);
+    // ====================== Supprimer un message ==========================
+    const deleteCom = (e) => {
+        console.log(e);
 
-    // const result = document.querySelectorAll(".keys")
 
-    // const test = Object.keys(re)
-    // console.log(test);
+        //     if (window.confirm("Voulez vous vraiment supprimer ce post ?")) {
+        //         deleteDefini()
+        //     }
+        // }
 
-    const deleteDefini = () => {
+        // const deleteDefini = () => {
+        //     console.log();
+        //     // Axios.delete("http://localhost:3001/api/messagesPerso/")
+        //     //     .then((response) => {
+        //     //         console.log(response);
 
+        //     //     })
     }
-
-    const deleteCom = () => {
-        if (window.confirm("Voulez vous vraiment supprimer ce post ?")) {
-            deleteDefini()
-        }
-        // Axios.get(`http://localhost:3001/api/messagesPerso/` + identifiant)
-        //     .then((response) => {
-        //         // (response.data.result.filter((x) => console.log(x.message_perso_id)))
-
-        //     })
-    }
-
-
-
-    // =============================== JSX ======================
+    // JSX
     return <div>
         <Link to="/ProfileScreen">
             <i className="fas fa-arrow-left flecheGauche" />
         </Link>
-        <h3>
-            Voici ce que vous avez publier
-        </h3>
 
-        {/*  Partie dynamique prénom et commentaires  */}
-        <section id='itemsPerso'>
-            {post && post.length && post.map((x) => {
+        {/*  Partie dynamique mes messages perso   */}
+        <section className='itemsPerso'>
+            {post && post.length ? post.map((x) => {
                 return (
-                    <li className='keys' key={x.message_perso_id}>
-                        <article id="card">
+                    <li key={x.message_perso_id}>
+                        <article className="card">
                             <div className='cardProfilePerso'>
-                                <img id="profileCommentImage" src="./images/img1.png" alt="logo Entreprise" />
-                                <p>Supprimer Commentaire <span><i className="fas fa-window-close"
-                                    onClick={deleteCom}
-                                ></i></span></p>
+                                <img className="profileCommentImage" src="./images/img1.png" alt="logo Entreprise" />
                             </div>
-                            <h3 id="profileName"> {x.prenom} le {x.date} </h3>
-                            <p id="profileComment"><em><strong>Vous avez publiez</strong></em> : {x.commentaire} </p>
-                            <div>
+                            <h3 className="profileName">
+                                {x.prenom} <br></br> {x.date}
+                            </h3>
+                            <p className="profileComment"> {x.commentaire} </p>
+                            <div className='trash'>
+                                <button onClick={() => deleteCom(x.message_perso_id)}><span><i className="fas fa-trash-alt poubelle"
+                                ></i></span></button>
                             </div>
                         </article>
                     </li>
                 )
-            })}
+            }) : <h3 className='profileScreenEntete'>Vous n'avez rien publier pour le moment</h3>}
         </section>
-
-
-    </div >;
+    </div>;
 
 
 
