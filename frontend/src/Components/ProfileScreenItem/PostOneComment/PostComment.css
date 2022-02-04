@@ -1,7 +1,13 @@
 /* Post Comment */
-.profilesCommentsInput {
+.profilesCommentsInput.open {
+    display: none;
+}
+
+.profilesCommentsInput.active {
     display: flex;
     justify-content: center;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .profilesComments {
@@ -12,6 +18,7 @@
     text-align: left;
     border-radius: 1rem;
     cursor: pointer;
+    margin-top: 1rem;
 }
 
 .profilesComments::placeholder {
@@ -19,15 +26,15 @@
 }
 
 .valide {
-    font-size: 3rem;
-    position: absolute;
-    bottom: 1rem;
-    right: 5rem;
-    color: green;
+    position: relative;
+    top: 1rem;
+    left: 1rem;
+    font-size: 2rem;
 }
 
 .valide:hover {
     cursor: pointer;
     transform: scale(1.1);
     font-weight: bold;
+    color: green;
 }

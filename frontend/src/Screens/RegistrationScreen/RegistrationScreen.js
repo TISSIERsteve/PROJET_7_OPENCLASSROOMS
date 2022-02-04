@@ -37,7 +37,6 @@ function RegistrationScreen() {
             })
                 .then(() => {
                     alert(`Bravo ${prenom} tu viens de t'inscrire sur GROUPOMANIA`);
-                    // window.location.reload()
                     navigate("/AccountScreen", { replace: true });
                 })
                 .catch(err => {

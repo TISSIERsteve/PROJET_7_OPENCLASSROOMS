@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Axios from "axios";
+import Axios from "axios";
 
 // Screens
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
@@ -9,9 +9,12 @@ import AccountScreen from "./Screens/AccountScreen/AccountScreen";
 import ProfileScreen from "./Screens/ProfileScreen/ProfileScreen";
 import PersoProfileScreen from "./Screens/PersoProfileScreen/PersoProfileScreen";
 
+// Components
+import Messenger from "./Components/Messenger/Messenger";
+
 function App() {
-    console.log(localStorage.bearer);
-    // Axios.defaults.headers.common.Authorization = `Bearer` + localStorage.bearer
+    // console.log(localStorage.bearer);
+    Axios.defaults.headers.common.Authorization = `Bearer` + localStorage.bearer
 
     // Ajoute la date du jour
     let jour = new Date().toLocaleDateString("fr-FR", {
@@ -34,14 +37,11 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/" element={<HomeScreen />} />
-                        <Route
-                            path="/RegistrationScreen"
-                            element={<RegistrationScreen />}
-                        />
+                        <Route path="/RegistrationScreen" element={<RegistrationScreen />} />
                         <Route path="/AccountScreen" element={<AccountScreen />} />
                         <Route path="/ProfileScreen" element={<ProfileScreen />} />
-                        <Route path="/PersoProfileScreen" element={<PersoProfileScreen />}
-                        />
+                        <Route path="/PersoProfileScreen" element={<PersoProfileScreen />} />
+                        <Route path="/Messenger" element={<Messenger />} />
                     </Routes>
                 </main>
 

@@ -30,6 +30,7 @@ function Search() {
                 id: id
             })
                 .then(() => {
+                    alert("Votre message est maintenant visible sur GROUPOMANIA")
                     window.location.reload()
                 })
                 .catch((e) => console.log(e))

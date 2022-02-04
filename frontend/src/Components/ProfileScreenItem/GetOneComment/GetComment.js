@@ -1,34 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useEffect, useState } from 'react';
 import Axios from 'axios';
 
-function GetComment() {
+function GetComment(props) {
 
-    const [comment, setcomment] = useState('')
+    // {/* =========== Obtenir un commentaire poster sur un message ============================= */ }
+    const [com, setcom] = useState('')
 
-    // Obtenir un commentaire poster sur un message
     useEffect(() => {
-        Axios.get("http://localhost:3001/api/comments/:id",)
+        Axios.get(`http://localhost:3001/api/comments/${props.messageid}`)
             .then((response) => {
-                console.log(response.data)
-                setcomment(response.data)
+                console.log(response.data);
+                setcom(response.data.result)
             })
-
-    }, [])
-
+    }, [props.messageid])
 
     // JSX
-    return (
+    return <div>
         <section>
-            {comment && comment.length && comment.map((x) => {
-                console.log(x)
+            {com && com.length && com.map((x) => {
                 return (
-                    <li >
-                        {comment}
-                    </li>
+                    <li key={x.content}>{x.content}</li>
                 )
-            })}
+            })
+            }
         </section>
-    )
-}
 
+    </div>;
+
+}
 export default GetComment;

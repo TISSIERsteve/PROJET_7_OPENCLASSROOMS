@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
+// Component
+import GetComment from "../../Components/ProfileScreenItem/GetOneComment/GetComment"
+// import DeleteComment from '../../Components/ProfileScreenItem/DeleteOneComment/DeleteComment';
+
 // CSS
 import "../PersoProfileScreen/PersoProfileScreen.css"
 
@@ -19,23 +23,20 @@ function PersoProfileScreen() {
     }, [identifiant])
 
     // ====================== Supprimer un message ==========================
-    const deleteCom = (e) => {
-        console.log(e);
-
-
-        //     if (window.confirm("Voulez vous vraiment supprimer ce post ?")) {
-        //         deleteDefini()
-        //     }
-        // }
-
-        // const deleteDefini = () => {
-        //     console.log();
-        //     // Axios.delete("http://localhost:3001/api/messagesPerso/")
-        //     //     .then((response) => {
-        //     //         console.log(response);
-
-        //     //     })
+    const deleteCom = (id) => {
+        if (window.confirm("Voulez vous vraiment supprimer ce post ?")) {
+            deleteDefini(id)
+        }
     }
+
+    const deleteDefini = (id) => {
+        Axios.delete("http://localhost:3001/api/messagesPerso/" + id,)
+            .then((response) => {
+                alert("Votre message à bien été suprrimé")
+                window.location.reload()
+            })
+    }
+
     // JSX
     return <div>
         <Link to="/ProfileScreen">
@@ -55,10 +56,19 @@ function PersoProfileScreen() {
                                 {x.prenom} <br></br> {x.date}
                             </h3>
                             <p className="profileComment"> {x.commentaire} </p>
+
+                            {/* <DeleteComment destructure={post}></DeleteComment> */}
+
                             <div className='trash'>
-                                <button onClick={() => deleteCom(x.message_perso_id)}><span><i className="fas fa-trash-alt poubelle"
-                                ></i></span></button>
+                                <button onClick={() => deleteCom(x.message_perso_id)}>
+                                    <span>
+                                        <i className="fas fa-trash-alt poubelle"></i>
+                                    </span>
+                                </button>
                             </div>
+
+                            {/* Components Get comment */}
+                            <GetComment messageid={x.message_perso_id}></GetComment>
                         </article>
                     </li>
                 )

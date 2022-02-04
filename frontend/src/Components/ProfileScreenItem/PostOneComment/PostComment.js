@@ -5,7 +5,22 @@ import Axios from 'axios';
 // CSS
 import "./PostComment.css"
 
-function PostComment() {
+function PostComment(props) {
+
+    // const { id_post } = props
+
+    const [isActive, setisActive] = useState("")
+
+    const handleShow = () => {
+        console.log('yes');
+        if (isActive === "active") {
+            console.log("1");
+            setisActive("")
+        } else {
+            console.log("2");
+            setisActive("active")
+        }
+    }
     // ======================== Ajouter un commentaire sur un message ====================================
     const compte = JSON.parse(localStorage.id)
     const prenom = JSON.parse(localStorage.prenom)
@@ -24,10 +39,11 @@ function PostComment() {
         if (commentRegex.test(commentaires)) {
             Axios.post("http://localhost:3001/api/comments", {
                 commentaires,
-                compte
+                compte,
+                id_post: props.idPost
             })
                 .then(() => {
-                    alert(`Bravo ${prenom} ton commentaire est maintenant visible sur GROUPOMANIA`);
+                    alert(`${prenom} vous venez de commenter `);
                     window.location.reload()
                 })
                 .catch(err => {
@@ -39,23 +55,27 @@ function PostComment() {
     }
 
     // JSX
-    return <div className='profilesCommentsInput'>
-        <input className="profilesComments"
-            id='commentaires'
-            type="text"
-            placeholder="Ecrivez un commentaire ..."
-            onChange={(event) => {
-                if (commentRegex.test(event.target.value)) {
-                    setcommentaires(event.target.value)
-                    return
-                }
-            }}
-        ></input>
-        <div className="valide"
-            onClick={addCommentUser}>
-            &#10010;
-        </div>
-    </div>;
+    return (
+        <>
+            <p className='boutton_commenter' onClick={handleShow}>Commenter</p>
+            <div className={`profilesCommentsInput open ${isActive}`}>
+                <input className="profilesComments"
+                    id='commentaires'
+                    type="text"
+                    placeholder="Ecrivez un message perso"
+                    onChange={(event) => {
+                        if (commentRegex.test(event.target.value)) {
+                            setcommentaires(event.target.value)
+                            return
+                        }
+                    }}
+                ></input>
+
+                <i className="fas fa-plus-circle valide" onClick={addCommentUser}></i>
+
+            </div>
+        </>
+    )
 }
 
 export default PostComment;

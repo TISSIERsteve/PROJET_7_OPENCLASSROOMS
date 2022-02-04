@@ -3,7 +3,7 @@ const db = require("../config/mysql")
 // Obtenir tous les messages des utilisateurs sur ProfileScreen
 exports.getAllMessages = (req, res) => {
 
-    db.query("SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %I à %H:%i vous avez publier') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ", (err, result) => {
+    db.query("SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %I à %H:%i') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ", (err, result) => {
         if (err) {
             res.status(403).json({ message: "Accès refusé reception des messageperso" })
 
@@ -62,13 +62,12 @@ exports.createMessage = (req, res) => {
 // Effacer un message perso sur ProfilePersoScreen
 exports.deleteMessage = (req, res) => {
     const persoId = req.params.id
-    console.log(persoId);
 
-    db.query("DELETE  messageperso WHERE message_perso_id = ?",
+    db.query("DELETE FROM messageperso WHERE message_perso_id = ?",
         [persoId],
         (err, result) => {
             if (err) {
-                console.log(err);
+                // console.log(err);
                 res.status(403).json({ message: "Accés refusé" })
             } else {
                 res.status(200).json({ message: "Message supprimer" })

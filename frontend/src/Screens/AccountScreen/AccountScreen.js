@@ -24,7 +24,8 @@ function AccountScreen() {
                 }
             );
 
-            // Axios.defaults.headers.common.Authorization = `Bearer` + response.data.token
+            Axios.defaults.headers.common.Authorization = `Bearer` + response.data.token
+
             localStorage.setItem("id", JSON.stringify(response.data.user.id));
             localStorage.setItem("bearer", response.data.token);
             localStorage.setItem("prenom", JSON.stringify(response.data.user.prenom));

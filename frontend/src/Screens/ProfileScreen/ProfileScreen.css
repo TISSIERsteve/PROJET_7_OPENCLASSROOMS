@@ -7,7 +7,6 @@
     margin: 0 auto;
     margin-bottom: 1rem;
     padding: 1rem;
-    position: relative;
 }
 @media screen and (max-width:600px) {
     .card {
@@ -45,11 +44,12 @@
 
 .profileComments {
     cursor: pointer;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     padding: 1rem;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 

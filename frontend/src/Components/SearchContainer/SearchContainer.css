@@ -47,7 +47,7 @@ ul.profileScreenTele {
 }
 
 .fa-comments:hover::after {
-    content: "Voir vos messages privés";
+    content: "Envoyer un messages privés";
     color: black;
     margin-left: 0.5rem;
 }

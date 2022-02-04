@@ -32,7 +32,7 @@
 .add:hover {
     transform: scale(1.2);
     font-weight: bold;
-    color: rgb(223, 58, 58);
+    color: green
 }
 
 .profileScreenInput::placeholder {

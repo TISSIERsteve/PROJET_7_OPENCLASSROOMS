@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom"
 
 // CSS
 import "../SearchContainer/SearchContainer.css"
@@ -13,10 +14,6 @@ function SearchContainer() {
         console.log("AddVideo");
     }
 
-    const seeSms = () => {
-        console.log("Voir messages");
-    }
-
     // JSX
     return <div>
         {/* Barre container */}
@@ -29,9 +26,11 @@ function SearchContainer() {
                 onClick={addVideo}><i className="fas fa-video"></i>
             </li>
 
-            <li
-                onClick={seeSms}><i className="fas fa-comments comments"></i>&nbsp;&nbsp;&nbsp;
-                <span className='sms'>0</span>
+            <li>
+                <Link to="/Messenger">
+                    <i className="fas fa-comments comments"></i>&nbsp;&nbsp;&nbsp;
+                    <span className='sms'>0</span>
+                </Link>
             </li>
         </ul>
     </div>;

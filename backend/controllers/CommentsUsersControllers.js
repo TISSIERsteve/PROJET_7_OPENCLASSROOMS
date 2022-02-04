@@ -7,9 +7,9 @@ exports.getAllComments = (req, res) => {
 
 // Récupérer un commentaire
 exports.getOneComment = (req, res) => {
-    // const id = req.body.id
+    const id_message = req.params.id
 
-    db.query(`SELECT comment_id FROM comment WHERE fk_id_user `,
+    db.query(`SELECT content FROM comment WHERE fk_id_message =?`, [id_message],
         (err, result) => {
             if (err) {
                 res.status(403).json({ message: "Accès refusé du post de messageperso" })
@@ -17,18 +17,19 @@ exports.getOneComment = (req, res) => {
                 res.status(200).json({
                     result
                 });
+                console.log(result)
             }
         });
 }
 
 // Créer un commentaire sur ProfileScreen
 exports.createComment = (req, res) => {
-    const content = req.body.commentaires;
-    const id = req.body.compte
+    const { commentaires, compte, id_post } = req.body
 
     const messageperso = {
-        content,
-        fk_id_user: id,
+        content: commentaires,
+        fk_id_user: compte,
+        fk_id_message: id_post
     }
 
     db.query(
@@ -36,6 +37,7 @@ exports.createComment = (req, res) => {
         messageperso,
         (err, result) => {
             if (err) {
+                console.log(err);
                 res.status(403).json({ message: "Accès refusé" })
             } else {
                 res.status(200).json({ message: "Message personnel créer" });

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "../HomeScreen/HomeScreen.css";
 
 function HomeScreenItem() {
+
     return (
         // Page principale
         <div className="homeScreen">
@@ -18,9 +19,6 @@ function HomeScreenItem() {
                         <Link to="/RegistrationScreen">Créer un compte</Link>
                     </div>
                 </nav>
-                {/* <div>
-                    <img className="homeScreen_img1" src="./images/img5.png" alt="" />
-                </div> */}
             </main>
         </div>
     );

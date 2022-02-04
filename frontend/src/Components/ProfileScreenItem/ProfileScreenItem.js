@@ -3,9 +3,12 @@ import Axios from 'axios';
 
 // Components
 import PostComment from './PostOneComment/PostComment';
-import GetComment from './GetOneComment/GetComment';
+
+// CSS
+import "./ProfileScreenItem.css"
 
 function ProfileScreenItem() {
+
     // ===================== Affichage de tous les messages ============================
     const [post, setpost] = useState('')
 
@@ -14,7 +17,6 @@ function ProfileScreenItem() {
         Axios.get(
             "http://localhost:3001/api/messagesPerso")
             .then((response) => {
-                // console.log(response.data);
                 setpost(response.data.messageperso.resultat)
             })
     }, [])
@@ -33,15 +35,13 @@ function ProfileScreenItem() {
                             </h3>
                             <p className="profileComment"> {x.commentaire} </p>
                             <div className="profileComments">
-                                <p>J'aime</p>
-                                <p>Commenter</p>
+                                <p className='boutton_commenter'>J'aime</p>
+
+                                {/* Components PostComment */}
+                                <PostComment idPost={x.message_perso_id} ></PostComment>
                             </div>
 
-                            {/* Components PostComment */}
-                            <PostComment></PostComment>
 
-                            {/* Components Get comment */}
-                            <GetComment></GetComment>
                         </article>
                     </li>
                 )
