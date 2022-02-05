@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 // CSS
 import "../SearchContainer/SearchContainer.css"
 
+
+// Page de la barre search publication
 function SearchContainer() {
 
     const addCamera = () => {

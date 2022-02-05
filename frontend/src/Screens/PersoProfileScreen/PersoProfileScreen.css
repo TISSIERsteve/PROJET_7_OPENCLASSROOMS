@@ -17,6 +17,10 @@
    justify-content: flex-end;
 }
 
+.poubelle {
+    padding: 0.5rem;
+}
+
 .poubelle:hover {
     color: red;
     transition: 1s;

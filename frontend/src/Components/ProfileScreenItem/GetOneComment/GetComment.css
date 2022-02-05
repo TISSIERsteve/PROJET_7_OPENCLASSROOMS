@@ -1,0 +1,52 @@
+/* GetComment */
+.fieldset {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 2px solid white;
+    background-color: #d1cdcf;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.getcomment_fieldset:hover {
+    transform: scale(1.1);
+}
+.get {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.getsection {
+    display: none;
+}
+
+.getsection.active {
+    display: inherit;
+}
+
+.getcomment {
+    width: 100%;
+    border: 2px solid white;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    line-height: 2rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.getcomment_prenom {
+    font-weight: bold;
+    font-style: italic;
+    padding: 0.5rem;
+}
+
+.getcomment_content {
+    background-color: white;
+    width: 100%;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}

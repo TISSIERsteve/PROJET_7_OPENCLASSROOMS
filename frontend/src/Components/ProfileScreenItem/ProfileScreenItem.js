@@ -7,9 +7,10 @@ import PostComment from './PostOneComment/PostComment';
 // CSS
 import "./ProfileScreenItem.css"
 
+// Page component de Profile screen (Affichage de tous les messages)
 function ProfileScreenItem() {
 
-    // ===================== Affichage de tous les messages ============================
+    // Affichage de tous les messages
     const [post, setpost] = useState('')
 
     useEffect(() => {
@@ -30,7 +31,7 @@ function ProfileScreenItem() {
                         <article className="card">
                             <img className="profileCommentImage" src="./images/img1.png" alt="logo Entreprise" />
                             <h3 className="profileName">
-                                {x.prenom}<br></br>
+                                {x.prenom} à publier<br></br>
                                 {x.date}
                             </h3>
                             <p className="profileComment"> {x.commentaire} </p>
@@ -40,8 +41,6 @@ function ProfileScreenItem() {
                                 {/* Components PostComment */}
                                 <PostComment idPost={x.message_perso_id} ></PostComment>
                             </div>
-
-
                         </article>
                     </li>
                 )

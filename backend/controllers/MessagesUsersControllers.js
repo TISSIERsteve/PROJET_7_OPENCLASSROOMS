@@ -3,7 +3,7 @@ const db = require("../config/mysql")
 // Obtenir tous les messages des utilisateurs sur ProfileScreen
 exports.getAllMessages = (req, res) => {
 
-    db.query("SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %I à %H:%i') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ", (err, result) => {
+    db.query("SELECT message_perso_id,prenom,DATE_FORMAT(date, 'le %d %m %Y à %H:%i') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ", (err, result) => {
         if (err) {
             res.status(403).json({ message: "Accès refusé reception des messageperso" })
 
@@ -21,7 +21,7 @@ exports.getAllMessages = (req, res) => {
 exports.getOneMessage = (req, res) => {
     const id = req.params.id
 
-    db.query(`SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %I à %H:%i vous avez publier') AS date,commentaire, fk_id_user FROM messageperso WHERE fk_id_user = ? ORDER BY date DESC`,
+    db.query(`SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %Y à %H:%i vous avez publier') AS date,commentaire, fk_id_user FROM messageperso WHERE fk_id_user = ? ORDER BY date DESC`,
         [id],
         (err, result) => {
             if (err) {

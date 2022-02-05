@@ -5,9 +5,10 @@ import Axios from 'axios';
 // CSS
 import "../Aside/Aside.css"
 
+// Page Aside
 function Sidebar() {
 
-    // ========================= Supprimer compte utilisateur ===============================
+    // Supprimer compte utilisateur 
     const identite = JSON.parse(localStorage.id)
 
     const deleteUser = () => {
@@ -24,7 +25,7 @@ function Sidebar() {
                 alert("Vous venez de supprimé votre compte")
             })
     }
-    // =========================================== Décconection =====================================
+    // Décconection 
     const deconect = () => {
         if (window.confirm("Voulez vous vraiment vous déconnecter ?")) {
             deconectDefini()

@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 // CSS
 import "../HomeScreen/HomeScreen.css";
 
+// Page d'accueil pour connexion ou la création compte
 function HomeScreenItem() {
-
     return (
-        // Page principale
         <div className="homeScreen">
             <main>
                 <nav className="homeScreen_navLink">
@@ -23,5 +22,4 @@ function HomeScreenItem() {
         </div>
     );
 }
-
 export default HomeScreenItem;

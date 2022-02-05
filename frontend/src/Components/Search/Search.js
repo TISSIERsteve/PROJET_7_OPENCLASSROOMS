@@ -5,6 +5,7 @@ import { useState } from 'react';
 // CSS
 import "../Search/Search.css"
 
+// ===== Page de barre de recherche =====
 function Search() {
 
     // Récupère le prénom
@@ -12,9 +13,9 @@ function Search() {
     const [commentaire, setcommentaire] = useState("")
     const commentRegex = /(.*[a-z]){5,30}/;
 
-    // ========================== Publication d'un message ======================================
+    // Publication d'un message 
     const addComment = () => {
-        if (window.confirm("Voulez vous vraiment publier ce post ?")) {
+        if (window.confirm("Voulez vous vraiment publier ce message ?")) {
             addCommentDefini()
         }
     }

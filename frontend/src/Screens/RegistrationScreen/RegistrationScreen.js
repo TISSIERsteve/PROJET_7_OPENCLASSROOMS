@@ -5,6 +5,7 @@ import Axios from "axios";
 // CSS
 import "../RegistrationScreen/RegistrationScreen.css";
 
+// ===== Page création compte =====
 function RegistrationScreen() {
 
     const [nom, setNom] = useState("");

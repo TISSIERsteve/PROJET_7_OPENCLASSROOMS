@@ -3,13 +3,15 @@ import React from 'react';
 // CSS
 import "../ButtonAside/ButtonAside.css"
 
+// ===== Bouton open aside =====
 function ButtonAside() {
 
-    // Sidebar boutton
+    // Open boutton
     const open = () => {
         document.getElementById("open").classList.toggle("active")
     }
 
+    // JSX
     return <div>
         <button onClick={open}
             type="button"

@@ -12,8 +12,10 @@ import ProfileScreenItem from "../../Components/ProfileScreenItem/ProfileScreenI
 // CSS
 import "../ProfileScreen/ProfileScreen.css";
 
+// ===== Page principal perso =====
 function ProfileScreen() {
-    // ====================== Si token dans locale storage j'affiche la page profil avec les messages ============================
+
+    // Si token j'affiche la page profil 
     if (localStorage.bearer) {
         return (
             <div>
@@ -40,7 +42,7 @@ function ProfileScreen() {
             </div>
         );
 
-        // Sinon pas de token return page accueil
+        // Sinon pas token return page accueil
     } else {
         return <Navigate to="/" />;
     }

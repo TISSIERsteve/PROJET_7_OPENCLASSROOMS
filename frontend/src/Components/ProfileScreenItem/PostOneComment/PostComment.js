@@ -5,23 +5,21 @@ import Axios from 'axios';
 // CSS
 import "./PostComment.css"
 
+// Page ajout commentaire
 function PostComment(props) {
-
-    // const { id_post } = props
 
     const [isActive, setisActive] = useState("")
 
     const handleShow = () => {
-        console.log('yes');
         if (isActive === "active") {
             console.log("1");
             setisActive("")
+
         } else {
-            console.log("2");
             setisActive("active")
         }
     }
-    // ======================== Ajouter un commentaire sur un message ====================================
+    // Ajouter un commentaire sur un message
     const compte = JSON.parse(localStorage.id)
     const prenom = JSON.parse(localStorage.prenom)
     const [commentaires, setcommentaires] = useState('')

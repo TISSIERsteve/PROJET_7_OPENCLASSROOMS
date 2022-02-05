@@ -1,6 +1,11 @@
 /* ProfileScreenItem */
+.boutton_commenter {
+    width: 5rem;
+}
+
 .boutton_commenter:hover {
     cursor: pointer;
     transform: scale(1.1);
     color: green;
+    font-weight: bold;
 }

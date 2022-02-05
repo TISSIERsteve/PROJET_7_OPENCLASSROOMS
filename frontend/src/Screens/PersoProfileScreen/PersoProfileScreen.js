@@ -9,9 +9,10 @@ import GetComment from "../../Components/ProfileScreenItem/GetOneComment/GetComm
 // CSS
 import "../PersoProfileScreen/PersoProfileScreen.css"
 
+// Page perso 
 function PersoProfileScreen() {
 
-    // ===================== Afficher tous les messages =======================
+    // Afficher tous les messages
     const identifiant = JSON.parse(localStorage.id)
     const [post, setpost] = useState('')
 
@@ -22,7 +23,7 @@ function PersoProfileScreen() {
             })
     }, [identifiant])
 
-    // ====================== Supprimer un message ==========================
+    // Supprimer un message 
     const deleteCom = (id) => {
         if (window.confirm("Voulez vous vraiment supprimer ce post ?")) {
             deleteDefini(id)
@@ -40,7 +41,7 @@ function PersoProfileScreen() {
     // JSX
     return <div>
         <Link to="/ProfileScreen">
-            <i className="fas fa-arrow-left flecheGauche" />
+            <i className="fas fa-arrow-left flecheGauche" /> retour
         </Link>
 
         {/*  Partie dynamique mes messages perso   */}
@@ -57,8 +58,9 @@ function PersoProfileScreen() {
                             </h3>
                             <p className="profileComment"> {x.commentaire} </p>
 
-                            {/* <DeleteComment destructure={post}></DeleteComment> */}
 
+                            {/* Components Get comment */}
+                            <GetComment messageid={x.message_perso_id}></GetComment>
                             <div className='trash'>
                                 <button onClick={() => deleteCom(x.message_perso_id)}>
                                     <span>
@@ -66,9 +68,6 @@ function PersoProfileScreen() {
                                     </span>
                                 </button>
                             </div>
-
-                            {/* Components Get comment */}
-                            <GetComment messageid={x.message_perso_id}></GetComment>
                         </article>
                     </li>
                 )

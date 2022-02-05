@@ -13,7 +13,7 @@ import PersoProfileScreen from "./Screens/PersoProfileScreen/PersoProfileScreen"
 import Messenger from "./Components/Messenger/Messenger";
 
 function App() {
-    // console.log(localStorage.bearer);
+
     Axios.defaults.headers.common.Authorization = `Bearer` + localStorage.bearer
 
     // Ajoute la date du jour
@@ -49,13 +49,15 @@ function App() {
                     <div className="piedPage">
                         <h2>Tout droits réservé GROUPOMANIA ®-2022-</h2>
                     </div>
+
+                    {/* Heure */}
                     <div className="profileScreenDate">
                         {jour}
                     </div>
+
                 </footer>
             </div>
         </Router>
     );
 }
-
 export default App;
