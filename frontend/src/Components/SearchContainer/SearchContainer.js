@@ -1,32 +1,26 @@
 import React from 'react';
-import { Link } from "react-router-dom"
 
 // CSS
 import "../SearchContainer/SearchContainer.css"
 
+// Components
+import AddPick from './AddPick/AddPick';
+import AddVideo from "./AddVideo/AddVideo"
 
 // Page de la barre search publication
 function SearchContainer() {
-
-    const addCamera = () => {
-        console.log("AddPhotos");
-    }
-
-    const addVideo = () => {
-        console.log("AddVideo");
-    }
 
     // JSX
     return <div>
         {/* Barre container */}
         <ul className='profileScreenTele'>
-            <li>
-                <i className="fas fa-camera" onClick={addCamera}></i>
-            </li>
 
-            <li
-                onClick={addVideo}><i className="fas fa-video"></i>
-            </li>
+            {/* Component ajouter img */}
+            <AddPick></AddPick>
+
+            {/* Component ajouter video */}
+            <AddVideo></AddVideo>
+
         </ul>
     </div>;
 }
