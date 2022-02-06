@@ -1,16 +1,28 @@
 const db = require("../config/mysql")
 
-// Récupérer tous les commentaires
+// Récupérer tous les commentaires des utilisateurs sur ma page perso
 exports.getAllComments = (req, res) => {
+    // console.log(req.params);
+    // const message = req.params.id
 
+    db.query(`SELECT content,  user_id, prenom FROM comment JOIN User ON fk_id_user = user_id WHERE fk_id_message`,
+        (err, result) => {
+            if (err) {
+                res.status(403).json({ message: "Accès refusé du commentaire poster" })
+            } else {
+                res.status(200).json({
+                    result
+                });
+                console.log(result)
+            }
+        });
 }
 
-// Récupérer les commentaires poster par les utilisateurs
+// Récupérer les commentaires poster par les utilisateurs sur la page d'accueil
 exports.getOneComment = (req, res) => {
-    console.log(req.params);
     const id_message = req.params.id
 
-    db.query(`SELECT content FROM comment  WHERE fk_id_message=?`, [id_message],
+    db.query(`SELECT content FROM comment WHERE fk_id_message=?`, [id_message],
         (err, result) => {
             if (err) {
                 res.status(403).json({ message: "Accès refusé du commentaire poster" })

@@ -23,12 +23,12 @@ function SeeComment(props) {
     }
 
     useEffect(() => {
-        Axios.get(`http://localhost:3001/api/comments/${props.messageid}`)
+        Axios.get(`http://localhost:3001/api/comments/`)
             .then((response) => {
                 console.log(response.data);
                 setcom(response.data.result)
             })
-    }, [props.messageid])
+    }, [])
 
     // JSX
     return <div className='get'>
