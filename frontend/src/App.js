@@ -8,6 +8,7 @@ import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen"
 import AccountScreen from "./Screens/AccountScreen/AccountScreen";
 import ProfileScreen from "./Screens/ProfileScreen/ProfileScreen";
 import PersoProfileScreen from "./Screens/PersoProfileScreen/PersoProfileScreen";
+import AddPickItem from "./Components/SearchContainer/AddPick/AddPickItem";
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
                         <Route path="/AccountScreen" element={<AccountScreen />} />
                         <Route path="/ProfileScreen" element={<ProfileScreen />} />
                         <Route path="/PersoProfileScreen" element={<PersoProfileScreen />} />
+                        <Route path="/AddPickItem" element={<AddPickItem></AddPickItem>}></Route>
                     </Routes>
                 </main>
 

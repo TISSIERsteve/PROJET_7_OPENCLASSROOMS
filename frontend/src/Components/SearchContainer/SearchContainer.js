@@ -12,6 +12,7 @@ function SearchContainer() {
 
     // JSX
     return <div>
+
         {/* Barre container */}
         <ul className='profileScreenTele'>
 
@@ -22,6 +23,7 @@ function SearchContainer() {
             <AddVideo></AddVideo>
 
         </ul>
+
     </div>;
 }
 

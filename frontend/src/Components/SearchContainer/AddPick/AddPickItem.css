@@ -1,0 +1,56 @@
+/* AddPickItem */
+.addPickItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.addPickItem_titre {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.addPickItem_form {
+    width: 50%;
+    margin: 0 auto;
+    border: 2px solid black;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.addPickItem_file_input {
+    border: 2px solid black;
+    margin-bottom: 1rem;
+}
+
+.addPickItem_img {
+    width: 34%;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.addPickItem_file {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.addPickItem_button {
+    width: 30%;
+    margin: 0 auto;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;  
+    margin-top: 1rem; 
+}
+
+.addPickItem_item {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.brt {
+    width: 6rem;
+}

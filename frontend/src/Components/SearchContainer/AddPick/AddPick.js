@@ -1,18 +1,16 @@
 import React from 'react';
+import { Link } from "react-router-dom"
 
 // ===== Page ajouter image =====
 function AddPick() {
-    const addCamera = () => {
-        console.log("AddPhotos");
-    }
 
     return (
         <>
             <li>
-                <i className="fas fa-camera" onClick={addCamera}></i>
+                <Link to="/AddPickItem">
+                    <i className="fas fa-camera"></i>
+                </Link>
             </li>
-
-
         </>
     )
 }
