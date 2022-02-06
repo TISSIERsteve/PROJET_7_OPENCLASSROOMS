@@ -9,9 +9,6 @@ import AccountScreen from "./Screens/AccountScreen/AccountScreen";
 import ProfileScreen from "./Screens/ProfileScreen/ProfileScreen";
 import PersoProfileScreen from "./Screens/PersoProfileScreen/PersoProfileScreen";
 
-// Components
-import Messenger from "./Components/Messenger/Messenger";
-
 function App() {
 
     Axios.defaults.headers.common.Authorization = `Bearer` + localStorage.bearer
@@ -41,7 +38,6 @@ function App() {
                         <Route path="/AccountScreen" element={<AccountScreen />} />
                         <Route path="/ProfileScreen" element={<ProfileScreen />} />
                         <Route path="/PersoProfileScreen" element={<PersoProfileScreen />} />
-                        <Route path="/Messenger" element={<Messenger />} />
                     </Routes>
                 </main>
 

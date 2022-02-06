@@ -5,7 +5,7 @@ import Axios from "axios";
 // Css
 import "../AccountScreen/AccountScreen.css";
 
-// ===== Page de connexion  =====
+// ===== Page de connexion sur GROUPOMANIA =====
 function AccountScreen() {
 
     const navigate = useNavigate();
@@ -27,10 +27,12 @@ function AccountScreen() {
 
             Axios.defaults.headers.common.Authorization = `Bearer` + response.data.token
 
+            // Récupère les données dans le locale storage
             localStorage.setItem("id", JSON.stringify(response.data.user.id));
             localStorage.setItem("bearer", response.data.token);
             localStorage.setItem("prenom", JSON.stringify(response.data.user.prenom));
 
+            // Et je redirige sur page d'acceuil
             navigate("/ProfileScreen", { replace: true });
 
         } catch (err) {

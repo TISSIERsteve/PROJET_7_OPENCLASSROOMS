@@ -3,11 +3,12 @@ import Axios from 'axios';
 
 // Components
 import PostComment from './PostOneComment/PostComment';
+import GetComment from './GetAllComment/GetComment';
 
 // CSS
 import "./ProfileScreenItem.css"
 
-// Page component de Profile screen (Affichage de tous les messages)
+// ===== Page perso avec tous mes messages =====
 function ProfileScreenItem() {
 
     // Affichage de tous les messages
@@ -40,7 +41,12 @@ function ProfileScreenItem() {
 
                                 {/* Components PostComment */}
                                 <PostComment idPost={x.message_perso_id} ></PostComment>
+
                             </div>
+
+                            {/* Components Get comment */}
+                            <GetComment messageid={x.message_perso_id}></GetComment>
+
                         </article>
                     </li>
                 )

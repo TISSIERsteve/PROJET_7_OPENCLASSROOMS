@@ -14,12 +14,12 @@ ul.profileScreenTele {
 
 .profileScreenTele {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .profileScreenTele li {
     text-align: center;
-    width: 30%;
+    width: 100%;
     border-right: 1px solid black;
     cursor: pointer;
 }

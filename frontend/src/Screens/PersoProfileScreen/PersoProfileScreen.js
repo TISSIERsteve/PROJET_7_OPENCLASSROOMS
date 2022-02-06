@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
 // Component
-import GetComment from "../../Components/ProfileScreenItem/GetOneComment/GetComment"
-// import DeleteComment from '../../Components/ProfileScreenItem/DeleteOneComment/DeleteComment';
+import SeeComment from '../../Components/ProfileScreenItem/SeeComment/SeeComment';
+import ButtonAside from '../../Components/ButtonAside/ButtonAside';
+import Aside from "../../Components/Aside/Aside"
 
 // CSS
 import "../PersoProfileScreen/PersoProfileScreen.css"
 
-// Page perso 
+// ===== Page perso accueil ===== 
 function PersoProfileScreen() {
+
+    const prenom = JSON.parse(localStorage.prenom)
 
     // Afficher tous les messages
     const identifiant = JSON.parse(localStorage.id)
@@ -40,15 +43,25 @@ function PersoProfileScreen() {
 
     // JSX
     return <div>
+        {/* Component Button Aside */}
+        <ButtonAside />
+
+        {/* Component Aside */}
+        <div id="open" className="aside_form">
+            <Aside />
+        </div>
+
         <Link to="/ProfileScreen">
             <i className="fas fa-arrow-left flecheGauche" /> retour
         </Link>
-
         {/*  Partie dynamique mes messages perso   */}
         <section className='itemsPerso'>
+            <div className='persoprofilescreen_prenom'>
+                <h3>Voici vos publications {prenom}</h3>
+            </div>
             {post && post.length ? post.map((x) => {
                 return (
-                    <li key={x.message_perso_id}>
+                    < li key={x.message_perso_id} >
                         <article className="card">
                             <div className='cardProfilePerso'>
                                 <img className="profileCommentImage" src="./images/img1.png" alt="logo Entreprise" />
@@ -59,8 +72,9 @@ function PersoProfileScreen() {
                             <p className="profileComment"> {x.commentaire} </p>
 
 
-                            {/* Components Get comment */}
-                            <GetComment messageid={x.message_perso_id}></GetComment>
+                            {/* Components Seecomment */}
+                            <SeeComment></SeeComment>
+
                             <div className='trash'>
                                 <button onClick={() => deleteCom(x.message_perso_id)}>
                                     <span>
@@ -73,7 +87,7 @@ function PersoProfileScreen() {
                 )
             }) : <h3 className='profileScreenEntete'>Vous n'avez rien publier pour le moment</h3>}
         </section>
-    </div>;
+    </div >;
 
 
 

@@ -57,7 +57,7 @@ function Sidebar() {
                 <li>
                     <Link to="#" className='lienAside'
                         onClick={deleteUser}
-                    >Desactiver mon compte</Link>
+                    >Désactiver mon compte</Link>
                 </li>
             </ul>
         </aside>

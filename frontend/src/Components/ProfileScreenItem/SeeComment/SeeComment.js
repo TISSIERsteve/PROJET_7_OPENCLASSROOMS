@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import Axios from 'axios';
 
 // CSS
-import "./GetComment.css"
+// import "./GetComment.css"
 
-// Fonction récupére commentaire que l'on nous a poster
-function GetComment(props) {
+// ===== Fonction récupére commentaire que l'on nous a poster =====
+function SeeComment(props) {
 
     // Obtenir un commentaire poster sur un message 
     const [com, setcom] = useState('')
@@ -49,4 +49,5 @@ function GetComment(props) {
     </div>;
 
 }
-export default GetComment;
+export default SeeComment;
+

@@ -5,14 +5,14 @@ import Axios from 'axios';
 // CSS
 import "./PostComment.css"
 
-// Page ajout commentaire
+// ===== Page ajout commentaire =====
 function PostComment(props) {
 
     const [isActive, setisActive] = useState("")
 
+    // Ouverture fenêtre de des commentaires que l'on nous a poster
     const handleShow = () => {
         if (isActive === "active") {
-            console.log("1");
             setisActive("")
 
         } else {
@@ -30,6 +30,8 @@ function PostComment(props) {
     const addCommentUser = () => {
         if (window.confirm("Etes vous sur de vouloir publier votre commentaire")) {
             addCommentUserDefini()
+        } else {
+            window.location.reload()
         }
     }
 
@@ -75,5 +77,4 @@ function PostComment(props) {
         </>
     )
 }
-
 export default PostComment;

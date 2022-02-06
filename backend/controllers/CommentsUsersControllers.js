@@ -5,14 +5,15 @@ exports.getAllComments = (req, res) => {
 
 }
 
-// Récupérer un commentaire
+// Récupérer les commentaires poster par les utilisateurs
 exports.getOneComment = (req, res) => {
+    console.log(req.params);
     const id_message = req.params.id
 
     db.query(`SELECT comment.content, user.prenom FROM Comment JOIN user ON comment.fk_id_user = user.user_id WHERE fk_id_message`, [id_message],
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accès refusé du post de messageperso" })
+                res.status(403).json({ message: "Accès refusé du commentaire poster" })
             } else {
                 res.status(200).json({
                     result
