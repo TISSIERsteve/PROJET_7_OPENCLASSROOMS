@@ -4,8 +4,6 @@ import Axios from 'axios';
 
 // Component
 import SeeComment from '../../Components/ProfileScreenItem/SeeComment/SeeComment';
-import ButtonAside from '../../Components/ButtonAside/ButtonAside';
-import Aside from "../../Components/Aside/Aside"
 
 // CSS
 import "../PersoProfileScreen/PersoProfileScreen.css"
@@ -43,14 +41,6 @@ function PersoProfileScreen() {
 
     // JSX
     return <div>
-        {/* Component Button Aside */}
-        <ButtonAside />
-
-        {/* Component Aside */}
-        <div id="open" className="aside_form">
-            <Aside />
-        </div>
-
         <Link to="/ProfileScreen">
             <i className="fas fa-arrow-left flecheGauche" /> retour
         </Link>

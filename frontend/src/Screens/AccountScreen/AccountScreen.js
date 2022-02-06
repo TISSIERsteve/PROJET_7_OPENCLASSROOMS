@@ -25,7 +25,7 @@ function AccountScreen() {
                 }
             );
 
-            Axios.defaults.headers.common.Authorization = `Bearer` + response.data.token
+            Axios.defaults.headers.common.Authorization = response.data.token
 
             // Récupère les données dans le locale storage
             localStorage.setItem("id", JSON.stringify(response.data.user.id));

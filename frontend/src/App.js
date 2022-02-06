@@ -11,7 +11,7 @@ import PersoProfileScreen from "./Screens/PersoProfileScreen/PersoProfileScreen"
 
 function App() {
 
-    Axios.defaults.headers.common.Authorization = `Bearer` + localStorage.bearer
+    Axios.defaults.headers.common.Authorization = localStorage.bearer
 
     // Ajoute la date du jour
     let jour = new Date().toLocaleDateString("fr-FR", {
