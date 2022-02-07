@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Axios from 'axios';
 
 // Component
-// import SeeComment from '../../Components/ProfileScreenItem/SeeComment/SeeComment';
+import SeeComment from '../../Components/ProfileScreenItem/SeeComment/SeeComment';
 
 // CSS
 import "../PersoProfileScreen/PersoProfileScreen.css"
@@ -21,6 +21,7 @@ function PersoProfileScreen() {
         Axios.get("http://localhost:3001/api/messagesPerso/" + identifiant,)
             .then((response) => {
                 setpost(response.data.result)
+                // console.log(response.data.result);
             })
     }, [identifiant])
 
@@ -64,7 +65,7 @@ function PersoProfileScreen() {
 
 
                             {/* Components Seecomment */}
-                            {/* <SeeComment identite={x.message_perso_id}></SeeComment> */}
+                            <SeeComment identite={x.message_perso_id}></SeeComment>
 
                             <div className='trash'>
                                 <button onClick={() => deleteCom(x.message_perso_id)}>

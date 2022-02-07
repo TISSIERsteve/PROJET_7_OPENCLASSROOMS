@@ -1,31 +1,10 @@
 const db = require("../config/mysql")
 
 // Récupérer tous les commentaires des utilisateurs qui m'ont commenter fait sur ma page perso
-// exports.getAllComments = (req, res, next) => {
-// const idy = req.params.id
-// // console.log(idy);
+exports.getAllComments = (req, res, next) => {
 
-// db.query(`SELECT content ,prenom FROM comment WHERE fk_id_message=?`,
-//     [idy],
-//     (err, result) => {
-//         if (err) {
-//             res.status(403).json({ message: "Accès refusé du commentaire poster" })
-//             console.log("erreur");
-//         } else {
-//             res.status(200).json({
-//                 result
-//             });
-//             console.log(result)
-//         }
-//     });
-// }
+    db.query(`SELECT content,  user_id, prenom FROM comment JOIN User ON fk_id_user = user_id WHERE fk_id_message`,
 
-// Récupérer les commentaires poster par les utilisateurs sur la page accueil
-exports.getOneComment = (req, res, next) => {
-    const id_message = req.params.id
-
-    db.query(`SELECT content FROM comment WHERE fk_id_message=?`,
-        [id_message],
         (err, result) => {
             if (err) {
                 res.status(403).json({ message: "Accès refusé du commentaire poster" })
@@ -34,7 +13,24 @@ exports.getOneComment = (req, res, next) => {
                 res.status(200).json({
                     result
                 });
-                console.log(result);
+                console.log("le resultat est " + result)
+            }
+        });
+}
+
+// Récupérer les commentaires poster par les utilisateurs sur la page accueil
+exports.getOneComment = (req, res, next) => {
+    const id_message = req.params.id
+
+    db.query(`SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_message=?`,
+        [id_message],
+        (err, result) => {
+            if (err) {
+                res.status(403).json({ message: "Accès refusé du commentaire poster" })
+            } else {
+                res.status(200).json({
+                    result
+                });
             }
         });
 }
