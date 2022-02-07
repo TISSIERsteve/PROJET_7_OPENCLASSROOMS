@@ -6,7 +6,7 @@ import Axios from 'axios';
 // import "./GetComment.css"
 
 // ===== Components récupére commentaire que l'on nous à poster sur ma page perso =====
-function SeeComment(props) {
+function SeeComment() {
 
     // Obtenir un commentaire poster sur un message 
     const [com, setcom] = useState('')

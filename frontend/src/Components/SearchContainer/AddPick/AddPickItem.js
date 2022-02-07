@@ -5,20 +5,17 @@ import Axios from 'axios';
 // CSS
 import "../AddPick/AddPickItem.css"
 
-// components ajouter image item
+// Components ajouter image item
 function AddPickItem() {
 
     const imgRegex = /(.*[a-z]){5,30}/;
 
     const [legende, setlegende] = useState("")
     const [postPicture, setPostPicture] = useState(null)
-    // const [file, setFile] = useState()
-    // console.log(file);
 
     // J'importe une image
     const handlePicture = (e) => {
-        setPostPicture(URL.createObjectURL(e.target.files[0]))
-        // setFile(e.target.files[0])
+        setPostPicture(e.target.files[0])
     }
 
     // Fonction envoie image bdd
@@ -29,10 +26,10 @@ function AddPickItem() {
 
     const addImgItem = () => {
         if (imgRegex.test(legende)) {
-            Axios.post("http://localhost:3001/api/posts", {
-                legende: legende,
-                media_url: { postPicture }
-            })
+            const formData = new FormData()
+            formData.append("legende", legende)
+            formData.append("image", postPicture)
+            Axios.post("http://localhost:3001/api/posts", formData)
 
         } else {
             alert("Veillez à remplir tous les champs")
@@ -56,7 +53,7 @@ function AddPickItem() {
                 <i className="fas fa-arrow-left flecheGauche" /> retour
             </Link>
             <div className='addPickItem'>
-                <h2 className='addPickItem_titre'>Ajouter image</h2>
+                <h2 className='addPickItem_titre'>Ajouter une image</h2>
                 <form className='addPickItem_form'>
                     <div className='addPickItem_file'>
                         <div>
@@ -65,7 +62,6 @@ function AddPickItem() {
                                 type="file"
                                 id='file'
                                 name='file'
-                                accept='.jpg, .jpeg, .png'
                                 onChange={(e) =>
                                     handlePicture(e)
                                 }

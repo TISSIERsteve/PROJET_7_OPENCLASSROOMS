@@ -4,6 +4,7 @@ import Axios from 'axios';
 // Components
 import PostComment from './PostOneComment/PostComment';
 import GetComment from './GetAllComment/GetComment';
+import GetAllImage from './GetAllImage/GetAllImage';
 
 // CSS
 import "./ProfileScreenItem.css"
@@ -26,6 +27,7 @@ function ProfileScreenItem() {
     // JSX
     return <div>
         <section className="items">
+            <GetAllImage></GetAllImage>
             {post && post.length ? post.map((x) => {
                 return (
                     <li key={x.message_perso_id}>

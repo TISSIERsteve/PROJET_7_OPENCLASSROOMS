@@ -5,7 +5,7 @@ import Axios from 'axios';
 // CSS
 import "./GetComment.css"
 
-// ===== Components pour voir commentaire page principal accueil=====
+// ===== Components pour voir commentaires page principal accueil=====
 function GetComment(props) {
 
     // Obtenir un commentaire poster sur un message 
@@ -26,7 +26,6 @@ function GetComment(props) {
         Axios.get(`http://localhost:3001/api/comments/${props.messageid}`)
             .then((response) => {
                 setcom(response.data.result)
-                console.log(response.data.result);
             })
     }, [props.messageid])
 
