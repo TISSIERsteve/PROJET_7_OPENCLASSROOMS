@@ -26,6 +26,7 @@ function GetComment(props) {
         Axios.get(`http://localhost:3001/api/comments/${props.messageid}`)
             .then((response) => {
                 setcom(response.data.result)
+                console.log(response);
             })
     }, [props.messageid])
 

@@ -7,6 +7,7 @@ import Axios from 'axios';
 
 // ===== Components récupére commentaire que l'on nous à poster sur ma page perso =====
 function SeeComment() {
+    // console.log(props);
 
     // Obtenir un commentaire poster sur un message 
     const [com, setcom] = useState('')
@@ -26,14 +27,14 @@ function SeeComment() {
         Axios.get(`http://localhost:3001/api/comments/`)
             .then((response) => {
                 setcom(response.data.result)
-                console.log(response.data.result);
+                // console.log(response.data.result);
             })
     }, [])
 
     // JSX
     return <div className='get'>
         <fieldset className='fieldset' onClick={openFieldset}>
-            <legend className='getcomment_fieldset'>Voir les commentaires</legend>
+            <legend className='getcomment_fieldset'>Voir les commentaires reçus</legend>
             <section className={`getsection ${isGetActive}`}>
                 {com && com.length ? com.map((x) => {
                     return (

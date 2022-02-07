@@ -5,31 +5,26 @@ import Axios from 'axios';
 // Component pour afficher image
 function GetAllImage() {
 
-    const [affiImg, setaffiImg] = useState('')
+    const [affiImg, setaffiImg] = useState([])
+    // console.log(affiImg);
 
     useEffect(() => {
         // Affichage de toutes les images postéés
         Axios.get(
             "http://localhost:3001/api/posts")
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data.result);
                 setaffiImg(response.data)
             })
     }, [])
 
     return (
-        <section className="items">
-            {affiImg && affiImg.length && affiImg.map((x) => {
-                return (
-                    <li >
-                        <article className="card">
-                            <h3>{x.title}</h3>
+        < section >
+            {
+                affiImg
+            }
 
-                        </article>
-                    </li>
-                )
-            })}
-        </section>
+        </section >
     )
 }
 

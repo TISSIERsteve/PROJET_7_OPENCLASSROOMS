@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Axios from 'axios';
 
 // Component
-import SeeComment from '../../Components/ProfileScreenItem/SeeComment/SeeComment';
+// import SeeComment from '../../Components/ProfileScreenItem/SeeComment/SeeComment';
 
 // CSS
 import "../PersoProfileScreen/PersoProfileScreen.css"
@@ -52,7 +52,7 @@ function PersoProfileScreen() {
             </div>
             {post && post.length ? post.map((x) => {
                 return (
-                    < li key={x.message_perso_id} >
+                    <li key={x.message_perso_id} >
                         <article className="card">
                             <div className='cardProfilePerso'>
                                 <img className="profileCommentImage" src="./images/img1.png" alt="logo Entreprise" />
@@ -64,7 +64,7 @@ function PersoProfileScreen() {
 
 
                             {/* Components Seecomment */}
-                            <SeeComment></SeeComment>
+                            {/* <SeeComment identite={x.message_perso_id}></SeeComment> */}
 
                             <div className='trash'>
                                 <button onClick={() => deleteCom(x.message_perso_id)}>
