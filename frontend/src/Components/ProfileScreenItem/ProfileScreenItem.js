@@ -4,7 +4,7 @@ import Axios from 'axios';
 // Components
 import PostComment from './PostOneComment/PostComment';
 import GetComment from './GetAllComment/GetComment';
-// import GetAllImage from './GetAllImage/GetAllImage';
+import GetAllImage from './GetAllImage/GetAllImage';
 
 // CSS
 import "./ProfileScreenItem.css"
@@ -28,6 +28,8 @@ function ProfileScreenItem() {
     return <div>
         <section className="items">
 
+            {/* Components obtenir image */}
+            <GetAllImage></GetAllImage>
 
             {post && post.length ? post.map((x) => {
                 return (
@@ -50,8 +52,6 @@ function ProfileScreenItem() {
                             {/* Components Get comment */}
                             <GetComment messageid={x.message_perso_id}></GetComment>
 
-                            {/* Components obtenir image */}
-                            {/* <GetAllImage></GetAllImage> */}
 
                         </article>
                     </li>

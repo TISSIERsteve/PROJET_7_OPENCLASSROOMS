@@ -13,6 +13,7 @@ const storage = multer.diskStorage({
         // Je passe le dossier images à mon backend
         callback(null, "images");
     },
+
     // Nom de fichier pour éviter les doublons
     filename: (req, file, callback) => {
         // On génère un nouveau nom pour le fichier et j'élimine les espaces dans le nom de fichier

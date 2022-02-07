@@ -7,7 +7,7 @@ import Axios from 'axios';
 
 // ===== Components récupére commentaire que l'on nous à poster sur ma page perso =====
 function SeeComment(props) {
-    console.log(props);
+    // console.log(props);
 
     // Obtenir un commentaire poster sur un message 
     const [com, setcom] = useState('')
@@ -27,7 +27,7 @@ function SeeComment(props) {
         Axios.get(`http://localhost:3001/api/comments/${props.identite}`)
             .then((response) => {
                 setcom(response.data.result)
-                console.log(response.data);
+                // console.log(response.data);
             })
     }, [props.identite])
 
