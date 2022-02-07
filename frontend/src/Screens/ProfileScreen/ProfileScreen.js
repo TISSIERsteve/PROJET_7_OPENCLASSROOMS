@@ -12,7 +12,7 @@ import ProfileScreenItem from "../../Components/ProfileScreenItem/ProfileScreenI
 // CSS
 import "../ProfileScreen/ProfileScreen.css";
 
-// ===== Page principal perso =====
+// ===== Page principal accueil =====
 function ProfileScreen() {
 
     // Si token j'affiche la page profil 

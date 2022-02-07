@@ -1,7 +1,7 @@
 const db = require("../config/mysql")
 
 // Obtenir tous les messages des utilisateurs sur ProfileScreen
-exports.getAllMessages = (req, res) => {
+exports.getAllMessages = (req, res, next) => {
 
     db.query("SELECT message_perso_id,prenom,DATE_FORMAT(date, 'le %d %m %Y à %H:%i') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ", (err, result) => {
         if (err) {
@@ -18,7 +18,7 @@ exports.getAllMessages = (req, res) => {
 }
 
 // Obtenir nos messages personnels sur ProfilePersoScreen
-exports.getOneMessage = (req, res) => {
+exports.getOneMessage = (req, res, next) => {
     const id = req.params.id
 
     db.query(`SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %Y à %H:%i vous avez publier') AS date,commentaire, fk_id_user FROM messageperso WHERE fk_id_user = ? ORDER BY date DESC`,
@@ -35,7 +35,7 @@ exports.getOneMessage = (req, res) => {
 }
 
 // Créer un message sur ProfileScreen
-exports.createMessage = (req, res) => {
+exports.createMessage = (req, res, next) => {
     const prenom = req.body.prenom;
     const commentaire = req.body.commentaire;
     const id = req.body.id
@@ -60,7 +60,7 @@ exports.createMessage = (req, res) => {
 }
 
 // Effacer un message perso sur ProfilePersoScreen
-exports.deleteMessage = (req, res) => {
+exports.deleteMessage = (req, res, next) => {
     const persoId = req.params.id
 
     db.query("DELETE FROM messageperso WHERE message_perso_id = ?",

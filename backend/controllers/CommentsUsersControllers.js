@@ -1,9 +1,8 @@
 const db = require("../config/mysql")
 
-// Récupérer tous les commentaires des utilisateurs sur ma page perso
-exports.getAllComments = (req, res) => {
-    // console.log(req.params);
-    // const message = req.params.id
+// Récupérer tous les commentaires des utilisateurs qui m'ont fait sur ma page perso
+exports.getAllComments = (req, res, next) => {
+    console.log(req.params);
 
     db.query(`SELECT content,  user_id, prenom FROM comment JOIN User ON fk_id_user = user_id WHERE fk_id_message`,
         (err, result) => {
@@ -19,10 +18,10 @@ exports.getAllComments = (req, res) => {
 }
 
 // Récupérer les commentaires poster par les utilisateurs sur la page d'accueil
-exports.getOneComment = (req, res) => {
+exports.getOneComment = (req, res, next) => {
     const id_message = req.params.id
 
-    db.query(`SELECT content FROM comment WHERE fk_id_message=?`, [id_message],
+    db.query(`SELECT content  FROM comment WHERE fk_id_message=?`, [id_message],
         (err, result) => {
             if (err) {
                 res.status(403).json({ message: "Accès refusé du commentaire poster" })
@@ -36,7 +35,7 @@ exports.getOneComment = (req, res) => {
 }
 
 // Créer un commentaire sur ProfileScreen
-exports.createComment = (req, res) => {
+exports.createComment = (req, res, next) => {
     const { commentaires, compte, id_post } = req.body
 
     const messageperso = {
@@ -60,6 +59,6 @@ exports.createComment = (req, res) => {
 }
 
 // Effacer un commentaire
-exports.deleteComment = (req, res) => {
+exports.deleteComment = (req, res, next) => {
 
 }

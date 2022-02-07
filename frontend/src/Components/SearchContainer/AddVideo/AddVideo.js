@@ -1,6 +1,6 @@
 import React from 'react';
 
-// ===== Page ajouter video =====
+// ===== Components ajouter video =====
 function AddVideo() {
     const addVideo = () => {
         console.log("AddVideo");

@@ -8,7 +8,7 @@ import GetComment from './GetAllComment/GetComment';
 // CSS
 import "./ProfileScreenItem.css"
 
-// ===== Page perso avec tous mes messages =====
+// ===== Components Card Page principal accueil =====
 function ProfileScreenItem() {
 
     // Affichage de tous les messages

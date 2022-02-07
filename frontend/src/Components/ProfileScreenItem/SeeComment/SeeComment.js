@@ -5,8 +5,8 @@ import Axios from 'axios';
 // CSS
 // import "./GetComment.css"
 
-// ===== Fonction récupére commentaire que l'on nous a poster =====
-function SeeComment() {
+// ===== Components récupére commentaire que l'on nous à poster sur ma page perso =====
+function SeeComment(props) {
 
     // Obtenir un commentaire poster sur un message 
     const [com, setcom] = useState('')
@@ -25,8 +25,8 @@ function SeeComment() {
     useEffect(() => {
         Axios.get(`http://localhost:3001/api/comments/`)
             .then((response) => {
-                console.log(response.data);
                 setcom(response.data.result)
+                console.log(response.data.result);
             })
     }, [])
 

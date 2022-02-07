@@ -5,7 +5,7 @@ import Axios from "axios";
 // Css
 import "../AccountScreen/AccountScreen.css";
 
-// ===== Page de connexion sur GROUPOMANIA =====
+// ===== Page de connexion =====
 function AccountScreen() {
 
     const navigate = useNavigate();

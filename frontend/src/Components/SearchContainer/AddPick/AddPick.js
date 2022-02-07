@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom"
 
-// ===== Page ajouter image =====
+// ===== Components ajouter image =====
 function AddPick() {
 
     return (

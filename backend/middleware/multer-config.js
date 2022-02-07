@@ -12,12 +12,11 @@ const storage = multer.diskStorage({
     filename: (req, file, callback) => {
         // On génère un nouveau nom pour le fichier et j'élimine les espaces dans le nom de fichier
         const name = file.originalname.replace(/\.[^/.]+$/, "").split(' ').join('_')
-        const extension = MIME_TYPES[file.mimetype]
-        // On lui une date pour le rendre le plus unique possible à la milliseconde prés
-        callback(null, name + Date.now() + '.' + extension)
 
+        // On lui une date pour le rendre le plus unique possible à la milliseconde prés
+        callback(null, name + Date.now())
     }
 })
 
-// Methode single pour dire que c'est un fichier uniquecet on dit que c'est une image
+// Methode single pour dire que c'est un fichier unique et on dit que c'est une image
 module.exports = multer({ storage }).single("image")

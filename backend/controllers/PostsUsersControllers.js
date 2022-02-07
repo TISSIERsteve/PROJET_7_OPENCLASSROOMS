@@ -8,7 +8,7 @@ exports.getOnePost = (req, res) => {
 
 }
 
-exports.createPost = (req, res) => {
+exports.createPost = (req, res, next) => {
     console.log(req.body);
     const content = req.body.legende;
     const media_url = req.body.media_url;

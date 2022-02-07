@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // CSS
 import "../HomeScreen/HomeScreen.css";
 
-// Page d'accueil pour choisir soit la connexion ou soit la création compte
+// Page pour choisir soit connexion soit création compte
 function HomeScreenItem() {
     return (
         <div className="homeScreen">

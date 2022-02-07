@@ -6,7 +6,6 @@ module.exports = async (req, res, next) => {
     try {
         // Si pas de token
         const token = req.headers.authorization.split(' ')[0]
-        console.log(token);
         if (!token) {
             return res.status(401).json({
                 success: false,
@@ -17,7 +16,6 @@ module.exports = async (req, res, next) => {
 
         // Si token correspond pas
         const decodeToken = jwt.verify(token, "RANDOM_PRIVATE_KEY")
-        console.log(decodeToken);
         if (!decodeToken) {
             return res.status(401).json({
                 success: false,

@@ -3,7 +3,7 @@ import React from 'react';
 // CSS
 import "../ButtonAside/ButtonAside.css"
 
-// ===== Bouton open aside =====
+// ===== Components Bouton open aside =====
 function ButtonAside() {
 
     // Open boutton

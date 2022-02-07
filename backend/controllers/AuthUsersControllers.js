@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 // Création compte
-exports.signup = (req, res) => {
+exports.signup = (req, res, next) => {
     const nom = req.body.nom;
     const prenom = req.body.prenom;
     const password = req.body.password;
@@ -36,7 +36,7 @@ exports.signup = (req, res) => {
 };
 
 // Connexion au compte
-exports.login = (req, res) => {
+exports.login = (req, res, next) => {
     const password = req.body.password;
     const email = req.body.email;
 
@@ -78,7 +78,7 @@ exports.login = (req, res) => {
 }
 
 // Désactiver compte
-exports.dessactive = (req, res) => {
+exports.dessactive = (req, res, next) => {
     const id = req.params.id
 
     db.query("DELETE FROM user WHERE user_id = ?",

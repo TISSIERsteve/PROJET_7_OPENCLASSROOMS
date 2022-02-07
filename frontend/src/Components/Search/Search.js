@@ -5,7 +5,7 @@ import { useState } from 'react';
 // CSS
 import "../Search/Search.css"
 
-// ===== Page de barre de recherche =====
+// ===== Components barre pour poster un message =====
 function Search() {
 
     // Récupère le prénom

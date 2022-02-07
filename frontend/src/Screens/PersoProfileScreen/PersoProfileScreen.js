@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom"
 import Axios from 'axios';
 
 // Component
@@ -8,7 +8,7 @@ import SeeComment from '../../Components/ProfileScreenItem/SeeComment/SeeComment
 // CSS
 import "../PersoProfileScreen/PersoProfileScreen.css"
 
-// ===== Page perso accueil ===== 
+// ===== Page perso avec voir toutes mes publications ===== 
 function PersoProfileScreen() {
 
     const prenom = JSON.parse(localStorage.prenom)
@@ -44,6 +44,7 @@ function PersoProfileScreen() {
         <Link to="/ProfileScreen">
             <i className="fas fa-arrow-left flecheGauche" /> retour
         </Link>
+
         {/*  Partie dynamique mes messages perso   */}
         <section className='itemsPerso'>
             <div className='persoprofilescreen_prenom'>

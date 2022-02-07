@@ -5,7 +5,7 @@ import Axios from 'axios';
 // CSS
 import "../Aside/Aside.css"
 
-// Page Aside
+// Components Aside
 function Sidebar() {
 
     // Supprimer compte utilisateur 

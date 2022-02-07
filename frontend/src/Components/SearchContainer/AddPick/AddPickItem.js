@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
 // CSS
 import "../AddPick/AddPickItem.css"
 
+// components ajouter image item
 function AddPickItem() {
 
     const imgRegex = /(.*[a-z]){5,30}/;
@@ -49,45 +51,50 @@ function AddPickItem() {
 
     // JSX
     return (
-        <div className='addPickItem'>
-            <h2 className='addPickItem_titre'>Ajouter image</h2>
-            <form className='addPickItem_form'>
-                <div className='addPickItem_file'>
-                    <div>
-                        <input className='addPickItem_file_input'
+        <div>
+            <Link to="/ProfileScreen">
+                <i className="fas fa-arrow-left flecheGauche" /> retour
+            </Link>
+            <div className='addPickItem'>
+                <h2 className='addPickItem_titre'>Ajouter image</h2>
+                <form className='addPickItem_form'>
+                    <div className='addPickItem_file'>
+                        <div>
+                            <input className='addPickItem_file_input'
+                                required
+                                type="file"
+                                id='file'
+                                name='file'
+                                accept='.jpg, .jpeg, .png'
+                                onChange={(e) =>
+                                    handlePicture(e)
+                                }
+                            />
+                        </div>
+                        <img className='addPickItem_img' src={postPicture} alt="image_a_télècharger"></img>
+                    </div>
+                    <div className='addPickItem_button'>
+                        <input type="text"
+                            placeholder='Mettre une légende'
                             required
-                            type="file"
-                            id='file'
-                            name='file'
-                            accept='.jpg, .jpeg, .png'
-                            onChange={(e) =>
-                                handlePicture(e)
-                            }
+                            onChange={(event) => {
+                                if (imgRegex.test(event.target.value)) {
+                                    setlegende(event.target.value)
+                                    return
+                                }
+                            }}
                         />
+                        <div className='addPickItem_item'>
+                            <button className='brt'
+                                onClick={addImg}>Valider
+                            </button>
+                            <button className='brt'
+                                onClick={removeImg}>Anuler
+                            </button>
+                        </div>
                     </div>
-                    <img className='addPickItem_img' src={postPicture} alt="image_a_télècharger"></img>
-                </div>
-                <div className='addPickItem_button'>
-                    <input type="text"
-                        placeholder='Mettre une légende'
-                        required
-                        onChange={(event) => {
-                            if (imgRegex.test(event.target.value)) {
-                                setlegende(event.target.value)
-                                return
-                            }
-                        }}
-                    />
-                    <div className='addPickItem_item'>
-                        <button className='brt'
-                            onClick={addImg}>Valider
-                        </button>
-                        <button className='brt'
-                            onClick={removeImg}>Anuler
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }
