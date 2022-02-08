@@ -12,28 +12,28 @@ function GetAllImage() {
     console.log(affiImg);
 
     useEffect(() => {
-        // Affichage de toutes les images postéés
+
+        // Affichage de toutes les images postées
         Axios.get(
             "http://localhost:3001/api/posts")
             .then((response) => {
-                // console.log(response.data.result);
                 setaffiImg(response.data.result)
             })
     }, [])
 
     return (
         <section className='getAllImage_image'>
+
+            <img src='/images' alt='img telecharger'></img>
+
             {affiImg && affiImg.length && affiImg.map((x) => {
                 return (
-                    <ul key={x.content}>
-                        <li>{x.media_url}</li>
-                        <li>{x.title}</li>
-                        <li>{x.content}</li>
-                    </ul>
+
+                    <li></li>
 
                 )
             })}
-        </section >
+        </section>
     )
 }
 
