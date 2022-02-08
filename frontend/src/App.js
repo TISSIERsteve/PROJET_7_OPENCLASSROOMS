@@ -4,7 +4,6 @@ import Axios from "axios";
 
 // Components
 import AddPickItem from "./Components/SearchContainer/AddPick/AddPickItem";
-import AddVideoItem from "./Components/SearchContainer/AddVideo/AddVideoItem";
 
 // Screens
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
@@ -48,7 +47,6 @@ function App() {
                             element={<PersoProfileScreen />}
                         />
                         <Route path="/AddPickItem" element={<AddPickItem />} />
-                        <Route path="/AddVideoItem" element={<AddVideoItem />} />
                     </Routes>
                 </main>
 

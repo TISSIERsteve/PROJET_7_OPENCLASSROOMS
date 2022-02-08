@@ -2,7 +2,7 @@ const db = require("../config/mysql")
 
 exports.getAllPosts = (req, res) => {
 
-    db.query("SELECT post_id,title, media_url, content, fk_id_user FROM post ",
+    db.query("SELECT prenom, DATE_FORMAT(created_at, 'Le %d %m %Y à %H:%i') AS created_at ,post_id,title, media_url, content, fk_id_user FROM post JOIN user ON post.fk_id_user = user.user_id ",
         (err, result) => {
             if (err) {
                 res.status(403).json({ message: "Accès refusé reception des images" })
@@ -27,6 +27,7 @@ exports.createPost = (req, res, next) => {
         title: content,
         content,
         media_url,
+        fk_id_user: req.body.fk_id_user
     }
 
     db.query(

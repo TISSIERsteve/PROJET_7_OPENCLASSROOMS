@@ -1,7 +1,9 @@
 /* GetAllImage */
-/* .getAllImage_image {
-    height: 25rem;
-    width: 25rem;
-    border: 2px solid black;
-    display: flex;
-} */
+.getAllImage_image {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 1rem;
+}

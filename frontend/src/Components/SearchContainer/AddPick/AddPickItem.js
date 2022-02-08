@@ -19,7 +19,8 @@ function AddPickItem() {
     }
 
     // Fonction envoie image bdd
-    const addImg = () => {
+    const addImg = (e) => {
+        e.preventDefault()
         window.confirm("Voulez vous vraiment partager l'image sur groupomania")
         addImgItem()
     }
@@ -27,9 +28,13 @@ function AddPickItem() {
     const addImgItem = () => {
         if (imgRegex.test(legende)) {
             const formData = new FormData()
+            formData.append("fk_id_user", localStorage.id)
             formData.append("legende", legende)
             formData.append("image", postPicture)
             Axios.post("http://localhost:3001/api/posts", formData)
+                .then(() => {
+                    window.location.reload()
+                })
 
         } else {
             alert("Veillez à remplir tous les champs")
