@@ -39,14 +39,19 @@ function PagePerso() {
 
     // Modifier nôtre message
     const modifyCom = (id) => {
-        if (window.confirm("Voulez vous vraiment modifier ce message")) {
-            modifyComDefini(id)
-        }
-    }
-
-    const modifyComDefini = (id) => {
         console.log(id);
     }
+
+    // const modifyComDefini = (id) => {
+    //     if (window.confirm("Voulez vous vraiment modifier ce message")) {
+    //         modifyComDefini(id)
+    //     }
+    //     Axios.put("http://localhost:3001/api/messagePerso/" + id)
+    //         .then((response) => {
+    //             console.log(response)
+    //         })
+    // }
+
 
     // Supprimer un message
     const deleteCom = id => {
