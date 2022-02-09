@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Axios from "axios";
 
 // Components
-import AddPickItem from "./Components/SearchContainer/AddPick/AddPickItem";
+import AjouterImageItem from "./Components/Header/Barre/AjouterImage/AjouterImageItem";
 
 // Screens
-import HomeScreen from "./Screens/HomeScreen/HomeScreen";
-import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen";
-import AccountScreen from "./Screens/AccountScreen/AccountScreen";
-import ProfileScreen from "./Screens/ProfileScreen/ProfileScreen";
-import PersoProfileScreen from "./Screens/PersoProfileScreen/PersoProfileScreen";
+import Connexion from "./Screens/Connexion/Connexion";
+import Enregistrer from "./Screens/Enregistrer/Enregistrer";
+import PageConnexionEnregistrer from "./Screens/PageConnexionEnregistrer/PageConnexionEnregistrer";
+import PagePerso from "./Screens/PagePerso/PagePerso";
+import PageAccueil from "./Screens/PageAccueil/PageAccueil";
 
 function App() {
     Axios.defaults.headers.common.Authorization = localStorage.bearer;
@@ -35,18 +35,12 @@ function App() {
 
                 <main>
                     <Routes>
-                        <Route path="/" element={<HomeScreen />} />
-                        <Route
-                            path="/RegistrationScreen"
-                            element={<RegistrationScreen />}
-                        />
-                        <Route path="/AccountScreen" element={<AccountScreen />} />
-                        <Route path="/ProfileScreen" element={<ProfileScreen />} />
-                        <Route
-                            path="/PersoProfileScreen"
-                            element={<PersoProfileScreen />}
-                        />
-                        <Route path="/AddPickItem" element={<AddPickItem />} />
+                        <Route path="/" element={<PageConnexionEnregistrer />} />
+                        <Route path="/RegistrationScreen" element={<Enregistrer />} />
+                        <Route path="/AccountScreen" element={<Connexion />} />
+                        <Route path="/ProfileScreen" element={<PageAccueil />} />
+                        <Route path="/PersoProfileScreen" element={<PagePerso />} />
+                        <Route path="/AddPickItem" element={<AjouterImageItem />} />
                     </Routes>
                 </main>
 
