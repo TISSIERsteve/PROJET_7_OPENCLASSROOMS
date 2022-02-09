@@ -15,29 +15,34 @@ module.exports = async (req, res, next) => {
         }
 
         // Si token correspond pas
-        const decodeToken = jwt.verify(token, "RANDOM_PRIVATE_KEY")
-        if (!decodeToken) {
-            return res.status(401).json({
-                success: false,
-                result: null,
-                message: "Utilisateur non authentifié token correspond pas"
-            })
-        }
+        // const decodeToken = jwt.verify(token, "RANDOM_PRIVATE_KEY")
+        // if (!decodeToken) {
+        //     return res.status(401).json({
+        //         success: false,
+        //         result: null,
+        //         message: "Utilisateur non authentifié token correspond pas"
+        //     })
+        // }
+        jwt.verify(token, "RANDOM_PRIVATE_KEY", (err, decodeToken) => {
 
-        db.query("SELECT * FROM user WHERE user_id=?", [decodeToken.id], (err, result) => {
-            if (err) {
-                throw (err)
-            }
-            if (result.length) {
-                next()
-            } else {
-                return res.status(401).json({
-                    success: false,
-                    result: null,
-                    message: "Utilisateur non authentifié "
-                })
-            }
+            if (err) throw err
+
+            db.query("SELECT * FROM user WHERE user_id=?", [decodeToken.id], (err, result) => {
+                if (err) {
+                    throw (err)
+                }
+                if (result.length) {
+                    next()
+                } else {
+                    return res.status(401).json({
+                        success: false,
+                        result: null,
+                        message: "Utilisateur non authentifié "
+                    })
+                }
+            })
         })
+
 
         // Problème si autre erreur serveur
     } catch (error) {

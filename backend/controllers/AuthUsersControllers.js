@@ -56,7 +56,7 @@ exports.login = (req, res, next) => {
 
                 if (passwordOk) {
                     const token = jwt.sign({
-                        exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                        exp: Math.floor(Date.now() / 1000) + (60),
                         id: result[0].user_id
                     }, "RANDOM_PRIVATE_KEY")
 
