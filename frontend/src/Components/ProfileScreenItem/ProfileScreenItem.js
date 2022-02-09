@@ -8,9 +8,12 @@ import GetAllImage from './GetAllImage/GetAllImage';
 
 // CSS
 import "./ProfileScreenItem.css"
+import { useNavigate } from 'react-router-dom';
 
 // ===== Components Card Page principal accueil =====
 function ProfileScreenItem() {
+
+    const navigate = useNavigate()
 
     // Affichage de tous les messages
     const [post, setpost] = useState('')
@@ -24,8 +27,14 @@ function ProfileScreenItem() {
             })
             .catch((err) => {
                 console.log(err);
+                if (err.response.data.message === "jwt expired") {
+                    alert("Votre session est expiré veuillez vous reconnecter")
+                    localStorage.clear()
+                    // Et je redirige sur page d'acceuil
+                    navigate("/AccountScreen", { replace: true });
+                }
             })
-    }, [])
+    }, [navigate])
 
     // JSX
     return <div>

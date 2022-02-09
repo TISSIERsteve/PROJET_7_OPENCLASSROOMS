@@ -22,6 +22,7 @@
 .addPickItem_file_input {
     border: 2px solid black;
     margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .addPickItem_img {
@@ -34,6 +35,12 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.addPickItem_file_item {
+    display: block;
+    width: 36%;
+    text-align: center;  
 }
 
 .addPickItem_button {

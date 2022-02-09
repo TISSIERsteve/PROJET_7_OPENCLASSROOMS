@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
 // CSS
@@ -7,6 +7,8 @@ import "../AddPick/AddPickItem.css"
 
 // Components ajouter image item
 function AddPickItem() {
+
+    const navigate = useNavigate()
 
     const imgRegex = /(.*[a-z]){5,30}/;
 
@@ -33,11 +35,10 @@ function AddPickItem() {
             formData.append("image", postPicture)
             Axios.post("http://localhost:3001/api/posts", formData)
                 .then(() => {
-                    window.location.reload()
+                    navigate("/ProfileScreen", { replace: true });
                 })
-
         } else {
-            alert("Veillez à remplir tous les champs")
+            alert("Veillez à remplir tous les champs avec un minimun de 5 caractéres")
             return
         }
     }
@@ -61,7 +62,8 @@ function AddPickItem() {
                 <h2 className='addPickItem_titre'>Ajouter une image</h2>
                 <form className='addPickItem_form'>
                     <div className='addPickItem_file'>
-                        <div>
+                        <div className='addPickItem_file_item'>
+                            <label>Document(s) à télèchargé</label>
                             <input className='addPickItem_file_input'
                                 required
                                 type="file"
@@ -72,7 +74,7 @@ function AddPickItem() {
                                 }
                             />
                         </div>
-                        <img className='addPickItem_img' src={postPicture} alt="image_a_télècharger"></img>
+                        <img className='addPickItem_img' src={postPicture} alt=""></img>
                     </div>
                     <div className='addPickItem_button'>
                         <input type="text"

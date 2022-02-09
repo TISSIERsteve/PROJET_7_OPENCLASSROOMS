@@ -3,7 +3,9 @@ import { useState } from "react"
 import Axios from 'axios';
 
 // Component pour commentaire sur image
-function ImageOneComment() {
+function ImageOneComment(props) {
+    console.log(props);
+
     const [isActive, setisActive] = useState("")
 
     // Ouverture fenêtre de des commentaires que l'on nous a poster
@@ -33,10 +35,10 @@ function ImageOneComment() {
 
     const addCommentUserDefini = () => {
         if (commentRegex.test(commentaires)) {
-            Axios.post("http://localhost:3001/api/posts", {
+            Axios.post("http://localhost:3001/api/comments", {
                 commentaires,
                 compte,
-                // id_post: props.idPost
+                id_post: props.idPost
             })
                 .then(() => {
                     alert(`${prenom} vous venez de commenter `);
@@ -55,6 +57,7 @@ function ImageOneComment() {
         <>
             <p className='boutton_commenter' onClick={handleShow}>Commenter</p>
             <div className={`profilesCommentsInput open ${isActive}`}>
+                <label></label>
                 <input className="profilesComments"
                     id='commentaires'
                     type="text"

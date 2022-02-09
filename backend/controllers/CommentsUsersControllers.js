@@ -1,6 +1,6 @@
 const db = require("../config/mysql")
 
-// Récupérer tous les commentaires des utilisateurs qui m'ont commenter fait sur ma page perso
+// Récupérer tous les commentaires des utilisateurs qui m'ont commenter sur ma page perso
 exports.getAllComments = (req, res, next) => {
 
     db.query(`SELECT content,  user_id, prenom FROM comment JOIN User ON fk_id_user = user_id WHERE fk_id_message`,

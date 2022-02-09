@@ -34,7 +34,7 @@ function Search() {
                     alert("Votre message est maintenant visible sur GROUPOMANIA")
                     window.location.reload()
                 })
-                .catch((e) => console.log(e))
+                .catch((err) => alert("Votre message n'a pu être publier"))
         } else {
             alert("Veuillez insérer un minimum de 5 caractères")
         }

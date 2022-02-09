@@ -37,7 +37,7 @@ function PostComment(props) {
 
     const addCommentUserDefini = () => {
         if (commentRegex.test(commentaires)) {
-            Axios.post("http://localhost:3001/api/", {
+            Axios.post("http://localhost:3001/api/comments", {
                 commentaires,
                 compte,
                 id_post: props.idPost
@@ -59,6 +59,7 @@ function PostComment(props) {
         <>
             <p className='boutton_commenter' onClick={handleShow}>Commenter</p>
             <div className={`profilesCommentsInput open ${isActive}`}>
+                <label></label>
                 <input className="profilesComments"
                     id='commentaires'
                     type="text"

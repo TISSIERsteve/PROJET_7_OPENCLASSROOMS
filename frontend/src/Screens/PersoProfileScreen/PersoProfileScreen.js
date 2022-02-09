@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Axios from 'axios';
 
 // Component
@@ -11,6 +11,8 @@ import "../PersoProfileScreen/PersoProfileScreen.css"
 // ===== Page perso avec voir toutes mes publications ===== 
 function PersoProfileScreen() {
 
+    const navigate = useNavigate()
+
     const prenom = JSON.parse(localStorage.prenom)
 
     // Afficher tous les messages
@@ -21,12 +23,17 @@ function PersoProfileScreen() {
         Axios.get("http://localhost:3001/api/messagesPerso/" + identifiant,)
             .then((response) => {
                 setpost(response.data.result)
-                // console.log(response.data.result);
             })
             .catch((err) => {
                 console.log(err);
+                if (err.response.data.message === "jwt expired") {
+                    alert("Votre session est expiré veuillez vous reconnecter")
+                    localStorage.clear()
+                    // Et je redirige sur page d'acceuil
+                    navigate("/AccountScreen", { replace: true });
+                }
             })
-    }, [identifiant])
+    }, [identifiant, navigate])
 
     // Supprimer un message 
     const deleteCom = (id) => {
@@ -38,7 +45,7 @@ function PersoProfileScreen() {
     const deleteDefini = (id) => {
         Axios.delete("http://localhost:3001/api/messagesPerso/" + id,)
             .then((response) => {
-                alert("Votre message à bien été suprrimé")
+                alert("Votre message à bien été supprimé")
                 window.location.reload()
             })
     }

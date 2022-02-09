@@ -27,7 +27,6 @@ function SeeComment(props) {
         Axios.get(`http://localhost:3001/api/comments/${props.identite}`)
             .then((response) => {
                 setcom(response.data.result)
-                // console.log(response.data);
             })
     }, [props.identite])
 
