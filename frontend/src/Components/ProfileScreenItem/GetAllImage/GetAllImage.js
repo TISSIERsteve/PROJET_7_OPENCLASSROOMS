@@ -3,8 +3,8 @@ import { useState, useEffect } from "react"
 import Axios from 'axios';
 
 // Components
-import PostComment from '../PostOneComment/PostComment';
 import GetComment from '../GetAllComment/GetComment';
+import ImageOneComment from '../ImageOneComment/ImageOneComment';
 
 // CSS
 import "./GetAllImage.css"
@@ -28,33 +28,33 @@ function GetAllImage() {
 
     return (
         <section className='items'>
-            {affiImg && affiImg.length && affiImg.map((x) => {
+            {affiImg && affiImg.length ? affiImg.map((x) => {
                 return (
-                    <article className="card">
-                        <img className="profileCommentImage" src="./images/img1.png" alt="logo Entreprise" />
-                        <h3 className="profileName">
-                            {x.prenom} à publier<br></br>
-                            {x.created_at}
+                    <li key={x.post_id}>
+                        <article className="card">
+                            <img className="profileCommentImage" src="./images/img1.png" alt="logo Entreprise" />
+                            <h3 className="profileName">
+                                {x.prenom} à publier<br></br>
+                                {x.created_at}
+                                <img className='getAllImage_image' src={x.media_url} alt=""></img>
+                            </h3>
+                            <p className="profileComment"><em><strong>Légende</strong></em> : {x.title} </p>
+                            <div className="profileComments">
+                                <p className='boutton_commenter'>J'aime</p>
 
-                            <img className='getAllImage_image' src={x.media_url} alt=""></img>
-                        </h3>
-                        <p className="profileComment"><em><strong>Légende</strong></em> : {x.title} </p>
-                        <div className="profileComments">
-                            <p className='boutton_commenter'>J'aime</p>
+                                {/* Components PostComment */}
+                                <ImageOneComment idPost={x.message_perso_id} />
 
-                            {/* Components PostComment */}
-                            <PostComment idPost={x.message_perso_id} ></PostComment>
+                            </div>
 
-                        </div>
+                            {/* Components Get comment */}
+                            <GetComment messageid={x.message_perso_id}></GetComment>
 
-
-                        {/* Components Get comment */}
-                        <GetComment messageid={x.message_perso_id}></GetComment>
-
-                    </article>
-
+                        </article>
+                    </li>
                 )
-            })}
+            }) : ""
+            }
         </section>
     )
 }

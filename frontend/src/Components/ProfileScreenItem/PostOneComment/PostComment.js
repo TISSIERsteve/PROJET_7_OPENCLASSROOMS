@@ -37,7 +37,7 @@ function PostComment(props) {
 
     const addCommentUserDefini = () => {
         if (commentRegex.test(commentaires)) {
-            Axios.post("http://localhost:3001/api/comments", {
+            Axios.post("http://localhost:3001/api/", {
                 commentaires,
                 compte,
                 id_post: props.idPost
@@ -62,7 +62,7 @@ function PostComment(props) {
                 <input className="profilesComments"
                     id='commentaires'
                     type="text"
-                    placeholder="Ecrivez un message perso"
+                    placeholder="Commentez la publication"
                     onChange={(event) => {
                         if (commentRegex.test(event.target.value)) {
                             setcommentaires(event.target.value)

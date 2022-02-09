@@ -23,6 +23,9 @@ function PersoProfileScreen() {
                 setpost(response.data.result)
                 // console.log(response.data.result);
             })
+            .catch((err) => {
+                console.log(err);
+            })
     }, [identifiant])
 
     // Supprimer un message 

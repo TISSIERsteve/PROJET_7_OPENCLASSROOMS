@@ -22,6 +22,9 @@ function ProfileScreenItem() {
             .then((response) => {
                 setpost(response.data.messageperso.resultat)
             })
+            .catch((err) => {
+                console.log(err);
+            })
     }, [])
 
     // JSX

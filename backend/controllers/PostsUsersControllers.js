@@ -25,7 +25,7 @@ exports.createPost = (req, res, next) => {
 
     const media = {
         title: content,
-        content,
+        // content,
         media_url,
         fk_id_user: req.body.fk_id_user
     }
