@@ -3,18 +3,15 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 
 // Components
-// import GetComment from "../CardGetAllComment/CardGetComment";
 import ImageOneComment from "../CardCommentOneImage/ImageOneComment";
 
 // CSS
 import "./CardGetAllImage.css";
-import CardGetAllCommentImage from "../../CardGetAllCommentImage/CardGetAllCommentImage";
+import CardGetAllCommentImage from "../CardGetAllCommentImage/CardGetAllCommentImage";
 
 // Component pour afficher image sur page accueil
 function CardGetAllImage() {
-
     const [affiImg, setaffiImg] = useState([]);
-    console.log(affiImg);
 
     useEffect(() => {
         // Affichage de toutes les images postées
@@ -53,13 +50,12 @@ function CardGetAllImage() {
                                 <div className="profileComments">
                                     <p className="boutton_commenter">J'aime</p>
 
-                                    {/* Components PostComment */}
-                                    <ImageOneComment idPost={x.message_perso_id} />
+                                    {/* Components poster un commentaire sur image page accueil */}
+                                    <ImageOneComment />
                                 </div>
 
-                                {/* Components Get comment */}
-                                <CardGetAllCommentImage></CardGetAllCommentImage>
-                                {/* <GetComment messageid={x.message_perso_id} /> */}
+                                {/* Components voir commentaire sur une image page accueil */}
+                                <CardGetAllCommentImage />
                             </article>
                         </li>
                     );

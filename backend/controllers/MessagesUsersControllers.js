@@ -70,10 +70,31 @@ exports.deleteMessage = (req, res, next) => {
         [persoId],
         (err, result) => {
             if (err) {
+                console.log("erreur backend modification");
                 res.status(403).json({ message: "Accés refusé" });
             } else {
                 res.status(200).json({ message: "Message supprimer" });
+                result
+                console.log("bon c'est modifier");
             }
         }
     );
 };
+
+// Modifier message perso sur page perso
+exports.updateMessage = (res, req, next) => {
+    console.log(res);
+    const id = req.body.id
+
+    db.query('UPDATE messageperso SET commentaire = ? WHERE id = ',
+        [id],
+        (err, result) => {
+            if (err) {
+                res.status(403).json({ message: "Accés refusé" })
+                console.log(err);
+            } else {
+                res.status(200).json({ message: "Message modifié" })
+            }
+        }
+    )
+}

@@ -1,6 +1,6 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import Axios from "axios";
+import { useState } from "react";
+// import Axios from "axios";
 
 // ===== Components pour voir commentaires images dans card page principal accueil =====
 function CardGetAllCommentImage(props) {

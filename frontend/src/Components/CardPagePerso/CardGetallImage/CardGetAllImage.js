@@ -56,7 +56,7 @@ function CardGetAllImage() {
                                     </button>
                                 </div>
 
-                                {/* Components Get Allcomment */}
+                                {/* Components pour écrire commentaire image page accueil */}
                                 <CardGetAllComment></CardGetAllComment>
 
                                 <div className="trash">

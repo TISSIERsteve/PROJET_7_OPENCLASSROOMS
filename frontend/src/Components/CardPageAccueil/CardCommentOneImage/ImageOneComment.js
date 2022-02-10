@@ -2,9 +2,8 @@ import React from 'react';
 import { useState } from "react"
 import Axios from 'axios';
 
-// Component pour commentaire sur image
+// Component pour poster un commentaire sur image page accueil
 function CardCommentOneImage(props) {
-    // console.log(props);
 
     const [isActive, setisActive] = useState("")
 
@@ -17,7 +16,7 @@ function CardCommentOneImage(props) {
             setisActive("active")
         }
     }
-    // Ajouter un commentaire sur un message
+    // Ajouter un commentaire sur une image
     const compte = JSON.parse(localStorage.id)
     const prenom = JSON.parse(localStorage.prenom)
     const [commentaires, setcommentaires] = useState('')
@@ -38,7 +37,7 @@ function CardCommentOneImage(props) {
             Axios.post("http://localhost:3001/api/comments", {
                 commentaires,
                 compte,
-                id_post: props.idPost
+                id_post: props.idPost,
             })
                 .then(() => {
                     alert(`${prenom} vous venez de commenter `);

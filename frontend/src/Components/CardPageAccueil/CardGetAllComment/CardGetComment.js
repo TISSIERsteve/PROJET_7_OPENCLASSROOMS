@@ -10,6 +10,7 @@ function CardGetComment(props) {
 
     // Obtenir un commentaire poster sur un message
     const [com, setcom] = useState("");
+    console.log(com);
 
     // Ouverture commentaire que l'on nous a poster page perso
     const [isGetActive, setGetisActive] = useState("");

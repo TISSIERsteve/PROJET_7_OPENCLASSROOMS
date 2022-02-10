@@ -64,11 +64,11 @@ function CardPrincipal() {
                                     <div className="profileComments">
                                         <p className="boutton_commenter">J'aime</p>
 
-                                        {/* Components PostComment */}
+                                        {/* Components poster un commentaire sur un message page accueil */}
                                         <PostComment idPost={x.message_perso_id} />
                                     </div>
 
-                                    {/* Components Get comment */}
+                                    {/* Components voir commentaire sur un message page accueil */}
                                     <GetComment messageid={x.message_perso_id} />
 
                                 </article>

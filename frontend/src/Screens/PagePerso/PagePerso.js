@@ -8,6 +8,7 @@ import CardGetAllImage from "../../Components/CardPagePerso/CardGetallImage/Card
 
 // CSS
 import "./PagePerso.css";
+import CardModifyComment from "../../Components/CardPagePerso/CardModifyComment.js/CardModifyComment";
 
 // ===== Page perso avec voir toutes mes publications =====
 function PagePerso() {
@@ -15,6 +16,7 @@ function PagePerso() {
     const navigate = useNavigate();
 
     const prenom = JSON.parse(localStorage.prenom);
+
 
     // Afficher tous les messages
     const identifiant = JSON.parse(localStorage.id);
@@ -30,30 +32,13 @@ function PagePerso() {
                     if (err.response.data.message === "jwt expired") {
                         alert("Votre session est expiré veuillez vous reconnecter");
                         localStorage.clear();
-                        // Et je redirige sur page d'acceuil
+
                         navigate("/AccountScreen", { replace: true });
                     }
                 });
         },
         [identifiant, navigate]
     );
-
-    // Modifier notre message
-    const modifyCom = (e, id) => {
-        console.log(e, id);
-
-    }
-
-    // const modifyComDefini = (id) => {
-    //     if (window.confirm("Voulez vous vraiment modifier ce message")) {
-    //         modifyComDefini(id)
-    //     }
-    //     Axios.get("http://localhost:3001/api/messagePerso/" + id)
-    //         .then((response) => {
-    //             console.log(response)
-    //         })
-    // }
-
 
     // Supprimer un message
     const deleteCom = e => {
@@ -86,7 +71,6 @@ function PagePerso() {
                     </h3>
                 </div>
 
-
                 {/* Component pour obtenir images page perso */}
                 <CardGetAllImage />
 
@@ -109,15 +93,11 @@ function PagePerso() {
                                     <p className="profileComment">
                                         {" "}{x.commentaire}{" "}
                                     </p>
-                                    <div className="pen">
-                                        <button onClick={() => modifyCom(x.commentaire, x.message_perso_id)}>
-                                            <span>
-                                                <i className="fas fa-edit stylo" />
-                                            </span>
-                                        </button>
-                                    </div>
 
-                                    {/* Components Seecomment */}
+                                    {/* Component pour modifier mes messages sur page perso */}
+                                    <CardModifyComment></CardModifyComment>
+
+                                    {/* Components voir commentaire message page perso */}
                                     <SeeComment identite={x.message_perso_id} />
 
                                     <div className="trash">
