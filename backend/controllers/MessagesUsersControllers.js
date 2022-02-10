@@ -82,12 +82,12 @@ exports.deleteMessage = (req, res, next) => {
 };
 
 // Modifier message perso sur page perso
-exports.updateMessage = (res, req, next) => {
-    console.log(res);
+exports.updateMessage = (req, res, next) => {
+    console.log(req);
     const id = req.body.id
 
-    db.query('UPDATE messageperso SET commentaire = ? WHERE id = ',
-        [id],
+    db.query(`UPDATE messageperso SET commentaire = ? WHERE id = ${id}`,
+
         (err, result) => {
             if (err) {
                 res.status(403).json({ message: "Accés refusé" })

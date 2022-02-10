@@ -7,6 +7,7 @@ function CardModifyComment() {
     const idy = JSON.parse(localStorage.id)
     const prenom = JSON.parse(localStorage.prenom)
     const [message, setmessageModify] = useState('')
+
     const [isActive, setisActive] = useState("")
 
     const commentRegex = /(.*[a-z]){5,30}/;
@@ -33,7 +34,11 @@ function CardModifyComment() {
     const addCommentModifyDefini = () => {
         if (commentRegex.test(message)) {
             console.log("bon");
-            Axios.put("http://localhost:3001/api/messagesPerso/", + idy)
+
+            Axios.put("http://localhost:3001/api/messagesPerso/", + idy, {
+                commentaire: message,
+
+            })
                 .then(
                     (response) => {
                         console.log(response);
