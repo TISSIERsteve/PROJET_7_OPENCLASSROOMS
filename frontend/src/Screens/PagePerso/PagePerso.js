@@ -87,13 +87,13 @@ function PagePerso() {
                 </div>
 
 
+                {/* Component pour obtenir images page perso */}
+                <CardGetAllImage />
+
                 {post && post.length
                     ? post.map(x => {
                         return (
                             <li key={x.fk_id_user}>
-
-                                {/* Component pour obtenir images page perso */}
-                                <CardGetAllImage />
 
                                 <article className="card">
                                     <div className="cardProfilePerso">

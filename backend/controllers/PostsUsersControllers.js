@@ -19,7 +19,7 @@ exports.getOnePost = (req, res, next) => {
     const id = req.params.id;
     console.log(id);
 
-    db.query("SELECT prenom, DATE_FORMAT(created_at, 'Le %d %m %Y à %H:%i') AS created_at ,post_id,title, media_url, content, fk_id_user FROM post JOIN user ON post.fk_id_user = user.user_id ORDER BY created_at DESC",
+    db.query("SELECT prenom, DATE_FORMAT(created_at, 'Le %d %m %Y à %H:%i') AS created_at ,post_id,title, media_url, content, fk_id_user FROM post JOIN user ON post.fk_id_user = user.user_id WHERE fk_id_user=? ORDER BY created_at DESC",
         [id],
         (err, result) => {
             if (err) {
