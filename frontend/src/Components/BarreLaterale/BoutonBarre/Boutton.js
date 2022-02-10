@@ -3,7 +3,7 @@ import React from "react";
 // CSS
 import "./Bouton.css";
 
-// ===== Components Bouton open aside =====
+// ===== Components Bouton ouvrir barre latérale =====
 function Bouton() {
 
     // Open boutton

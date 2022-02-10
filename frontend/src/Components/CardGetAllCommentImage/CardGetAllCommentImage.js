@@ -2,16 +2,13 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 
-// CSS
-import "./CardGetComment.css";
+// ===== Components pour voir commentaires images dans card page principal accueil =====
+function CardGetAllCommentImage(props) {
 
-// ===== Components pour voir commentaires messages dans card page principal accueil=====
-function CardGetComment(props) {
-
-    // Obtenir un commentaire poster sur un message
+    // Obtenir un commentaire poster sur un image
     const [com, setcom] = useState("");
 
-    // Ouverture commentaire que l'on nous a poster page perso
+    // Ouverture commentaire image que l'on nous a poster page perso
     const [isGetActive, setGetisActive] = useState("");
     const openFieldset = () => {
         if (isGetActive === "active") {
@@ -21,16 +18,16 @@ function CardGetComment(props) {
         }
     };
 
-    useEffect(
-        () => {
-            Axios.get(
-                `http://localhost:3001/api/comments/${props.messageid}`
-            ).then(response => {
-                setcom(response.data.result);
-            });
-        },
-        [props.messageid]
-    );
+    // useEffect(
+    //     () => {
+    //         Axios.get(
+    //             `http://localhost:3001/api/comments/${props.messageid}`
+    //         ).then(response => {
+    //             setcom(response.data.result);
+    //         });
+    //     },
+    //     [props.messageid]
+    // );
 
     // JSX
     return (
@@ -57,4 +54,4 @@ function CardGetComment(props) {
         </div>
     );
 }
-export default CardGetComment;
+export default CardGetAllCommentImage;

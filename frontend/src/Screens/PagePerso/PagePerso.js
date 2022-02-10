@@ -4,12 +4,14 @@ import Axios from "axios";
 
 // Component
 import SeeComment from "../../Components/CardPagePerso/CardGetAllComment/CardGetAllComment";
+import CardGetAllImage from "../../Components/CardPagePerso/CardGetallImage/CardGetAllImage";
 
 // CSS
 import "./PagePerso.css";
 
 // ===== Page perso avec voir toutes mes publications =====
 function PagePerso() {
+
     const navigate = useNavigate();
 
     const prenom = JSON.parse(localStorage.prenom);
@@ -25,7 +27,6 @@ function PagePerso() {
                     setpost(response.data.result);
                 })
                 .catch(err => {
-                    console.log(err);
                     if (err.response.data.message === "jwt expired") {
                         alert("Votre session est expiré veuillez vous reconnecter");
                         localStorage.clear();
@@ -37,16 +38,17 @@ function PagePerso() {
         [identifiant, navigate]
     );
 
-    // Modifier nôtre message
-    const modifyCom = (id) => {
-        console.log(id);
+    // Modifier notre message
+    const modifyCom = (e, id) => {
+        console.log(e, id);
+
     }
 
     // const modifyComDefini = (id) => {
     //     if (window.confirm("Voulez vous vraiment modifier ce message")) {
     //         modifyComDefini(id)
     //     }
-    //     Axios.put("http://localhost:3001/api/messagePerso/" + id)
+    //     Axios.get("http://localhost:3001/api/messagePerso/" + id)
     //         .then((response) => {
     //             console.log(response)
     //         })
@@ -54,9 +56,9 @@ function PagePerso() {
 
 
     // Supprimer un message
-    const deleteCom = id => {
+    const deleteCom = e => {
         if (window.confirm("Voulez vous vraiment supprimer ce message ?")) {
-            deleteDefini(id);
+            deleteDefini(e);
         }
     };
 
@@ -83,10 +85,16 @@ function PagePerso() {
                         Voici vos publications {prenom}
                     </h3>
                 </div>
+
+
                 {post && post.length
                     ? post.map(x => {
                         return (
-                            <li key={x.message_perso_id}>
+                            <li key={x.fk_id_user}>
+
+                                {/* Component pour obtenir images page perso */}
+                                <CardGetAllImage />
+
                                 <article className="card">
                                     <div className="cardProfilePerso">
                                         <img
@@ -102,7 +110,7 @@ function PagePerso() {
                                         {" "}{x.commentaire}{" "}
                                     </p>
                                     <div className="pen">
-                                        <button onClick={() => modifyCom(x.message_perso_id)}>
+                                        <button onClick={() => modifyCom(x.commentaire, x.message_perso_id)}>
                                             <span>
                                                 <i className="fas fa-edit stylo" />
                                             </span>

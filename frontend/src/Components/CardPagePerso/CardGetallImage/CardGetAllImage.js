@@ -3,25 +3,22 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 
 // Components
-// import GetComment from "../CardGetAllComment/CardGetComment";
-import ImageOneComment from "../CardCommentOneImage/ImageOneComment";
+import CardGetAllComment from "../CardGetAllComment/CardGetAllComment";
 
-// CSS
-import "./CardGetAllImage.css";
-import CardGetAllCommentImage from "../../CardGetAllCommentImage/CardGetAllCommentImage";
-
-// Component pour afficher image sur page accueil
+// Component pour afficher mes images sur page perso
 function CardGetAllImage() {
 
+    const identite = JSON.parse(localStorage.id);
+
     const [affiImg, setaffiImg] = useState([]);
-    console.log(affiImg);
 
     useEffect(() => {
         // Affichage de toutes les images postées
-        Axios.get("http://localhost:3001/api/posts").then(response => {
-            setaffiImg(response.data.result);
-        });
-    }, []);
+        Axios.get("http://localhost:3001/api/posts/" + identite)
+            .then(response => {
+                setaffiImg(response.data.result);
+            });
+    }, [identite]);
 
     return (
         <section className="items">
@@ -50,16 +47,25 @@ function CardGetAllImage() {
                                     </em>{" "}
                                     : {x.title}{" "}
                                 </p>
-                                <div className="profileComments">
-                                    <p className="boutton_commenter">J'aime</p>
 
-                                    {/* Components PostComment */}
-                                    <ImageOneComment idPost={x.message_perso_id} />
+                                <div className="pen">
+                                    <button>
+                                        <span>
+                                            <i className="fas fa-edit stylo" />
+                                        </span>
+                                    </button>
                                 </div>
 
-                                {/* Components Get comment */}
-                                <CardGetAllCommentImage></CardGetAllCommentImage>
-                                {/* <GetComment messageid={x.message_perso_id} /> */}
+                                {/* Components Get Allcomment */}
+                                <CardGetAllComment></CardGetAllComment>
+
+                                <div className="trash">
+                                    <button>
+                                        <span>
+                                            <i className="fas fa-trash-alt poubelle" />
+                                        </span>
+                                    </button>
+                                </div>
                             </article>
                         </li>
                     );

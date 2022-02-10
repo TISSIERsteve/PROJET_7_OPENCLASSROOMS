@@ -1,6 +1,6 @@
-const db = require("../config/mysql")
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
+const db = require("../config/mysql");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // Création compte
 exports.signup = (req, res, next) => {
@@ -11,28 +11,23 @@ exports.signup = (req, res, next) => {
 
     bcrypt.hash(password, 10, (err, hash) => {
         if (err) {
-            throw (err)
+            throw err;
         }
         const user = {
             nom,
             prenom,
             password: hash,
             email
-        }
+        };
 
-        db.query(
-            "INSERT INTO user set ?",
-            user,
-            (err, result) => {
-                if (err) {
-                    res.status(403).json({ message: "Accès refusé" })
-
-                } else {
-                    res.status(200).json({ message: "Succès utilisateur créer" });
-                }
+        db.query("INSERT INTO user set ?", user, (err, result) => {
+            if (err) {
+                res.status(403).json({ message: "Accès refusé" });
+            } else {
+                res.status(200).json({ message: "Succès utilisateur créer" });
             }
-        );
-    })
+        });
+    });
 };
 
 // Connexion au compte
@@ -45,20 +40,25 @@ exports.login = (req, res, next) => {
         [email],
         async (err, result) => {
             if (err) {
-                return res.status(403).json({ message: "Accès refusé" })
+                return res.status(403).json({ message: "Accès refusé" });
             }
             if (result.length) {
-                const passwordOk = await bcrypt.compare(password, result[0].password)
+                const passwordOk = await bcrypt.compare(password, result[0].password);
 
                 if (passwordOk === false || email === false) {
-                    res.status(403).json({ message: "Mot de passe non valide ou non renseigner" })
+                    res
+                        .status(403)
+                        .json({ message: "Mot de passe non valide ou non renseigner" });
                 }
 
                 if (passwordOk) {
-                    const token = jwt.sign({
-                        exp: Math.floor(Date.now() / 1000) + (60 * 60),
-                        id: result[0].user_id
-                    }, "RANDOM_PRIVATE_KEY")
+                    const token = jwt.sign(
+                        {
+                            exp: Math.floor(Date.now() / 1000) + 60 * 60,
+                            id: result[0].user_id
+                        },
+                        "RANDOM_PRIVATE_KEY"
+                    );
 
                     res.status(200).json({
                         message: "Connecté",
@@ -66,28 +66,26 @@ exports.login = (req, res, next) => {
                         user: {
                             id: result[0].user_id,
                             email: result[0].email,
-                            prenom: result[0].prenom,
-                        },
-                    })
+                            prenom: result[0].prenom
+                        }
+                    });
                 }
             } else {
-                res.status(404).json({ message: "Erreur serveur" })
+                res.status(404).json({ message: "Erreur serveur" });
             }
-        });
-    ;
-}
+        }
+    );
+};
 
 // Désactiver compte
 exports.dessactive = (req, res, next) => {
-    const id = req.params.id
+    const id = req.params.id;
 
-    db.query("DELETE FROM user WHERE user_id = ?",
-        [id],
-        (err, result) => {
-            if (err) {
-                res.status(403).json({ message: "Accés refusé" })
-            } else {
-                res.status(200).json({ message: "Utilisateur supprimer" })
-            }
-        });
-}
+    db.query("DELETE FROM user WHERE user_id = ?", [id], (err, result) => {
+        if (err) {
+            res.status(403).json({ message: "Accés refusé" });
+        } else {
+            res.status(200).json({ message: "Utilisateur supprimer" });
+        }
+    });
+};

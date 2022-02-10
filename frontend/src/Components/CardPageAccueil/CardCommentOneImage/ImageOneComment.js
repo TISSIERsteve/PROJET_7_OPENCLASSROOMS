@@ -4,7 +4,7 @@ import Axios from 'axios';
 
 // Component pour commentaire sur image
 function CardCommentOneImage(props) {
-    console.log(props);
+    // console.log(props);
 
     const [isActive, setisActive] = useState("")
 

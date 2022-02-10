@@ -9,6 +9,7 @@ import "./Connexion.css";
 function Connexion() {
 
     const navigate = useNavigate();
+
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
 
@@ -34,6 +35,7 @@ function Connexion() {
 
             // Et je redirige sur page d'acceuil
             navigate("/ProfileScreen", { replace: true });
+
         } catch (err) {
             alert("E-mail ou mot de passe incorrect");
             window.location.reload();

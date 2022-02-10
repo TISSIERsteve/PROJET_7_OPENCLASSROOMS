@@ -1,8 +1,7 @@
 const db = require("../config/mysql")
 
-// Récupère l'image 
+// Récupérer toutes les images des utilisateurs sur page accueil
 exports.getAllPosts = (req, res) => {
-
     db.query("SELECT prenom, DATE_FORMAT(created_at, 'Le %d %m %Y à %H:%i') AS created_at ,post_id,title, media_url, content, fk_id_user FROM post JOIN user ON post.fk_id_user = user.user_id ORDER BY created_at DESC",
         (err, result) => {
             if (err) {
@@ -15,8 +14,26 @@ exports.getAllPosts = (req, res) => {
         });
 }
 
-exports.getOnePost = (req, res) => {
+// Récupère toutes mes images sur ma page perso (pas fini)
+exports.getOnePost = (req, res, next) => {
+    const id = req.params.id;
+    console.log(id);
 
+    db.query("SELECT prenom, DATE_FORMAT(created_at, 'Le %d %m %Y à %H:%i') AS created_at ,post_id,title, media_url, content, fk_id_user FROM post JOIN user ON post.fk_id_user = user.user_id ORDER BY created_at DESC",
+        [id],
+        (err, result) => {
+            if (err) {
+                res
+                    .status(403)
+                    .json({ message: "Accès refusé du post de messageperso" });
+            } else {
+                res.status(200).json({
+                    result
+                });
+                console.log(result);
+            }
+        }
+    );
 }
 
 // Poster une image

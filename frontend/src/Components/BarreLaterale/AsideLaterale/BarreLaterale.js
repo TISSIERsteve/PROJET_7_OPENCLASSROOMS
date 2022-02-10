@@ -10,7 +10,6 @@ function BarreLaterale() {
 
     // Supprimer compte utilisateur
     const identite = JSON.parse(localStorage.id);
-
     const deleteUser = () => {
         if (window.confirm("Voulez vous supprimer définitivement votre compte ?")) {
             deleteUserDefini();
@@ -26,6 +25,7 @@ function BarreLaterale() {
             alert("Vous venez de supprimé votre compte");
         });
     };
+
     // Déconnexion
     const deconect = () => {
         if (window.confirm("Voulez vous vraiment vous déconnecter ?")) {
@@ -43,7 +43,7 @@ function BarreLaterale() {
         <div>
             <aside className="aside">
                 <ul>
-                    {/* Deconnect */}
+                    {/* Déconnexion */}
                     <li className="aside_li" onClick={deconect}>
                         <Link className="lienAside " to="#">
                             {" "}Déconnection

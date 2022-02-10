@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 // Components
 import PostComment from "../CardPostOneComment/CardPostComment";
-import GetComment from "../CardGetAllComment/CardGetComment";
 import GetAllImage from "../CardGetAllImage/CardGetAllImage";
+import GetComment from "../CardGetAllComment/CardGetComment";
 
 // CSS
 import "./CardPrincipal.css";
-import { useNavigate } from "react-router-dom";
 
 // ===== Components Card Page principal accueil =====
 function CardPrincipal() {
@@ -26,22 +26,21 @@ function CardPrincipal() {
                     setpost(response.data.messageperso.resultat);
                 })
                 .catch(err => {
-                    console.log(err);
                     if (err.response.data.message === "jwt expired") {
                         alert("Votre session est expiré veuillez vous reconnecter");
                         localStorage.clear();
-                        // Et je redirige sur page d'acceuil
+
                         navigate("/AccountScreen", { replace: true });
                     }
                 });
         },
         [navigate]
     );
-
     // JSX
     return (
         <div>
             <section className="items">
+
                 {/* Components obtenir image */}
                 <GetAllImage />
 
@@ -71,6 +70,7 @@ function CardPrincipal() {
 
                                     {/* Components Get comment */}
                                     <GetComment messageid={x.message_perso_id} />
+
                                 </article>
                             </li>
                         );
