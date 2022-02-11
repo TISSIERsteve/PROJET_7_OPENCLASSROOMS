@@ -14,10 +14,10 @@ function CardGetAllImage() {
     const [affiImg, setaffiImg] = useState([]);
 
     useEffect(() => {
-        // Affichage de toutes les images postées
-        Axios.get("http://localhost:3001/api/posts").then(response => {
-            setaffiImg(response.data.result);
-        });
+        Axios.get("http://localhost:3001/api/posts")
+            .then(response => {
+                setaffiImg(response.data.result);
+            });
     }, []);
 
     return (
@@ -55,7 +55,8 @@ function CardGetAllImage() {
                                 </div>
 
                                 {/* Components voir commentaire sur une image page accueil */}
-                                <CardGetAllCommentImage />
+                                <CardGetAllCommentImage commentIdy={x.post_id} />
+
                             </article>
                         </li>
                     );

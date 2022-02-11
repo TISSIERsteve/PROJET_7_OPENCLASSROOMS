@@ -6,7 +6,7 @@ exports.getAllPosts = (req, res, next) => {
     db.query("SELECT prenom, DATE_FORMAT(created_at, 'Le %d %m %Y à %H:%i') AS created_at ,post_id,title, media_url, content, fk_id_user FROM post JOIN user ON post.fk_id_user = user.user_id ORDER BY created_at DESC",
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accès refusé reception des images" })
+                res.status(403).json({ message: "Accès refusé reception des images(accueil)" })
             } else {
                 res.status(200).json({
                     result
@@ -25,7 +25,7 @@ exports.getOnePost = (req, res, next) => {
             if (err) {
                 res
                     .status(403)
-                    .json({ message: "Accès refusé du post de messageperso" });
+                    .json({ message: "Accès refusé reception des images(perso)" });
             } else {
                 res.status(200).json({
                     result
@@ -62,5 +62,21 @@ exports.createPost = (req, res, next) => {
 
 // Effacer une image sur page perso
 exports.deletePost = (req, res, next) => {
+    console.log(req.params);
+    const persoId = req.params.id;
 
+    db.query(
+        "DELETE FROM post WHERE post_id = ?",
+        [persoId],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(403).json({ message: "Accés refusé" });
+            } else {
+                res.status(200).json({ message: "Image supprimer" });
+                result
+                console.log("supprimer");
+            }
+        }
+    );
 }

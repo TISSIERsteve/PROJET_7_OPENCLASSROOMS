@@ -1,6 +1,6 @@
 const db = require("../config/mysql");
 
-// Obtenir tous les messages pubiés des utilisateurs sur Page accueil
+// Obtenir tous les messages publiés des utilisateurs sur Page accueil
 exports.getAllMessages = (req, res, next) => {
     db.query(
         "SELECT message_perso_id,prenom,DATE_FORMAT(date, 'le %d %m %Y à %H:%i') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ",
@@ -8,7 +8,7 @@ exports.getAllMessages = (req, res, next) => {
             if (err) {
                 res
                     .status(403)
-                    .json({ message: "Accès refusé reception des messageperso" });
+                    .json({ message: "Accès refusé reception des messageperso(accueil)" });
             } else {
                 res.status(200).json({
                     messageperso: {
@@ -30,7 +30,7 @@ exports.getOneMessage = (req, res, next) => {
             if (err) {
                 res
                     .status(403)
-                    .json({ message: "Accès refusé du post de messageperso" });
+                    .json({ message: "Accès refusé du post de messageperso(perso)" });
             } else {
                 res.status(200).json({
                     result
@@ -70,12 +70,10 @@ exports.deleteMessage = (req, res, next) => {
         [persoId],
         (err, result) => {
             if (err) {
-                console.log("erreur backend modification");
                 res.status(403).json({ message: "Accés refusé" });
             } else {
                 res.status(200).json({ message: "Message supprimer" });
                 result
-                console.log("bon c'est modifier");
             }
         }
     );

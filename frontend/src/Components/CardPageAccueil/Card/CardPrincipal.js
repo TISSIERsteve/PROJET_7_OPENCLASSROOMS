@@ -15,7 +15,6 @@ function CardPrincipal() {
 
     const navigate = useNavigate();
 
-    // Affichage de tous les messages
     const [post, setpost] = useState("");
 
     useEffect(

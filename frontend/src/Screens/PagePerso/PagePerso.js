@@ -10,15 +10,12 @@ import CardGetAllImage from "../../Components/CardPagePerso/CardGetallImage/Card
 import "./PagePerso.css";
 import CardModifyComment from "../../Components/CardPagePerso/CardModifyComment.js/CardModifyComment";
 
-// ===== Page perso avec voir toutes mes publications =====
+// ===== Page perso voir toutes mes messages =====
 function PagePerso() {
 
     const navigate = useNavigate();
 
     const prenom = JSON.parse(localStorage.prenom);
-
-
-    // Afficher tous les messages
     const identifiant = JSON.parse(localStorage.id);
     const [post, setpost] = useState("");
 

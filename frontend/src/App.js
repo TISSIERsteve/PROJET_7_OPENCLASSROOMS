@@ -13,9 +13,9 @@ import PagePerso from "./Screens/PagePerso/PagePerso";
 import PageAccueil from "./Screens/PageAccueil/PageAccueil";
 
 function App() {
+
     Axios.defaults.headers.common.Authorization = localStorage.bearer;
 
-    // Ajoute la date du jour
     let jour = new Date().toLocaleDateString("fr-FR", {
         year: "numeric",
         month: "long",

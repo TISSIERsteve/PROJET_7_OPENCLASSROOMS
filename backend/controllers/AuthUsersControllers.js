@@ -22,9 +22,9 @@ exports.signup = (req, res, next) => {
 
         db.query("INSERT INTO user set ?", user, (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accès refusé" });
+                res.status(403).json({ message: "Accès refusé pour la création du compte" });
             } else {
-                res.status(200).json({ message: "Succès utilisateur créer" });
+                res.status(200).json({ message: "Utilisateur créer" });
             }
         });
     });
@@ -40,7 +40,7 @@ exports.login = (req, res, next) => {
         [email],
         async (err, result) => {
             if (err) {
-                return res.status(403).json({ message: "Accès refusé" });
+                return res.status(403).json({ message: "Accès refusé pour la connexion au compte" });
             }
             if (result.length) {
                 const passwordOk = await bcrypt.compare(password, result[0].password);
@@ -71,7 +71,7 @@ exports.login = (req, res, next) => {
                     });
                 }
             } else {
-                res.status(404).json({ message: "Erreur serveur" });
+                res.status(404).json({ message: "Erreur serveur sur la connexion au compte" });
             }
         }
     );
@@ -83,7 +83,7 @@ exports.dessactive = (req, res, next) => {
 
     db.query("DELETE FROM user WHERE user_id = ?", [id], (err, result) => {
         if (err) {
-            res.status(403).json({ message: "Accés refusé" });
+            res.status(403).json({ message: "Accés refusé pour supprimer compte" });
         } else {
             res.status(200).json({ message: "Utilisateur supprimer" });
         }

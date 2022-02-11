@@ -8,8 +8,9 @@ import "./BarreLaterale.css";
 // Components Aside
 function BarreLaterale() {
 
-    // Supprimer compte utilisateur
     const identite = JSON.parse(localStorage.id);
+
+    // Supprimer compte utilisateur
     const deleteUser = () => {
         if (window.confirm("Voulez vous supprimer définitivement votre compte ?")) {
             deleteUserDefini();

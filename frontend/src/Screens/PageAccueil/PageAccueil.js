@@ -15,6 +15,7 @@ function PageAccueil() {
 
     // Si token j'affiche la page profil
     if (localStorage.bearer) {
+
         return (
             <div>
                 {/* Component Bouton */}

@@ -7,18 +7,33 @@ import CardGetAllComment from "../CardGetAllComment/CardGetAllComment";
 
 // Component pour afficher mes images sur page perso
 function CardGetAllImage() {
-
     const identite = JSON.parse(localStorage.id);
 
     const [affiImg, setaffiImg] = useState([]);
 
+    // Supprimer image page perso
+    const deleteImg = e => {
+        if (window.confirm("Voulez vous vraiment supprimer votre image ?")) {
+            deleteImgDefini(e);
+        }
+    };
+
+    const deleteImgDefini = id => {
+        Axios.delete("http://localhost:3001/api/posts/" + id).then(response => {
+            alert("Votre image à bien été supprimé");
+            window.location.reload();
+        });
+    };
+
     useEffect(() => {
-        // Affichage de toutes les images postées
-        Axios.get("http://localhost:3001/api/posts/" + identite)
-            .then(response => {
-                setaffiImg(response.data.result);
-            });
-    }, [identite]);
+        Axios.get(
+            "http://localhost:3001/api/posts/" + identite
+        ).then(response => {
+            setaffiImg(response.data.result);
+        });
+    },
+        [identite]
+    );
 
     return (
         <section className="items">
@@ -57,13 +72,11 @@ function CardGetAllImage() {
                                 </div>
 
                                 {/* Components pour écrire commentaire image page accueil */}
-                                <CardGetAllComment></CardGetAllComment>
+                                <CardGetAllComment />
 
                                 <div className="trash">
-                                    <button>
-                                        <span>
-                                            <i className="fas fa-trash-alt poubelle" />
-                                        </span>
+                                    <button onClick={() => deleteImg(x.post_id)}>
+                                        <i className="fas fa-trash-alt poubelle" />
                                     </button>
                                 </div>
                             </article>

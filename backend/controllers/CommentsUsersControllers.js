@@ -6,13 +6,11 @@ exports.getAllComments = (req, res, next) => {
         `SELECT content,  user_id, prenom FROM comment JOIN User ON fk_id_user = user_id WHERE fk_id_message`,
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accès refusé du commentaire poster" });
-                console.log("erreur");
+                res.status(403).json({ message: "Accès refusé du commentaire poster (perso)" });
             } else {
                 res.status(200).json({
                     result
                 });
-                console.log("le resultat est " + result);
             }
         }
     );
@@ -27,7 +25,7 @@ exports.getOneComment = (req, res, next) => {
         [id_message],
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accès refusé du commentaire poster" });
+                res.status(403).json({ message: "Accès refusé du commentaire poster (accueil)" });
             } else {
                 res.status(200).json({
                     result
@@ -44,12 +42,11 @@ exports.createComment = (req, res, next) => {
     const messageperso = {
         content: commentaires,
         fk_id_user: compte,
-        fk_id_post: id_post,
+        fk_id_message: id_post,
     };
 
     db.query("INSERT INTO comment set ?", messageperso, (err, result) => {
         if (err) {
-            console.log(err);
             res.status(403).json({ message: "Accès refusé" });
         } else {
             res.status(200).json({ message: "Message personnel créer" });

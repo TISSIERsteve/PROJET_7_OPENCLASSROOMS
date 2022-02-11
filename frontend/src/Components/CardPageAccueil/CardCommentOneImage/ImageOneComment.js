@@ -2,13 +2,12 @@ import React from 'react';
 import { useState } from "react"
 import Axios from 'axios';
 
-// Component pour poster un commentaire sur image page accueil
+// Component pour poster un commentaire sur image page accueil 
 function CardCommentOneImage(props) {
-    // console.log(props);
 
     const [isActive, setisActive] = useState("")
 
-    // Ouverture fenêtre de des commentaires que l'on nous a poster
+    // Ouverture fenêtre des commentaires 
     const handleShow = () => {
         if (isActive === "active") {
             setisActive("")
@@ -17,7 +16,7 @@ function CardCommentOneImage(props) {
             setisActive("active")
         }
     }
-    // Ajouter un commentaire sur une image
+
     const compte = JSON.parse(localStorage.id)
     const prenom = JSON.parse(localStorage.prenom)
     const [commentaires, setcommentaires] = useState('')
@@ -25,20 +24,20 @@ function CardCommentOneImage(props) {
     const commentRegex = /(.*[a-z]){5,30}/;
 
     // Fonction ajout commentaire
-    const addCommentUser = () => {
+    const addCommentImg = () => {
         if (window.confirm(`${prenom} êtes vous sur de vouloir publier votre commentaire`)) {
-            addCommentUserDefini()
+            addCommentImgDefini()
         } else {
             window.location.reload()
         }
     }
 
-    const addCommentUserDefini = () => {
+    const addCommentImgDefini = () => {
         if (commentRegex.test(commentaires)) {
-            Axios.post("http://localhost:3001/api/comments", {
+            Axios.post("http://localhost:3001/api/contentImg", {
                 commentaires,
                 compte,
-                id_post: props.idy,
+                fk_id_post: props.idy,
             })
                 .then(() => {
                     alert(`${prenom} vous venez de commenter l'image `);
@@ -70,7 +69,9 @@ function CardCommentOneImage(props) {
                     }}
                 ></input>
 
-                <i className="fas fa-plus-circle valide" onClick={addCommentUser}></i>
+                <button className='btn_modify'>
+                    <i className="fas fa-plus-circle valide" onClick={addCommentImg}></i>
+                </button>
 
             </div>
         </>

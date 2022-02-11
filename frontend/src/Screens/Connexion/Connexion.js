@@ -28,12 +28,10 @@ function Connexion() {
 
             Axios.defaults.headers.common.Authorization = response.data.token;
 
-            // Récupère les données dans le locale storage
             localStorage.setItem("id", JSON.stringify(response.data.user.id));
             localStorage.setItem("bearer", response.data.token);
             localStorage.setItem("prenom", JSON.stringify(response.data.user.prenom));
 
-            // Et je redirige sur page d'acceuil
             navigate("/ProfileScreen", { replace: true });
 
         } catch (err) {

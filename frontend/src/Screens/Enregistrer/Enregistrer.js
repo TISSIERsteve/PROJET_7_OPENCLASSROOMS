@@ -38,6 +38,7 @@ function Enregistrer() {
             })
                 .then(() => {
                     alert(`Bravo ${prenom} tu viens de t'inscrire sur GROUPOMANIA`);
+
                     navigate("/AccountScreen", { replace: true });
                 })
                 .catch(err => {

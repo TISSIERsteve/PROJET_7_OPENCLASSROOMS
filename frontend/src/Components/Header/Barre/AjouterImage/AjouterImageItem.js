@@ -33,18 +33,21 @@ function AjouterImageItem() {
             formData.append("fk_id_user", localStorage.id);
             formData.append("legende", legende);
             formData.append("image", postPicture);
-            Axios.post("http://localhost:3001/api/posts", formData).then(() => {
-                navigate("/ProfileScreen", { replace: true });
-            });
+            Axios.post("http://localhost:3001/api/posts", formData)
+                .then((response) => {
+                    alert("Votre image est maintenant visible sur GROUPOMANIA")
+
+                    navigate("/ProfileScreen", { replace: true });
+                });
         } else {
             alert(
-                "Veillez à remplir tous les champs avec un minimun de 5 caractéres"
+                "Veuillez à remplir tous les champs avec un minimun de 5 caractéres"
             );
             return;
         }
     };
 
-    // Supprimer image
+    // Supprimer image avant de l'enregistrer
     const removeImg = () => {
         window.confirm("Voulez vous vraiment anuler le partage");
         removeImgItem();

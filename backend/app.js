@@ -12,13 +12,19 @@ app.use(express.json())
 const authRoutes = require("./routes/AuthUsersRoutes")
 const messagesRoutes = require("./routes/MessagesUserRoutes")
 const commentsRoutes = require("./routes/CommentsUsersRoutes")
+
 const postsRoutes = require("./routes/PostsUsersRoutes")
+const commentsRoutesImg = require("./routes/CommentsImgRoutes")
 
 // ==================================== Enregistrer mes routes avec chemins =====================================
+// Messages
 app.use("/api/auth", authRoutes) // Route création et connexion utilisateurs
 app.use("/api/messagesPerso", messagesRoutes)  // Route publication message perso
-app.use("/api/comments", commentsRoutes) // Route publication commentaires utilisateurs
-app.use("/api/posts", postsRoutes) // Route poster images utilisateurs
+app.use("/api/comments", commentsRoutes) // Route publication commentaires sur message perso utilisateurs
+
+// Images
+app.use("/api/posts", postsRoutes) // Route publier images utilisateurs
+app.use("/api/contentImg", commentsRoutesImg) // Route publication commentaires sur une image
 
 // Middleware qui permet de charger les fichiers qui sont dans le répertoire images
 app.use("/images", express.static(path.join(__dirname, "images")))

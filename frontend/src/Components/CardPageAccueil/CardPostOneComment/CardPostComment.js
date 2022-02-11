@@ -10,7 +10,7 @@ function CardPostComment(props) {
 
     const [isActive, setisActive] = useState("")
 
-    // Ouverture fenêtre de des commentaires que l'on nous a poster
+    // Ouverture fenêtre  des commentaires que l'on nous a poster
     const handleShow = () => {
         if (isActive === "active") {
             setisActive("")
@@ -19,7 +19,7 @@ function CardPostComment(props) {
             setisActive("active")
         }
     }
-    // Ajouter un commentaire sur un message
+
     const compte = JSON.parse(localStorage.id)
     const prenom = JSON.parse(localStorage.prenom)
     const [commentaires, setcommentaires] = useState('')
@@ -72,7 +72,9 @@ function CardPostComment(props) {
                     }}
                 ></input>
 
-                <i className="fas fa-plus-circle valide" onClick={addCommentUser}></i>
+                <button className='btn_modify'>
+                    <i className="fas fa-plus-circle valide" onClick={addCommentUser}></i>
+                </button>
 
             </div>
         </>

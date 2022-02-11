@@ -8,12 +8,11 @@ import "./PostMessage.css"
 // ===== Components barre pour poster un message =====
 function Search() {
 
-    // Récupère le prénom
     const storage = JSON.parse(localStorage.prenom)
     const [commentaire, setcommentaire] = useState("")
     const commentRegex = /(.*[a-z]){5,30}/;
 
-    // Publication d'un message 
+    // Fonction publication message 
     const addComment = () => {
         if (window.confirm(`${storage} voulez vous vraiment publier ce message ?`)) {
             addCommentDefini()
@@ -60,8 +59,9 @@ function Search() {
                     }
                 }}
             ></input>
-
-            <i className="far fa-plus-square add" onClick={addComment}></i>
+            <button className='btn_modify'>
+                <i className="far fa-plus-square add" onClick={addComment}></i>
+            </button>
 
         </div>
     </div>;
