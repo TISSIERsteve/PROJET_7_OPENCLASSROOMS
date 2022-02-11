@@ -102,9 +102,7 @@ function PagePerso() {
 
                                     <div className="trash">
                                         <button onClick={() => deleteCom(x.message_perso_id)}>
-                                            <span>
-                                                <i className="fas fa-trash-alt poubelle" />
-                                            </span>
+                                            <i className="fas fa-trash-alt poubelle" />
                                         </button>
                                     </div>
                                 </article>

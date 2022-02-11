@@ -5,7 +5,7 @@ import Axios from 'axios';
 // CSS
 import "./CardPostComment.css"
 
-// ===== Components ajout commentaire dans card sur Page principal accueil =====
+// ===== Components ajout commentaire sur un message dans card sur Page principal accueil =====
 function CardPostComment(props) {
 
     const [isActive, setisActive] = useState("")

@@ -50,3 +50,15 @@
     border-radius: 1rem;
     padding: 0.5rem;
 }
+
+.commentary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.pen.commentary,
+.trash.commentary {
+    width: 100%;
+}
+

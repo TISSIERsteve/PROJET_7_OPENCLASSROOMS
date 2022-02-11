@@ -1,7 +1,7 @@
 const db = require("../config/mysql")
 
 // Récupérer toutes les images des utilisateurs sur page accueil
-exports.getAllPosts = (req, res) => {
+exports.getAllPosts = (req, res, next) => {
 
     db.query("SELECT prenom, DATE_FORMAT(created_at, 'Le %d %m %Y à %H:%i') AS created_at ,post_id,title, media_url, content, fk_id_user FROM post JOIN user ON post.fk_id_user = user.user_id ORDER BY created_at DESC",
         (err, result) => {
@@ -15,7 +15,7 @@ exports.getAllPosts = (req, res) => {
         });
 }
 
-// Récupère toutes mes images sur ma page perso (pas fini)
+// Récupère toutes mes images sur ma page perso 
 exports.getOnePost = (req, res, next) => {
     const id = req.params.id;
 
@@ -35,7 +35,7 @@ exports.getOnePost = (req, res, next) => {
     );
 }
 
-// Poster une image
+// Poster une image sur page accueil
 exports.createPost = (req, res, next) => {
     const content = req.body.legende;
     const media_url = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
@@ -60,6 +60,7 @@ exports.createPost = (req, res, next) => {
     );
 }
 
-exports.deletePost = (req, res) => {
+// Effacer une image sur page perso
+exports.deletePost = (req, res, next) => {
 
 }

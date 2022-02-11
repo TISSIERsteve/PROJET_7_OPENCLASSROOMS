@@ -21,8 +21,18 @@
     margin-top: 1rem;
 }
 
+.profilesComments.modify {
+    width: 70%;
+}
+
 .profilesComments::placeholder {
     color: #000;
+}
+
+.btn_modify {
+    border: none;
+    width: 0;
+    height: 0;
 }
 
 .valide {

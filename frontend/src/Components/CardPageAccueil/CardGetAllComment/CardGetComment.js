@@ -5,12 +5,11 @@ import Axios from "axios";
 // CSS
 import "./CardGetComment.css";
 
-// ===== Components pour voir commentaires messages dans card page principal accueil=====
+// ===== Components pour voir commentaires messages dans card page accueil=====
 function CardGetComment(props) {
 
     // Obtenir un commentaire poster sur un message
     const [com, setcom] = useState("");
-    console.log(com);
 
     // Ouverture commentaire que l'on nous a poster page perso
     const [isGetActive, setGetisActive] = useState("");

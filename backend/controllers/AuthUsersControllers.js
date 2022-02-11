@@ -2,7 +2,7 @@ const db = require("../config/mysql");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-// Création compte
+// Création compte utilisateur
 exports.signup = (req, res, next) => {
     const nom = req.body.nom;
     const prenom = req.body.prenom;
@@ -30,7 +30,7 @@ exports.signup = (req, res, next) => {
     });
 };
 
-// Connexion au compte
+// Connexion au compte utilisateur
 exports.login = (req, res, next) => {
     const password = req.body.password;
     const email = req.body.email;
@@ -77,7 +77,7 @@ exports.login = (req, res, next) => {
     );
 };
 
-// Désactiver compte
+// Désactiver compte utilisateur
 exports.dessactive = (req, res, next) => {
     const id = req.params.id;
 

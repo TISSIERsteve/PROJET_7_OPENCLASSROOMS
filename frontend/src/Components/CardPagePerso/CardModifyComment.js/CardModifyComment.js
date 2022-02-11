@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from "react"
 import Axios from 'axios';
 
+// Components pour modifier un message sur page perso
 function CardModifyComment() {
 
     const idy = JSON.parse(localStorage.id)
@@ -33,18 +34,9 @@ function CardModifyComment() {
 
     const addCommentModifyDefini = () => {
         if (commentRegex.test(message)) {
-            console.log("bon");
-
-            Axios.put("http://localhost:3001/api/messagesPerso/", + idy, {
+            Axios.put("http://localhost:3001/api/messagesPerso/" + idy, {
                 commentaire: message,
-
             })
-                .then(
-                    (response) => {
-                        console.log(response);
-                    }
-
-                )
                 .then(() => {
                     alert(`${prenom} vous venez de modifier votre message `);
                     window.location.reload()
@@ -62,14 +54,13 @@ function CardModifyComment() {
         <>
             <div className="pen">
                 <button onClick={handleShow}>
-                    <span>
-                        <i className="fas fa-edit stylo" />
-                    </span>
+                    <i className="fas fa-edit stylo" />
                 </button>
             </div>
+
             <div className={`profilesCommentsInput open ${isActive}`}>
                 <label></label>
-                <input className="profilesComments"
+                <input className="profilesComments modify"
                     id='commentaires'
                     type="text"
                     placeholder="Modifier le message que vous avez publier"
@@ -80,8 +71,9 @@ function CardModifyComment() {
                         }
                     }}
                 ></input>
-
-                <i className="fas fa-plus-circle valide" onClick={addCommentModify}></i>
+                <button className='btn_modify'>
+                    <i className="fas fa-plus-circle valide" onClick={addCommentModify}></i>
+                </button>
 
             </div>
         </>

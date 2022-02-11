@@ -1,6 +1,6 @@
 const db = require("../config/mysql");
 
-// Récupérer les commentaires des utilisateurs qui m'ont commenter sur ma page perso
+// Récupérer les commentaires d'un message des utilisateurs qui m'ont commenter sur ma page perso
 exports.getAllComments = (req, res, next) => {
     db.query(
         `SELECT content,  user_id, prenom FROM comment JOIN User ON fk_id_user = user_id WHERE fk_id_message`,
@@ -18,7 +18,7 @@ exports.getAllComments = (req, res, next) => {
     );
 };
 
-// Récupérer les commentaires des utilisateurs qui m'ont commenter sur la page accueil
+// Récupérer les commentaires d'un message des utilisateurs qui m'ont commenter sur la page accueil
 exports.getOneComment = (req, res, next) => {
     const id_message = req.params.id;
 
@@ -37,14 +37,14 @@ exports.getOneComment = (req, res, next) => {
     );
 };
 
-// Créer un commentaire sur Page accueil
+// Créer un commentaire sur un message sur Page accueil
 exports.createComment = (req, res, next) => {
     const { commentaires, compte, id_post } = req.body;
 
     const messageperso = {
         content: commentaires,
         fk_id_user: compte,
-        fk_id_message: id_post
+        fk_id_post: id_post,
     };
 
     db.query("INSERT INTO comment set ?", messageperso, (err, result) => {
@@ -57,5 +57,5 @@ exports.createComment = (req, res, next) => {
     });
 };
 
-// Effacer un commentaire
+// Effacer un commentaire sur page accueil
 exports.deleteComment = (req, res, next) => { };

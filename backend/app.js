@@ -18,7 +18,7 @@ const postsRoutes = require("./routes/PostsUsersRoutes")
 app.use("/api/auth", authRoutes) // Route création et connexion utilisateurs
 app.use("/api/messagesPerso", messagesRoutes)  // Route publication message perso
 app.use("/api/comments", commentsRoutes) // Route publication commentaires utilisateurs
-app.use("/api/posts", postsRoutes) // Route post images utilisateurs
+app.use("/api/posts", postsRoutes) // Route poster images utilisateurs
 
 // Middleware qui permet de charger les fichiers qui sont dans le répertoire images
 app.use("/images", express.static(path.join(__dirname, "images")))

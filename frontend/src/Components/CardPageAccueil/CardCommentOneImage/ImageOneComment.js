@@ -4,6 +4,7 @@ import Axios from 'axios';
 
 // Component pour poster un commentaire sur image page accueil
 function CardCommentOneImage(props) {
+    // console.log(props);
 
     const [isActive, setisActive] = useState("")
 
@@ -37,10 +38,10 @@ function CardCommentOneImage(props) {
             Axios.post("http://localhost:3001/api/comments", {
                 commentaires,
                 compte,
-                id_post: props.idPost,
+                id_post: props.idy,
             })
                 .then(() => {
-                    alert(`${prenom} vous venez de commenter `);
+                    alert(`${prenom} vous venez de commenter l'image `);
                     window.location.reload()
                 })
                 .catch(err => {

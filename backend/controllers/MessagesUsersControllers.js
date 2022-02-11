@@ -61,7 +61,7 @@ exports.createMessage = (req, res, next) => {
     });
 };
 
-// Effacer ma publication perso sur Page perso
+// Effacer mes messages perso sur Page perso
 exports.deleteMessage = (req, res, next) => {
     const persoId = req.params.id;
 
@@ -84,14 +84,15 @@ exports.deleteMessage = (req, res, next) => {
 // Modifier message perso sur page perso
 exports.updateMessage = (req, res, next) => {
     console.log(req);
-    const id = req.body.id
+    const id = req.params.id
+    const commentaire = req.body.commentaire;
 
-    db.query(`UPDATE messageperso SET commentaire = ? WHERE id = ${id}`,
-
+    db.query(`UPDATE messageperso SET commentaire = ? WHERE fk_id_user = ${id}`,
+        [commentaire],
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accés refusé" })
                 console.log(err);
+                res.status(403).json({ message: "Accés refusé" })
             } else {
                 res.status(200).json({ message: "Message modifié" })
             }

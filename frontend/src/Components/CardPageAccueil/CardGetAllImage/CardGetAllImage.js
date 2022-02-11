@@ -51,7 +51,7 @@ function CardGetAllImage() {
                                     <p className="boutton_commenter">J'aime</p>
 
                                     {/* Components poster un commentaire sur image page accueil */}
-                                    <ImageOneComment />
+                                    <ImageOneComment idy={x.post_id} />
                                 </div>
 
                                 {/* Components voir commentaire sur une image page accueil */}
