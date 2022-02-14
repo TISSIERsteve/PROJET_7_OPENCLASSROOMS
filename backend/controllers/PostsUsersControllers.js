@@ -1,4 +1,5 @@
 const db = require("../config/mysql")
+const fs = require("fs")
 
 // Récupérer toutes les images des utilisateurs sur page accueil
 exports.getAllPosts = (req, res, next) => {
@@ -42,7 +43,6 @@ exports.createPost = (req, res, next) => {
 
     const media = {
         title: content,
-        // content,
         media_url,
         fk_id_user: req.body.fk_id_user
     }
@@ -60,9 +60,34 @@ exports.createPost = (req, res, next) => {
     );
 }
 
+// Modifier une image perso sur page perso
+exports.updateCommentImg = (req, res, next) => {
+    const id = req.params.id
+    const content = req.body.legende;
+    const media_url = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+
+    const media = {
+        title: content,
+        media_url,
+        fk_id_user: req.body.fk_id_user
+    }
+
+
+    db.query(`UPDATE post SET ? WHERE fk_id_user =${id} `,
+        [media],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(403).json({ message: "Accés refusé" })
+            } else {
+                res.status(200).json({ message: "Image modifié" })
+            }
+        }
+    )
+}
+
 // Effacer une image sur page perso
 exports.deletePost = (req, res, next) => {
-    console.log(req.params);
     const persoId = req.params.id;
 
     db.query(
@@ -70,12 +95,14 @@ exports.deletePost = (req, res, next) => {
         [persoId],
         (err, result) => {
             if (err) {
-                console.log(err);
                 res.status(403).json({ message: "Accés refusé" });
             } else {
+                // const name = result[0].media_url.split("/images/")[1]
+                // fs.unlink(`images/${name}`, (error) => {
+                //     console.log(error);
                 res.status(200).json({ message: "Image supprimer" });
                 result
-                console.log("supprimer");
+                // })
             }
         }
     );

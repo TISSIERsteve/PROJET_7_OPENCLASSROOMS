@@ -81,7 +81,6 @@ exports.deleteMessage = (req, res, next) => {
 
 // Modifier message perso sur page perso
 exports.updateMessage = (req, res, next) => {
-    console.log(req);
     const id = req.params.id
     const commentaire = req.body.commentaire;
 
@@ -89,7 +88,6 @@ exports.updateMessage = (req, res, next) => {
         [commentaire],
         (err, result) => {
             if (err) {
-                console.log(err);
                 res.status(403).json({ message: "Accés refusé" })
             } else {
                 res.status(200).json({ message: "Message modifié" })

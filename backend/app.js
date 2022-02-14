@@ -17,8 +17,10 @@ const postsRoutes = require("./routes/PostsUsersRoutes")
 const commentsRoutesImg = require("./routes/CommentsImgRoutes")
 
 // ==================================== Enregistrer mes routes avec chemins =====================================
-// Messages
+// Utilisateur
 app.use("/api/auth", authRoutes) // Route création et connexion utilisateurs
+
+// Messages
 app.use("/api/messagesPerso", messagesRoutes)  // Route publication message perso
 app.use("/api/comments", commentsRoutes) // Route publication commentaires sur message perso utilisateurs
 

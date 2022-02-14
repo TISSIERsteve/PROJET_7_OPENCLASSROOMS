@@ -4,6 +4,7 @@ import Axios from "axios";
 
 // Components
 import CardGetAllCommentImage from "../CardGetAllCommentImage/CardGetAllCommentImage";
+import CardModifyImg from "../CardModifyImg/CardModifyImg";
 
 // Component pour afficher mes images sur page perso
 function CardGetAllImage() {
@@ -64,20 +65,15 @@ function CardGetAllImage() {
                                     : {x.title}{" "}
                                 </p>
 
-                                <div className="pen">
-                                    <button>
-                                        <span>
-                                            <i className="fas fa-edit stylo" />
-                                        </span>
-                                    </button>
-                                </div>
+                                {/* Components pour modifier image page perso */}
+                                <CardModifyImg></CardModifyImg>
 
                                 {/* Components pour voir commentaires image page perso */}
                                 <CardGetAllCommentImage idImg={x.post_id} />
 
                                 <div className="trash">
                                     <button onClick={() => deleteImg(x.post_id)}>
-                                        <i className="fas fa-trash-alt poubelle" />
+                                        <i className="fas fa-trash-alt poubelle_img" />
                                     </button>
                                 </div>
                             </article>

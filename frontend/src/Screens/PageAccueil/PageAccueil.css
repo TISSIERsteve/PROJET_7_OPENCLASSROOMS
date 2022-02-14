@@ -8,9 +8,16 @@
     margin-bottom: 1rem;
     padding: 1rem;
 }
-@media screen and (max-width:600px) {
+
+@media screen and (max-width:990px) {
     .card {
-        width: 95%;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:750px) {
+    .card {
+        width: 98%;
     }
 }
 

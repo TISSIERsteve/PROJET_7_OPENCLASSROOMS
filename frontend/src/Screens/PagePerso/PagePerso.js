@@ -5,10 +5,10 @@ import Axios from "axios";
 // Component
 import SeeComment from "../../Components/CardPagePerso/CardGetAllComment/CardGetAllComment";
 import CardGetAllImage from "../../Components/CardPagePerso/CardGetallImage/CardGetAllImage";
+import CardModifyComment from "../../Components/CardPagePerso/CardModifyComment.js/CardModifyComment";
 
 // CSS
 import "./PagePerso.css";
-import CardModifyComment from "../../Components/CardPagePerso/CardModifyComment.js/CardModifyComment";
 
 // ===== Page perso voir toutes mes messages =====
 function PagePerso() {

@@ -9,5 +9,6 @@ router.post("/", token, commentsCtrl.createCommentImg) // Créer un commentaire 
 router.get("/:id", token, commentsCtrl.getAllCommentsImg)  // Obtenir un commentaire d'un utilisateur sur une image sur page accueil
 router.get("/:id", token, commentsCtrl.getOneCommentImg)  // Obtenir un commentaire d'un utilisateur sur une image sur page perso
 
+// router.put("/:id", token, commentsCtrl.updateCommentImg) // Modifier image perso sur page perso
 
 module.exports = router

@@ -35,6 +35,17 @@
     transform: scale(1.2);
 }
 
+.poubelle_img {
+    padding: 0.5rem;
+}
+
+.poubelle_img:hover:before {
+    content: "Supprimer l'image";
+    color: red;
+    transition: 1s;
+    transform: scale(1.2);
+}
+
 .pen {
     display: flex;
     width: 80%;
@@ -52,3 +63,15 @@
 .stylo {
     padding: 0.5rem;
 }
+
+.stylo_img:hover:before {
+    content: "Modifier l'image";
+    color: red;
+    transition: 1s;
+    transform: scale(1.2);
+}
+
+.stylo_img {
+    padding: 0.5rem;
+}
+
