@@ -19,22 +19,40 @@ exports.createCommentImg = (req, res, next) => {
     });
 };
 
+// Récupérer les commentaires d'une image des utilisateurs qui m'ont commenter sur la page accueil
+exports.getAllCommentsImg = (req, res, next) => {
+    const id_message = req.params.id;
 
-// // Récupérer les commentaires d'une image des utilisateurs qui m'ont commenter sur la page accueil
-// exports.getOneCommentImage = (req, res, next) => {
-//     const id_message = req.params.id;
+    db.query(
+        `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_post = ?`,
+        [id_message],
+        (err, result) => {
+            if (err) {
+                res.status(403).json({ message: "Accès refusé du commentaire poster" });
+            } else {
+                res.status(200).json({
+                    result
+                });
+            }
+        }
+    );
+};
 
-//     db.query(
-//         `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_message=?`,
-//         [id_message],
-//         (err, result) => {
-//             if (err) {
-//                 res.status(403).json({ message: "Accès refusé du commentaire poster" });
-//             } else {
-//                 res.status(200).json({
-//                     result
-//                 });
-//             }
-//         }
-//     );
-// };
+// Récupérer les commentaires d'une image des utilisateurs qui m'ont commenter sur la page perso
+exports.getOneCommentImg = (req, res, next) => {
+
+    db.query(
+        `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_post = ?`,
+
+        (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(403).json({ message: "Accès refusé du commentaire poster" });
+            } else {
+                res.status(200).json({
+                    result
+                });
+            }
+        }
+    );
+};

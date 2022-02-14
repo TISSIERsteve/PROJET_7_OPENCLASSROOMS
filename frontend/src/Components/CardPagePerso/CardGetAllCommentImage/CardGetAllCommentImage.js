@@ -1,16 +1,13 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import Axios from "axios";
+import React from 'react'
+import Axios from 'axios';
+import { useState, useEffect } from "react"
 
-// CSS
-// import "./GetComment.css"
-
-// ===== Components récupére commentaire message que l'on nous à poster sur ma page perso =====
-function CardGetAllComment(props) {
+// Components pour obtenir un commentaire poster sur une image page perso
+function CardGetAllCommentImage(props) {
 
     const [com, setcom] = useState("");
 
-    // Ouverture commentaire que l'on nous a poster page perso
+    // Ouverture commentaire image poster page perso
     const [isGetActive, setGetisActive] = useState("");
     const openFieldset = () => {
         if (isGetActive === "active") {
@@ -23,21 +20,19 @@ function CardGetAllComment(props) {
     useEffect(
         () => {
             Axios.get(
-                `http://localhost:3001/api/comments/${props.identite}`
+                `http://localhost:3001/api/contentImg/${props.idImg}`
             ).then(response => {
                 setcom(response.data.result);
             });
         },
-        [props.identite]
+        [props.idImg]
     );
-
     // JSX
     return (
+
         <div className="get">
             <fieldset className="fieldset" onClick={openFieldset}>
-                <legend className="getcomment_fieldset">
-                    Voir les commentaires reçus
-                </legend>
+                <legend className="getcomment_fieldset">Voir les commentaires</legend>
                 <section className={`getsection ${isGetActive}`}>
                     {com && com.length
                         ? com.map(x => {
@@ -56,6 +51,7 @@ function CardGetAllComment(props) {
                 </section>
             </fieldset>
         </div>
-    );
+    )
 }
-export default CardGetAllComment;
+
+export default CardGetAllCommentImage

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 
 // Components
-import CardGetAllComment from "../CardGetAllComment/CardGetAllComment";
+import CardGetAllCommentImage from "../CardGetAllCommentImage/CardGetAllCommentImage";
 
 // Component pour afficher mes images sur page perso
 function CardGetAllImage() {
@@ -25,13 +25,14 @@ function CardGetAllImage() {
         });
     };
 
-    useEffect(() => {
-        Axios.get(
-            "http://localhost:3001/api/posts/" + identite
-        ).then(response => {
-            setaffiImg(response.data.result);
-        });
-    },
+    useEffect(
+        () => {
+            Axios.get(
+                "http://localhost:3001/api/posts/" + identite
+            ).then(response => {
+                setaffiImg(response.data.result);
+            });
+        },
         [identite]
     );
 
@@ -71,8 +72,8 @@ function CardGetAllImage() {
                                     </button>
                                 </div>
 
-                                {/* Components pour écrire commentaire image page accueil */}
-                                <CardGetAllComment />
+                                {/* Components pour voir commentaires image page perso */}
+                                <CardGetAllCommentImage idImg={x.post_id} />
 
                                 <div className="trash">
                                     <button onClick={() => deleteImg(x.post_id)}>
