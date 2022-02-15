@@ -21,6 +21,7 @@
 }
 
 .add {
+    /* Bouton a modifier probleme */
     position: absolute;
     font-size: 2rem;
     top: 1rem;

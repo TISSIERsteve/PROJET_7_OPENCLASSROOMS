@@ -10,13 +10,14 @@ exports.createCommentImg = (req, res, next) => {
         fk_id_post: fk_id_post,
     };
 
-    db.query("INSERT INTO comment set ?", messageimg, (err, result) => {
-        if (err) {
-            res.status(403).json({ message: "Accès refusé pour commenter l'image" });
-        } else {
-            res.status(200).json({ message: "Message personnel sur image créer" });
-        }
-    });
+    db.query("INSERT INTO comment set ? ", messageimg,
+        (err, result) => {
+            if (err) {
+                res.status(403).json({ message: "Accès refusé pour commenter l'image" });
+            } else {
+                res.status(200).json({ message: "Message personnel sur image créer" });
+            }
+        });
 };
 
 // Récupérer les commentaires d'une image des utilisateurs qui m'ont commenter sur la page accueil
@@ -24,7 +25,7 @@ exports.getAllCommentsImg = (req, res, next) => {
     const id_message = req.params.id;
 
     db.query(
-        `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_post = ?`,
+        `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_post = ? ORDER BY content DESC`,
         [id_message],
         (err, result) => {
             if (err) {
@@ -42,7 +43,7 @@ exports.getAllCommentsImg = (req, res, next) => {
 exports.getOneCommentImg = (req, res, next) => {
 
     db.query(
-        `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_post = ?`,
+        `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_post = ? ORDER BY content DESC`,
 
         (err, result) => {
             if (err) {

@@ -59,9 +59,10 @@ function Search() {
                     }
                 }}
             ></input>
-            <button className='btn_modify'>
+
+            <span>
                 <i className="far fa-plus-square add" onClick={addComment}></i>
-            </button>
+            </span>
 
         </div>
     </div>;

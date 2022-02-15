@@ -3,7 +3,7 @@ const db = require("../config/mysql");
 // Récupérer les commentaires d'un message des utilisateurs qui m'ont commenter sur ma page perso
 exports.getAllComments = (req, res, next) => {
     db.query(
-        `SELECT content,  user_id, prenom FROM comment JOIN User ON fk_id_user = user_id WHERE fk_id_message`,
+        `SELECT content,  user_id, prenom FROM comment JOIN User ON fk_id_user = user_id WHERE fk_id_message ORDER BY content DESC`,
         (err, result) => {
             if (err) {
                 res.status(403).json({ message: "Accès refusé du commentaire poster (perso)" });
@@ -21,7 +21,7 @@ exports.getOneComment = (req, res, next) => {
     const id_message = req.params.id;
 
     db.query(
-        `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_message=?`,
+        `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_message=? ORDER BY comment_id DESC`,
         [id_message],
         (err, result) => {
             if (err) {
