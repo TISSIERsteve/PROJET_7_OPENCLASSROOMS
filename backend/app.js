@@ -12,9 +12,10 @@ app.use(express.json())
 const authRoutes = require("./routes/AuthUsersRoutes")
 const messagesRoutes = require("./routes/MessagesUserRoutes")
 const commentsRoutes = require("./routes/CommentsUsersRoutes")
-
 const postsRoutes = require("./routes/PostsUsersRoutes")
 const commentsRoutesImg = require("./routes/CommentsImgRoutes")
+
+// const likeRoutes = require("./routes/likeRoutes")
 
 // ==================================== Enregistrer mes routes avec chemins =====================================
 // Utilisateur
@@ -27,6 +28,9 @@ app.use("/api/comments", commentsRoutes) // Route publication commentaires sur m
 // Images
 app.use("/api/posts", postsRoutes) // Route publier images utilisateurs
 app.use("/api/contentImg", commentsRoutesImg) // Route publication commentaires sur une image
+
+// Like/Dislike
+// app.use("/api/like", likeRoutes) // Route pour like ou dislike
 
 // Middleware qui permet de charger les fichiers qui sont dans le répertoire images
 app.use("/images", express.static(path.join(__dirname, "images")))

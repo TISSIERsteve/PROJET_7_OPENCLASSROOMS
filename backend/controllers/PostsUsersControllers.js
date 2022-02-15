@@ -94,15 +94,20 @@ exports.deletePost = (req, res, next) => {
         "DELETE FROM post WHERE post_id = ?",
         [persoId],
         (err, result) => {
+            console.log(result);
             if (err) {
+                console.log(err);
                 res.status(403).json({ message: "Accés refusé" });
             } else {
-                // const name = result[0].media_url.split("/images/")[1]
-                // fs.unlink(`images/${name}`, (error) => {
-                //     console.log(error);
-                res.status(200).json({ message: "Image supprimer" });
-                result
-                // })
+
+                // if (result[0].media_url !== "") {
+                //     const name = result[0].media_url.split("/images/post")[1]
+                //     fs.unlink(`images/post/${name}`, (error) => {
+                //         console.log(error);
+                //         res.status(200).json({ message: "Image supprimer" });
+                //         result
+                //     })
+                // }
             }
         }
     );

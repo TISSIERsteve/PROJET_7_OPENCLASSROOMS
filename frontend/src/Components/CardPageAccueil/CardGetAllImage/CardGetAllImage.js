@@ -4,10 +4,11 @@ import Axios from "axios";
 
 // Components
 import ImageOneComment from "../CardCommentOneImage/ImageOneComment";
+import CardLike from "../CardLike/CardLike";
+import CardGetAllCommentImage from "../CardGetAllCommentImage/CardGetAllCommentImage";
 
 // CSS
 import "./CardGetAllImage.css";
-import CardGetAllCommentImage from "../CardGetAllCommentImage/CardGetAllCommentImage";
 
 // Component pour afficher image sur page accueil
 function CardGetAllImage() {
@@ -48,7 +49,9 @@ function CardGetAllImage() {
                                     : {x.title}{" "}
                                 </p>
                                 <div className="profileComments">
-                                    <p className="boutton_commenter">J'aime</p>
+
+                                    {/* Component pour like */}
+                                    <CardLike></CardLike>
 
                                     {/* Components poster un commentaire sur image page accueil */}
                                     <ImageOneComment idy={x.post_id} />

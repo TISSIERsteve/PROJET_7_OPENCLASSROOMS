@@ -1,0 +1,9 @@
+/* CardLike */
+.btn_like {
+    border: none;
+    background-color: #d1cdcf;
+}
+
+.btn_like p {
+    font-size: 1.6rem;
+}

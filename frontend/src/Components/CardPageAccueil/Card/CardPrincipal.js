@@ -6,6 +6,7 @@ import Axios from "axios";
 import PostComment from "../CardPostOneComment/CardPostComment";
 import GetAllImage from "../CardGetAllImage/CardGetAllImage";
 import GetComment from "../CardGetAllComment/CardGetComment";
+import CardLike from "../CardLike/CardLike";
 
 // CSS
 import "./CardPrincipal.css";
@@ -60,8 +61,10 @@ function CardPrincipal() {
                                     <p className="profileComment">
                                         {" "}{x.commentaire}{" "}
                                     </p>
+
                                     <div className="profileComments">
-                                        <p className="boutton_commenter">J'aime</p>
+                                        {/* Components pour like */}
+                                        <CardLike></CardLike>
 
                                         {/* Components poster un commentaire sur un message page accueil */}
                                         <PostComment idPost={x.message_perso_id} />

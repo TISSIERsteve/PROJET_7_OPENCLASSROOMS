@@ -20,10 +20,11 @@ function CardGetAllImage() {
     };
 
     const deleteImgDefini = id => {
-        Axios.delete("http://localhost:3001/api/posts/" + id).then(response => {
-            alert("Votre image à bien été supprimé");
-            window.location.reload();
-        });
+        Axios.delete("http://localhost:3001/api/posts/" + id)
+            .then(response => {
+                alert("Votre image à bien été supprimé");
+                window.location.reload();
+            });
     };
 
     useEffect(

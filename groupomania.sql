@@ -46,6 +46,16 @@ CREATE TABLE IF NOT EXISTS MessagePerso (
     ON DELETE CASCADE ON UPDATE CASCADE
 )   ENGINE = INNODB;
 
+CREATE TABLE IF NOT EXISTS Likes (
+    like_id INT(10) UNSIGNED NOT NULL,
+    dislike_id INT(10) UNSIGNED NOT NULL,
+    fk_id_user INT(10) UNSIGNED,
+    fk_id_post INT(10) UNSIGNED,
+    fk_id_message INT(10) UNSIGNED,
+    FOREIGN KEY (fk_id_user) REFERENCES User(user_id)
+) ENGINE= INNODB
+
+
 -- Sa récupère tous les commentaires associer aux messages dont id ==91 avec les infos de l'user qui la créer(commentaires)
 SELECT comment.content, comment.comment_id, user.user_id, user.nom, user.prenom FROM Comment JOIN User ON comment.fk_id_user = user.user_id WHERE fk_id_message =91
 
