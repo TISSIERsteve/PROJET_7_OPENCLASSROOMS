@@ -63,6 +63,25 @@ exports.createPost = (req, res, next) => {
 // Modifier une image perso sur page perso
 exports.updateCommentImg = (req, res, next) => {
     const id = req.params.id
+
+    db.query("SELECT * FROM post WHERE fk_id_user = ?",
+        [id],
+        (err, result) => {
+            if (err) {
+                res
+                    .status(403)
+                    .json({ message: "Accès refusé reception des images(perso)" });
+            } else {
+                if (result[0].media_url !== "") {
+                    const name = result[0].media_url.split("/images/")[1]
+                    fs.unlink(`images/${name}`, (error) => {
+
+                    })
+                }
+            }
+        }
+    );
+
     const content = req.body.legende;
     const media_url = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
 
@@ -72,12 +91,10 @@ exports.updateCommentImg = (req, res, next) => {
         fk_id_user: req.body.fk_id_user
     }
 
-
     db.query(`UPDATE post SET ? WHERE fk_id_user =${id} `,
         [media],
         (err, result) => {
             if (err) {
-                console.log(err);
                 res.status(403).json({ message: "Accés refusé" })
             } else {
                 res.status(200).json({ message: "Image modifié" })
@@ -90,24 +107,33 @@ exports.updateCommentImg = (req, res, next) => {
 exports.deletePost = (req, res, next) => {
     const persoId = req.params.id;
 
+    // Récupère image dans bdd 
+    db.query("SELECT * FROM post WHERE post_id = ?",
+        [persoId],
+        (err, result) => {
+            if (err) {
+                res
+                    .status(403)
+                    .json({ message: "Accès refusé reception des images(perso)" });
+            } else {
+                if (result[0].media_url !== "") {
+                    const name = result[0].media_url.split("/images/")[1]
+                    fs.unlink(`images/${name}`, (error) => {
+                        console.log(error);
+                    })
+                }
+            }
+        }
+    );
+
     db.query(
         "DELETE FROM post WHERE post_id = ?",
         [persoId],
         (err, result) => {
-            console.log(result);
             if (err) {
-                console.log(err);
                 res.status(403).json({ message: "Accés refusé" });
             } else {
-
-                // if (result[0].media_url !== "") {
-                //     const name = result[0].media_url.split("/images/post")[1]
-                //     fs.unlink(`images/post/${name}`, (error) => {
-                //         console.log(error);
-                //         res.status(200).json({ message: "Image supprimer" });
-                //         result
-                //     })
-                // }
+                res.status(200).json({ message: "Image supprimée" });
             }
         }
     );
