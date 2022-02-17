@@ -74,7 +74,7 @@ function PagePerso() {
                 {post && post.length
                     ? post.map(x => {
                         return (
-                            <li key={x.fk_id_user}>
+                            <li key={x.message_perso_id}>
 
                                 <article className="card">
                                     <div className="cardProfilePerso">

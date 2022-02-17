@@ -6,11 +6,11 @@ exports.getAllMessages = (req, res, next) => {
         "SELECT message_perso_id,prenom,DATE_FORMAT(date, 'le %d %m %Y à %H:%i') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ",
         (err, result) => {
             if (err) {
-                res
+                return res
                     .status(403)
                     .json({ message: "Accès refusé reception des messageperso(accueil)" });
             } else {
-                res.status(200).json({
+                return res.status(200).json({
                     messageperso: {
                         resultat: result
                     }
@@ -28,11 +28,11 @@ exports.getOneMessage = (req, res, next) => {
         [id],
         (err, result) => {
             if (err) {
-                res
+                return res
                     .status(403)
                     .json({ message: "Accès refusé du post de messageperso(perso)" });
             } else {
-                res.status(200).json({
+                return res.status(200).json({
                     result
                 });
             }
@@ -54,9 +54,9 @@ exports.createMessage = (req, res, next) => {
 
     db.query("INSERT INTO messageperso set ?", messageperso, (err, result) => {
         if (err) {
-            res.status(403).json({ message: "Accès refusé" });
+            return res.status(403).json({ message: "Accès refusé" });
         } else {
-            res.status(200).json({ message: "Message créer" });
+            return res.status(200).json({ message: "Message créer" });
         }
     });
 };
@@ -70,9 +70,9 @@ exports.deleteMessage = (req, res, next) => {
         [persoId],
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accés refusé" });
+                return res.status(403).json({ message: "Accés refusé" });
             } else {
-                res.status(200).json({ message: "Message supprimer" });
+                return res.status(200).json({ message: "Message supprimer" });
                 result
             }
         }
@@ -88,9 +88,9 @@ exports.updateMessage = (req, res, next) => {
         [commentaire],
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accés refusé" })
+                return res.status(403).json({ message: "Accés refusé" })
             } else {
-                res.status(200).json({ message: "Message modifié" })
+                return res.status(200).json({ message: "Message modifié" })
             }
         }
     )

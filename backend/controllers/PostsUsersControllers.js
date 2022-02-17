@@ -52,9 +52,9 @@ exports.createPost = (req, res, next) => {
         media,
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accès refusé" })
+                return res.status(403).json({ message: "Accès refusé" })
             } else {
-                res.status(200).json({ message: "Image créer" });
+                return res.status(200).json({ message: "Image créer" });
             }
         }
     );
@@ -68,14 +68,14 @@ exports.updateCommentImg = (req, res, next) => {
         [id],
         (err, result) => {
             if (err) {
-                res
+                return res
                     .status(403)
                     .json({ message: "Accès refusé reception des images(perso)" });
             } else {
                 if (result[0].media_url !== "") {
                     const name = result[0].media_url.split("/images/")[1]
                     fs.unlink(`images/${name}`, (error) => {
-
+                        // console.log(error);
                     })
                 }
             }
@@ -95,9 +95,9 @@ exports.updateCommentImg = (req, res, next) => {
         [media],
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accés refusé" })
+                return res.status(403).json({ message: "Accés refusé" })
             } else {
-                res.status(200).json({ message: "Image modifié" })
+                return res.status(200).json({ message: "Image modifié" })
             }
         }
     )
@@ -112,14 +112,14 @@ exports.deletePost = (req, res, next) => {
         [persoId],
         (err, result) => {
             if (err) {
-                res
+                return res
                     .status(403)
                     .json({ message: "Accès refusé reception des images(perso)" });
             } else {
                 if (result[0].media_url !== "") {
                     const name = result[0].media_url.split("/images/")[1]
                     fs.unlink(`images/${name}`, (error) => {
-                        console.log(error);
+                        // console.log(error);
                     })
                 }
             }
@@ -131,9 +131,9 @@ exports.deletePost = (req, res, next) => {
         [persoId],
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accés refusé" });
+                return res.status(403).json({ message: "Accés refusé" });
             } else {
-                res.status(200).json({ message: "Image supprimée" });
+                return res.status(200).json({ message: "Image supprimée" });
             }
         }
     );

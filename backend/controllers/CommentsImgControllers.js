@@ -13,9 +13,9 @@ exports.createCommentImg = (req, res, next) => {
     db.query("INSERT INTO comment set ? ", messageimg,
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accès refusé pour commenter l'image" });
+                return res.status(403).json({ message: "Accès refusé pour commenter l'image" });
             } else {
-                res.status(200).json({ message: "Message personnel sur image créer" });
+                return res.status(200).json({ message: "Message personnel sur image créer" });
             }
         });
 };
@@ -25,13 +25,13 @@ exports.getAllCommentsImg = (req, res, next) => {
     const id_message = req.params.id;
 
     db.query(
-        `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_post = ? ORDER BY content DESC`,
+        `SELECT comment_id, content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_post = ? ORDER BY content DESC`,
         [id_message],
         (err, result) => {
             if (err) {
-                res.status(403).json({ message: "Accès refusé du commentaire poster" });
+                return res.status(403).json({ message: "Accès refusé du commentaire poster" });
             } else {
-                res.status(200).json({
+                return res.status(200).json({
                     result
                 });
             }
@@ -43,14 +43,13 @@ exports.getAllCommentsImg = (req, res, next) => {
 exports.getOneCommentImg = (req, res, next) => {
 
     db.query(
-        `SELECT content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_post = ? ORDER BY content DESC`,
+        `SELECT comment_id, content, user_id, prenom FROM comment JOIN user ON fk_id_user = user_id WHERE fk_id_post = ? ORDER BY content DESC`,
 
         (err, result) => {
             if (err) {
-                console.log(err);
-                res.status(403).json({ message: "Accès refusé du commentaire poster" });
+                return res.status(403).json({ message: "Accès refusé du commentaire poster" });
             } else {
-                res.status(200).json({
+                return res.status(200).json({
                     result
                 });
             }

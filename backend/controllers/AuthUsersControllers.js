@@ -46,7 +46,7 @@ exports.login = (req, res, next) => {
                 const passwordOk = await bcrypt.compare(password, result[0].password);
 
                 if (passwordOk === false || email === false) {
-                    res
+                    return res
                         .status(403)
                         .json({ message: "Mot de passe non valide ou non renseigner" });
                 }
@@ -60,7 +60,7 @@ exports.login = (req, res, next) => {
                         "RANDOM_PRIVATE_KEY"
                     );
 
-                    res.status(200).json({
+                    return res.status(200).json({
                         message: "Connecté",
                         token,
                         user: {
@@ -71,7 +71,7 @@ exports.login = (req, res, next) => {
                     });
                 }
             } else {
-                res.status(404).json({ message: "Erreur serveur sur la connexion au compte" });
+                return res.status(404).json({ message: "Erreur serveur sur la connexion au compte" });
             }
         }
     );
@@ -83,9 +83,9 @@ exports.dessactive = (req, res, next) => {
 
     db.query("DELETE FROM user WHERE user_id = ?", [id], (err, result) => {
         if (err) {
-            res.status(403).json({ message: "Accés refusé pour supprimer compte" });
+            return res.status(403).json({ message: "Accés refusé pour supprimer compte" });
         } else {
-            res.status(200).json({ message: "Utilisateur supprimer" });
+            return res.status(200).json({ message: "Utilisateur supprimer" });
         }
     });
 };

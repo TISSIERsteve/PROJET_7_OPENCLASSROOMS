@@ -42,7 +42,7 @@ function CardGetAllComment(props) {
                     {com && com.length
                         ? com.map(x => {
                             return (
-                                <ul key={x.prenom} className="getcomment">
+                                <ul key={x.comment_id} className="getcomment">
                                     <li className="getcomment_prenom">
                                         {x.prenom} vous à commenter :
                                     </li>

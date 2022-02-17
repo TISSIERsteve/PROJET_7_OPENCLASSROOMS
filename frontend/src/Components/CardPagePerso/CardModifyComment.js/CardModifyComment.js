@@ -9,11 +9,11 @@ function CardModifyComment() {
     const prenom = JSON.parse(localStorage.prenom)
     const [message, setmessageModify] = useState('')
 
-    const [isActive, setisActive] = useState("")
 
     const commentRegex = /(.*[a-z]){5,30}/;
 
     // Ouverture fenêtre pour modifier le message
+    const [isActive, setisActive] = useState("")
     const handleShow = () => {
         if (isActive === "active") {
             setisActive("")

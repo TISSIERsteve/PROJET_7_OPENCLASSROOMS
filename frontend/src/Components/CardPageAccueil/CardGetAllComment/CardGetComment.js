@@ -8,10 +8,16 @@ import "./CardGetComment.css";
 // ===== Components pour voir commentaires messages dans card page accueil =====
 function CardGetComment(props) {
 
+    const authUser = parseInt(localStorage.id, 10)
+    const prenom = JSON.parse(localStorage.prenom)
+    const commentRegex = /(.*[a-z]){5,30}/;
+
+    const [messageItem, setmessageItemModify] = useState('')
     const [com, setcom] = useState("");
 
-    // Ouverture commentaire poster page perso
+    // Ouverture commentaire poster page accueil
     const [isGetActive, setGetisActive] = useState("");
+
     const openFieldset = () => {
         if (isGetActive === "active") {
             setGetisActive("");
@@ -31,21 +37,115 @@ function CardGetComment(props) {
         [props.messageid]
     );
 
+    // Fonctions supprimer commentaire page accueil
+    const handleDelete = async (id) => {
+        if (window.confirm(`${prenom} êtes vous sur de vouloir supprimer votre commentaire`)) {
+            try {
+                await Axios.delete(`http://localhost:3001/api/comments/${id}`)
+                setcom(com.filter((x) => x.comment_id !== id))
+                alert("Votre commentaire à bien été supprimer")
+            }
+            catch (error) {
+                alert("Une erreur s'est produite lors de lasuppression du commentaire, veuillez réessayer")
+            }
+        }
+    }
+
+    // Fonction modifier commentaire
+    const [isModify, setisModify] = useState("")
+
+    const handleEdit = () => {
+        if (isModify === "active") {
+            setisModify("")
+
+        } else {
+            setisModify("active")
+        }
+    }
+
+    const addModify = () => {
+        if (window.confirm(`${prenom} êtes vous sur de vouloir modifier votre message`)) {
+            addModifyDefini()
+        }
+        else {
+            window.location.reload()
+        }
+    }
+
+    const addModifyDefini = () => {
+        if (commentRegex.test(messageItem)) {
+            Axios.put("http://localhost:3001/api/comments/" + authUser, {
+                commentaire: messageItem,
+            })
+                .then(() => {
+                    alert(`${prenom} vous venez de modifier votre message `);
+                    window.location.reload()
+                })
+                .catch(err => {
+                    alert("Une erreur est survenue, veuillez réessayer");
+                });
+        } else {
+            alert("Veuillez insérer un minimum de 5 caractères")
+        }
+    }
+
     // JSX
     return (
         <div className="get">
-            <fieldset className="fieldset" onClick={openFieldset}>
-                <legend className="getcomment_fieldset">Voir les commentaires</legend>
+            <fieldset className="fieldset">
+                <legend className="getcomment_fieldset" onClick={openFieldset}>Voir les commentaires</legend>
                 <section className={`getsection ${isGetActive}`}>
                     {com && com.length
                         ? com.map(x => {
                             return (
-                                <ul key={x.prenom} className="getcomment">
+                                <ul key={x.comment_id} className="getcomment">
                                     <li className="getcomment_prenom">
                                         {x.prenom} vous à commenter :
                                     </li>
                                     <li className="getcomment_content">
                                         {x.content}
+
+                                        {/* Si user correspond pour modifier ou effacer commentaire */}
+                                        {
+                                            authUser === x.user_id &&
+                                            <div>
+                                                {/* Modifier commentaire page accueil*/}
+                                                <div className={`section_modify_comment_accueil ${isModify}`}>
+                                                    <label></label>
+                                                    <input className="accueil_input"
+                                                        id='commentaires'
+                                                        type="text"
+                                                        placeholder="Modifier le message"
+                                                        onChange={(event) => {
+                                                            if (commentRegex.test(event.target.value)) {
+                                                                setmessageItemModify(event.target.value)
+                                                                return
+                                                            }
+                                                        }}
+                                                    ></input>
+
+                                                </div>
+
+                                                <div className="validate_accueil">
+
+                                                    {/* Boutton modifier message page accueil */}
+                                                    <button className="deleModif" onClick={handleEdit}>
+                                                        <i className="fas fa-edit stylo" />
+                                                    </button>
+
+                                                    {/* Boutton effacer message page accueil */}
+                                                    <button className="deleModif" onClick={() => handleDelete(x.comment_id)}>
+                                                        <i className="fas fa-trash-alt poubelle" />
+                                                    </button>
+
+                                                    {/* Boutton valider modification message */}
+                                                    <button className='deleModif'>
+                                                        <i className="fas fa-plus-circle accueil" onClick={() => addModify(x.comment_id)}></i>
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                        }
                                     </li>
                                 </ul>
                             );
