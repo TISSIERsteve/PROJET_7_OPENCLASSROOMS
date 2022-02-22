@@ -64,7 +64,7 @@ function CardGetComment(props) {
     }
 
     const addModify = () => {
-        if (window.confirm(`${prenom} êtes vous sur de vouloir modifier votre message`)) {
+        if (window.confirm(`${prenom} êtes vous sur de vouloir modifier votre commentaire`)) {
             addModifyDefini()
         }
         else {
@@ -73,12 +73,13 @@ function CardGetComment(props) {
     }
 
     const addModifyDefini = () => {
+
         if (commentRegex.test(messageItem)) {
             Axios.put("http://localhost:3001/api/comments/" + authUser, {
                 commentaire: messageItem,
             })
                 .then(() => {
-                    alert(`${prenom} vous venez de modifier votre message `);
+                    alert(`${prenom} vous venez de modifier votre commentaire `);
                     window.location.reload()
                 })
                 .catch(err => {
@@ -105,48 +106,48 @@ function CardGetComment(props) {
                                     <li className="getcomment_content">
                                         {x.content}
 
-                                        {/* Si user correspond pour modifier ou effacer commentaire */}
-                                        {
-                                            authUser === x.user_id &&
-                                            <div>
-                                                {/* Modifier commentaire page accueil*/}
-                                                <div className={`section_modify_comment_accueil ${isModify}`}>
-                                                    <label></label>
-                                                    <input className="accueil_input"
-                                                        id='commentaires'
-                                                        type="text"
-                                                        placeholder="Modifier le message"
-                                                        onChange={(event) => {
-                                                            if (commentRegex.test(event.target.value)) {
-                                                                setmessageItemModify(event.target.value)
-                                                                return
-                                                            }
-                                                        }}
-                                                    ></input>
-
-                                                </div>
-
-                                                <div className="validate_accueil">
-
-                                                    {/* Boutton modifier message page accueil */}
-                                                    <button className="deleModif" onClick={handleEdit}>
-                                                        <i className="fas fa-edit stylo" />
-                                                    </button>
-
-                                                    {/* Boutton effacer message page accueil */}
-                                                    <button className="deleModif" onClick={() => handleDelete(x.comment_id)}>
-                                                        <i className="fas fa-trash-alt poubelle" />
-                                                    </button>
-
-                                                    {/* Boutton valider modification message */}
-                                                    <button className='deleModif'>
-                                                        <i className="fas fa-plus-circle accueil" onClick={() => addModify(x.comment_id)}></i>
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        }
                                     </li>
+                                    {/* Si user correspond pour modifier ou effacer commentaire */}
+                                    {
+                                        authUser === x.user_id &&
+                                        <div>
+                                            {/* Modifier commentaire page accueil*/}
+                                            <div className={`section_modify_comment_accueil ${isModify}`}>
+                                                <label></label>
+                                                <input className="accueil_input"
+                                                    id='commentaires'
+                                                    type="text"
+                                                    placeholder="Modifier votre commentaire"
+                                                    onChange={(event) => {
+                                                        if (commentRegex.test(event.target.value)) {
+                                                            setmessageItemModify(event.target.value)
+                                                            return
+                                                        }
+                                                    }}
+                                                ></input>
+
+                                            </div>
+
+                                            <div className="validate_accueil">
+
+                                                {/* Boutton modifier message page accueil */}
+                                                <button className="deleModif" onClick={handleEdit}>
+                                                    <i className="fas fa-edit stylo" />
+                                                </button>
+
+                                                {/* Boutton effacer message page accueil */}
+                                                <button className="deleModif" onClick={() => handleDelete(x.comment_id)}>
+                                                    <i className="fas fa-trash-alt poubelle" />
+                                                </button>
+
+                                                {/* Boutton valider modification message */}
+                                                <button className='deleModif'>
+                                                    <i className="fas fa-plus-circle accueil" onClick={() => addModify(x.comment_id)}></i>
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    }
                                 </ul>
                             );
                         })

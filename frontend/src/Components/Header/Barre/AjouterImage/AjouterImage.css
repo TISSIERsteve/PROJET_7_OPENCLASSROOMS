@@ -19,7 +19,14 @@
     padding: 1rem;
 }
 
+@media screen and (max-width:560px) {
+    .addPickItem_form {
+        width: 90%;
+    }
+}
+
 .addPickItem_file_input {
+    width: 100%;
     border: 2px solid black;
     margin-bottom: 1rem;
     margin-top: 1rem;
@@ -32,6 +39,7 @@
 }
 
 .addPickItem_file {
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -39,12 +47,12 @@
 
 .addPickItem_file_item {
     display: block;
-    width: 36%;
+    width: 50%;
     text-align: center;  
 }
 
 .addPickItem_button {
-    width: 30%;
+    width: 50%;
     margin: 0 auto;
     display: flex; 
     flex-direction: column;
@@ -59,5 +67,5 @@
 }
 
 .brt {
-    width: 6rem;
+    width: 45%;
 }

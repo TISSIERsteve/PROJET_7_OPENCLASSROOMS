@@ -29,7 +29,7 @@
 }
 
 .poubelle:hover:before {
-    content: "Supprimer le message";
+    content: "Supprimer";
     color: red;
     transition: 1s;
     transform: scale(1.2);
@@ -54,7 +54,7 @@
 }
 
 .stylo:hover:before {
-    content: "Modifier le message";
+    content: "Modifier";
     color: red;
     transition: 1s;
     transform: scale(1.2);

@@ -88,6 +88,7 @@
 }
 
 .validate_accueil {
+    margin-top: 1rem;
     display: flex;
     justify-content: flex-start;
 }
@@ -97,7 +98,7 @@
 }
 
 .accueil:hover:before {
-    content: "Valider la modification";
+    content: "Valider";
     color: red;
     transition: 1s;
     transform: scale(1.2);

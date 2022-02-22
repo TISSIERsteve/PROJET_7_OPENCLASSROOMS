@@ -79,7 +79,7 @@ exports.updateComment = (req, res, next) => {
         [commentaire],
         (err, result) => {
             if (err) {
-                return res.status(403).json({ message: "Accés refusé" })
+                return res.status(403).json({ message: "Accés refusé pour la modification de l'image" })
             } else {
                 return res.status(200).json({ message: "Message modifié" })
             }

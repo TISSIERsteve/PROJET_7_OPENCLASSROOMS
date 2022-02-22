@@ -12,6 +12,15 @@
     margin: 0 auto;
 }
 
+@media screen and (max-width:605px) {
+    .profileScreen_BarreRecherche{
+        width: 95%;
+    }
+    .profileScreenPrenom {
+        width: 95%;
+    }
+}
+
 .profileScreenInput {
     width: 100%;
     margin: 0 auto;
