@@ -63,19 +63,19 @@ function CardGetComment(props) {
         }
     }
 
-    const addModify = () => {
+    const addModify = (commentId) => {
         if (window.confirm(`${prenom} êtes vous sur de vouloir modifier votre commentaire`)) {
-            addModifyDefini()
+            addModifyDefini(commentId)
         }
         else {
             window.location.reload()
         }
     }
 
-    const addModifyDefini = () => {
+    const addModifyDefini = (commentId) => {
 
         if (commentRegex.test(messageItem)) {
-            Axios.put("http://localhost:3001/api/comments/" + authUser, {
+            Axios.put("http://localhost:3001/api/comments/" + commentId, {
                 commentaire: messageItem,
             })
                 .then(() => {

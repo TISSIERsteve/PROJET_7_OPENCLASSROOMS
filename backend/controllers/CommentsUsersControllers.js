@@ -75,7 +75,7 @@ exports.updateComment = (req, res, next) => {
     const id = req.params.id
     const commentaire = req.body.commentaire;
 
-    db.query(`UPDATE comment SET content = ? WHERE fk_id_user = ${id}`,
+    db.query(`UPDATE comment SET content = ? WHERE comment_id = ${id}`,
         [commentaire],
         (err, result) => {
             if (err) {
