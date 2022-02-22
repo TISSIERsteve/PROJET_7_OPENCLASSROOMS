@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 // Components
-import PostComment from "../CardPostOneComment/CardPostComment";
+import PostComment from "../CardPostOneComment/CardPostOneComment";
 import GetAllImage from "../CardGetAllImage/CardGetAllImage";
-import GetComment from "../CardGetAllComment/CardGetComment";
+import GetComment from "../CardGetAllComment/CardGetAllComment";
 import CardLike from "../CardLike/CardLike";
 
 // CSS

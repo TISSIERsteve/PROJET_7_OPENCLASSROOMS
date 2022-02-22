@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 
 // Components
-import ImageOneComment from "../CardCommentOneImage/ImageOneComment";
+import ImageOneComment from "../CardCommentOneImage/CardCommentOneImage";
 import CardLike from "../CardLike/CardLike";
 import CardGetAllCommentImage from "../CardGetAllCommentImage/CardGetAllCommentImage";
 
