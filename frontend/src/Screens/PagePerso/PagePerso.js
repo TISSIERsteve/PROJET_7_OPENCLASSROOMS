@@ -10,7 +10,7 @@ import CardModifyComment from "../../Components/CardPagePerso/CardModifyComment.
 // CSS
 import "./PagePerso.css";
 
-// ===== Page perso voir toutes mes messages =====
+// ===== Page perso voir touts mes posts (images ou messages) =====
 function PagePerso() {
 
     const navigate = useNavigate();

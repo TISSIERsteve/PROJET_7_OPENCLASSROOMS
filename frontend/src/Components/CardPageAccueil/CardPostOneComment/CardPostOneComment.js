@@ -5,12 +5,12 @@ import Axios from 'axios';
 // CSS
 import "./CardPostComment.css"
 
-// ===== Components ajout commentaire sur un message dans card sur Page principal accueil =====
+// ===== Components ajout commentaire sur un message dans card sur Page accueil =====
 function CardPostComment(props) {
 
-    const [isActive, setisActive] = useState("")
 
-    // Ouverture fenêtre  des commentaires que l'on nous a poster
+    // Ouverture fenêtre 
+    const [isActive, setisActive] = useState("")
     const handleShow = () => {
         if (isActive === "active") {
             setisActive("")
@@ -24,7 +24,7 @@ function CardPostComment(props) {
     const prenom = JSON.parse(localStorage.prenom)
     const [commentaires, setcommentaires] = useState('')
 
-    const commentRegex = /(.*[a-z]){5,30}/;
+    const commentRegex = /(.*[A-Za-z]){5,30}/;
 
     // Fonction ajout commentaire
     const addCommentUser = () => {

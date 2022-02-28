@@ -14,8 +14,10 @@ function BarrePostImage() {
         <div>
             {/* Barre container */}
             <ul className="profileScreenTele">
+
                 {/* Component ajouter img */}
                 <AjouterImage />
+
             </ul>
         </div>
     );

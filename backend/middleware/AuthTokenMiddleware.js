@@ -1,8 +1,10 @@
 const db = require("../config/mysql")
 const jwt = require("jsonwebtoken") // Je vérifie les token 
 
+
 // Vérification du token s'il correspond
 module.exports = async (req, res, next) => {
+
     try {
         // Si pas de token
         const token = req.headers.authorization.split(' ')[0]
@@ -16,6 +18,8 @@ module.exports = async (req, res, next) => {
 
         // Si token correspond pas
         const decodeToken = jwt.verify(token, "RANDOM_PRIVATE_KEY")
+        const isAdmin = decodeToken.isAdmin; // Administarteur
+        req.auth = { isAdmin }; // Administrateur
         if (!decodeToken) {
             return res.status(401).json({
                 success: false,

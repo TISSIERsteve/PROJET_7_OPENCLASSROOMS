@@ -7,10 +7,9 @@ import "./BarreLaterale.css";
 
 // Components Aside
 function BarreLaterale() {
-
     const identite = JSON.parse(localStorage.id);
 
-    // Supprimer compte utilisateur
+    // Fonction supprimer compte utilisateur
     const deleteUser = () => {
         if (window.confirm("Voulez vous supprimer définitivement votre compte ?")) {
             deleteUserDefini();
@@ -27,7 +26,7 @@ function BarreLaterale() {
         });
     };
 
-    // Déconnexion
+    // Fonction déconnexion
     const deconect = () => {
         if (window.confirm("Voulez vous vraiment vous déconnecter ?")) {
             deconectDefini();

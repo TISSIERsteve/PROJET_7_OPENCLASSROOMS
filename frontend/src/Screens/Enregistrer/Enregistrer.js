@@ -7,14 +7,13 @@ import "./Enregistrer.css";
 
 // ===== Page création compte =====
 function Enregistrer() {
-
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
     const [password, setpassword] = useState("");
     const [email, setemail] = useState("");
 
-    const nomRegex = /(.*[a-z]){3,30}/;
-    const prenomRegex = /(.*[a-z]){3,30}/;
+    const nomRegex = /(.*[A-Za-z]){3,30}/;
+    const prenomRegex = /(.*[A-Za-z]){3,30}/;
     const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     const mailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
@@ -53,7 +52,7 @@ function Enregistrer() {
     return (
         <div className="RegistrationScreen">
             <Link to="/">
-                <i className="fas fa-arrow-left flecheGauche" />
+                <i className="fas fa-arrow-left flecheGauche" /> retour
             </Link>
 
             {/* Formulaire d'inscription */}
@@ -153,12 +152,12 @@ function Enregistrer() {
                         />
                         <span id="span4" />
                     </div>
+                    <br />
                     <div>
-                        <label />
                         <button onClick={addUser}>Enregistrer</button>
                     </div>
+                    <br />
                     <div>
-                        <label />
                         <div>
                             Vous avez déjà un compte ?
                             <Link to="/AccountScreen"> S'identifier</Link>

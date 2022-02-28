@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
 
 // Components
-import BarreLaterale from "../../Components/BarreLaterale/AsideLaterale/BarreLaterale";
-import Bouton from "../../Components/BarreLaterale/BoutonBarre/Boutton";
+import BarreLaterale from "../../Components/BarreLaterale/BarreLaterale/BarreLaterale";
+import Bouton from "../../Components/BarreLaterale/BoutonBarre/BouttonBarre";
 import BarrePostMessage from "../../Components/Header/BarrePostMessage/PostMessage";
 import BarrePostImage from "../../Components/Header/Barre/BarrePostImage";
-import CardPrincipal from "../../Components/CardPageAccueil/Card/CardPrincipal";
+import CardPrincipal from "../../Components/CardPageAccueil/CardPrincipal/CardPrincipal";
 
 // CSS
 import "./PageAccueil.css";
@@ -13,7 +13,7 @@ import "./PageAccueil.css";
 // ===== Page principal accueil =====
 function PageAccueil() {
 
-    // Si token j'affiche la page profil
+    // Si token j'affiche la page accueil profil
     if (localStorage.bearer) {
 
         return (
@@ -26,17 +26,17 @@ function PageAccueil() {
                     <BarreLaterale />
                 </div>
 
-                {/* Components barre de message */}
+                {/* Components barre poste de message */}
                 <div>
                     <BarrePostMessage />
                 </div>
 
-                {/* Component Barre post image */}
+                {/* Component Barre poste d'image */}
                 <div className="container">
                     <BarrePostImage />
                 </div>
 
-                {/*  Partie dynamique messages postés  */}
+                {/*  Component card principal */}
                 <CardPrincipal />
             </div>
         );

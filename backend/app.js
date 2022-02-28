@@ -26,13 +26,13 @@ app.use("/api/messagesPerso", messagesRoutes)  // Route publication message pers
 app.use("/api/comments", commentsRoutes) // Route publication commentaires sur message perso utilisateurs
 
 // Images
-app.use("/api/posts", postsRoutes) // Route publier images utilisateurs
-app.use("/api/contentImg", commentsRoutesImg) // Route publication commentaires sur une image
+app.use("/api/posts", postsRoutes) // Route publication images perso
+app.use("/api/contentImg", commentsRoutesImg) // Route publication commentaires sur une image utilisateurs
 
 // Like/Dislike
 // app.use("/api/like", likeRoutes) // Route pour like ou dislike
 
-// Middleware qui permet de charger les fichiers qui sont dans le répertoire images
+// Middleware qui permet de charger les fichiers qui sont dans le dossier images
 app.use("/images", express.static(path.join(__dirname, "images")))
 
 module.exports = app

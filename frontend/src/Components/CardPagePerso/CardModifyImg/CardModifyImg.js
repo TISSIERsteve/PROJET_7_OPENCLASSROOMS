@@ -10,7 +10,7 @@ function CardModifyImg() {
 
     const idyImg = JSON.parse(localStorage.id)
 
-    const imgRegex = /(.*[a-z]){5,30}/;
+    const imgRegex = /(.*[A-Za-z]){5,30}/;
 
     const [legende, setlegende] = useState("");
     const [postPicture, setPostPicture] = useState(null);
@@ -20,9 +20,8 @@ function CardModifyImg() {
         setPostPicture(e.target.files[0]);
     };
 
-    // Ouverture fenêtre pour modifier le message
+    // Ouverture fenêtre
     const [isActive, setisActive] = useState("")
-
     const modifyImg = () => {
         if (isActive === "active") {
             setisActive("")

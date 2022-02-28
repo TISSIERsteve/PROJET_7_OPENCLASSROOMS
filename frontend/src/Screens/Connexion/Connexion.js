@@ -7,7 +7,6 @@ import "./Connexion.css";
 
 // ===== Page de connexion =====
 function Connexion() {
-
     const navigate = useNavigate();
 
     const [email, setemail] = useState("");
@@ -22,7 +21,7 @@ function Connexion() {
                 `http://localhost:3001/api/auth/login`,
                 {
                     email,
-                    password
+                    password,
                 }
             );
 
@@ -31,9 +30,9 @@ function Connexion() {
             localStorage.setItem("id", JSON.stringify(response.data.user.id));
             localStorage.setItem("bearer", response.data.token);
             localStorage.setItem("prenom", JSON.stringify(response.data.user.prenom));
+            localStorage.setItem("isAdmin", JSON.stringify(response.data.user.isAdmin));
 
             navigate("/ProfileScreen", { replace: true });
-
         } catch (err) {
             alert("E-mail ou mot de passe incorrect");
             window.location.reload();
@@ -44,7 +43,7 @@ function Connexion() {
     return (
         <div>
             <Link to="/">
-                <i className="fas fa-arrow-left flecheGauche" />
+                <i className="fas fa-arrow-left flecheGauche" /> retour
             </Link>
 
             {/* Formulaire de connexion */}
@@ -75,12 +74,12 @@ function Connexion() {
                         value={password}
                     />
                 </div>
+                <br />
                 <div>
-                    <label />
                     <button onClick={accountUser}>Se connecter</button>
                 </div>
+                <br />
                 <div>
-                    <label />
                     <div>
                         <div>
                             Vous voulez vous inscrire ?

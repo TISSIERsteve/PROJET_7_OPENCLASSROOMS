@@ -7,7 +7,7 @@ function CardGetAllCommentImage(props) {
 
     const [com, setcom] = useState("");
 
-    // Ouverture commentaire image poster page perso
+    // Ouverture fenêtre
     const [isGetActive, setGetisActive] = useState("");
     const openFieldset = () => {
         if (isGetActive === "active") {

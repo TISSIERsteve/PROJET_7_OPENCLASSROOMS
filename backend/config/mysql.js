@@ -1,7 +1,7 @@
 // Connection à MySql
 const mysql = require("mysql")
 
-// Fonction pour se connecter à Mysql
+// Fonction pour se connecter à PhpMyAdmin (base de données)
 const database = mysql.createConnection({
     user: "root",
     host: "localhost",

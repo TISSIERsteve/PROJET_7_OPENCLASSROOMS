@@ -5,9 +5,8 @@ import Axios from 'axios';
 // Component pour poster un commentaire sur image page accueil 
 function CardCommentOneImage(props) {
 
+    // Ouverture fenêtre 
     const [isActive, setisActive] = useState("")
-
-    // Ouverture fenêtre des commentaires 
     const handleShow = () => {
         if (isActive === "active") {
             setisActive("")
@@ -21,7 +20,7 @@ function CardCommentOneImage(props) {
     const prenom = JSON.parse(localStorage.prenom)
     const [commentaires, setcommentaires] = useState('')
 
-    const commentRegex = /(.*[a-z]){5,30}/;
+    const commentRegex = /(.*[A-Za-z]){5,30}/;
 
     // Fonction ajout commentaire
     const addCommentImg = () => {
@@ -40,7 +39,7 @@ function CardCommentOneImage(props) {
                 fk_id_post: props.idy,
             })
                 .then(() => {
-                    alert(`${prenom} vous venez de commenter l'image `);
+                    alert(`${prenom} vous venez de commenter `);
                     window.location.reload()
                 })
                 .catch(err => {

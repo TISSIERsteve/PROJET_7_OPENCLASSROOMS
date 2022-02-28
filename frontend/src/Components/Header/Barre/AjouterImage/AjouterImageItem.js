@@ -33,6 +33,7 @@ function AjouterImageItem() {
             formData.append("fk_id_user", localStorage.id);
             formData.append("legende", legende);
             formData.append("image", postPicture);
+            formData.append("prenom", JSON.parse(localStorage.prenom))
             Axios.post("http://localhost:3001/api/posts", formData)
                 .then((response) => {
                     alert("Votre image est maintenant visible sur GROUPOMANIA")

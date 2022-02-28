@@ -2,19 +2,19 @@ const db = require("../config/mysql")
 const fs = require("fs")
 
 // Récupérer toutes les images des utilisateurs sur page accueil
-exports.getAllPosts = (req, res, next) => {
+// exports.getAllPosts = (req, res, next) => {
 
-    db.query("SELECT prenom, DATE_FORMAT(created_at, 'Le %d %m %Y à %H:%i') AS created_at ,post_id,title, media_url, content, fk_id_user FROM post JOIN user ON post.fk_id_user = user.user_id ORDER BY created_at DESC",
-        (err, result) => {
-            if (err) {
-                res.status(403).json({ message: "Accès refusé reception des images(accueil)" })
-            } else {
-                res.status(200).json({
-                    result
-                });
-            }
-        });
-}
+//     db.query("SELECT prenom, DATE_FORMAT(created_at, 'Le %d %m %Y à %H:%i') AS created_at ,post_id,title, media_url, content, fk_id_user FROM post JOIN user ON post.fk_id_user = user.user_id ORDER BY created_at DESC",
+//         (err, result) => {
+//             if (err) {
+//                 res.status(403).json({ message: "Accès refusé reception des images(accueil)" })
+//             } else {
+//                 res.status(200).json({
+//                     result
+//                 });
+//             }
+//         });
+// }
 
 // Récupère toutes mes images sur ma page perso 
 exports.getOnePost = (req, res, next) => {
@@ -44,8 +44,10 @@ exports.createPost = (req, res, next) => {
     const media = {
         title: content,
         media_url,
-        fk_id_user: req.body.fk_id_user
+        fk_id_user: req.body.fk_id_user,
+        content: req.body.prenom
     }
+    console.log(media);
 
     db.query(
         'INSERT INTO post set ?',

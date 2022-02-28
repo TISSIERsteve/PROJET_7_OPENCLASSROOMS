@@ -10,9 +10,9 @@ function CardModifyComment() {
     const [message, setmessageModify] = useState('')
 
 
-    const commentRegex = /(.*[a-z]){5,30}/;
+    const commentRegex = /(.*[A-Za-z]){5,30}/;
 
-    // Ouverture fenêtre pour modifier le message
+    // Ouverture fenêtre
     const [isActive, setisActive] = useState("")
     const handleShow = () => {
         if (isActive === "active") {

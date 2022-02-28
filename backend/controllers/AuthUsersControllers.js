@@ -46,16 +46,15 @@ exports.login = (req, res, next) => {
                 const passwordOk = await bcrypt.compare(password, result[0].password);
 
                 if (passwordOk === false || email === false) {
-                    return res
-                        .status(403)
-                        .json({ message: "Mot de passe non valide ou non renseigner" });
+                    return res.status(403).json({ message: "Mot de passe non valide ou non renseigner" });
                 }
 
                 if (passwordOk) {
                     const token = jwt.sign(
                         {
                             exp: Math.floor(Date.now() / 1000) + 60 * 60,
-                            id: result[0].user_id
+                            id: result[0].user_id,
+                            isAdmin: result.isAdmin // Administrateur
                         },
                         "RANDOM_PRIVATE_KEY"
                     );
@@ -66,7 +65,8 @@ exports.login = (req, res, next) => {
                         user: {
                             id: result[0].user_id,
                             email: result[0].email,
-                            prenom: result[0].prenom
+                            prenom: result[0].prenom,
+                            isAdmin: result[0].isAdmin
                         }
                     });
                 }
@@ -88,4 +88,21 @@ exports.dessactive = (req, res, next) => {
             return res.status(200).json({ message: "Utilisateur supprimer" });
         }
     });
+};
+
+// Connexion en tant administrateur
+exports.loginIsAdmin = (req, res, next) => {
+    db.query(
+        `SELECT isAdmin FROM user `,
+        (err, result) => {
+            if (err) {
+                console.log(err);
+                return res.status(403).json({ message: "Accès refusé à la connexion en tant Administrateur" });
+            } else {
+                return res.status(200).json({
+                    result
+                });
+            }
+        }
+    );
 };

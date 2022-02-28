@@ -4,15 +4,18 @@ import Axios from "axios";
 
 // ===== Components pour voir commentaires images dans card page accueil =====
 function CardGetAllCommentImage(props) {
-    const commentRegex = /(.*[a-z]){5,30}/;
+
+    // let isAdmin = parseInt(localStorage.isAdmin, 10);
+
+    const commentRegex = /(.*[A-Za-z]){5,30}/;
     const authUser = parseInt(localStorage.id, 10);
     const prenom = JSON.parse(localStorage.prenom);
     const [messageItem, setmessageItemModify] = useState("");
 
-    // Obtenir un commentaire poster sur une image
+    // Obtenir commentaires poster sur une image
     const [com, setcom] = useState("");
 
-    // Ouverture commentaire image poster page accueil
+    // Ouverture fenêtre
     const [isGetActive, setGetisActive] = useState("");
     const openFieldset = () => {
         if (isGetActive === "active") {
@@ -46,7 +49,7 @@ function CardGetAllCommentImage(props) {
                 alert("Votre commentaire à bien été supprimer");
             } catch (error) {
                 alert(
-                    "Une erreur s'est produite lors de lasuppression du commentaire, veuillez réessayer"
+                    "Une erreur s'est produite lors de la suppression du commentaire, veuillez réessayer"
                 );
             }
         }
@@ -110,8 +113,9 @@ function CardGetAllCommentImage(props) {
                                     <li className="getcomment_content">
                                         {x.content}
 
-                                        {/* Si user correspond pour modifier ou effacer commentaire */}
-                                        {authUser === x.user_id &&
+                                        {/* Si user ou admin correspond pour modifier ou effacer commentaire page accueil*/}
+                                        {
+                                            authUser === x.user_id &&
                                             <div>
                                                 {/* Modifier commentaire image page accueil*/}
                                                 <div

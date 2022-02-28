@@ -1,20 +1,59 @@
 const db = require("../config/mysql");
 
 // Obtenir tous les messages publiés des utilisateurs sur Page accueil
+// exports.getAllMessages = (req, res, next) => {
+//     db.query(
+//         "SELECT message_perso_id,prenom,DATE_FORMAT(date, 'le %d %m %Y à %H:%i') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ",
+//         (err, result) => {
+//             if (err) {
+//                 return res
+//                     .status(403)
+//                     .json({ message: "Accès refusé reception des messageperso(accueil)" });
+//             } else {
+//                 return res.status(200).json({
+//                     messageperso: {
+//                         resultat: result
+//                     }
+//                 });
+//             }
+//         }
+//     );
+// };
+
+// Obtenir tous les messages et images publiés des utilisateurs sur Page accueil
 exports.getAllMessages = (req, res, next) => {
     db.query(
-        "SELECT message_perso_id,prenom,DATE_FORMAT(date, 'le %d %m %Y à %H:%i') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ",
-        (err, result) => {
+        "SELECT message_perso_id,prenom,date,commentaire, fk_id_user FROM messageperso  ORDER BY date DESC ",
+        (err, resultMessages) => {
             if (err) {
-                return res
-                    .status(403)
-                    .json({ message: "Accès refusé reception des messageperso(accueil)" });
-            } else {
-                return res.status(200).json({
-                    messageperso: {
-                        resultat: result
-                    }
+                return res.status(403).json({
+                    message: "Accès refusé reception des messageperso(accueil)",
                 });
+            } else {
+                db.query(
+                    "SELECT post_id, title, fk_id_user, media_url, content, created_at AS date FROM post",
+                    (err, resultPosts) => {
+                        if (err) {
+                            return res
+                                .status(403)
+                                .json({ message: "Accès refusé reception des posts image" });
+                        } else {
+                            const combined = resultMessages.concat(resultPosts);
+
+                            combined.sort(
+                                (message, post) => new Date(message.date) - new Date(post.date)
+                            );
+
+                            combined.reverse();
+
+                            return res.status(200).json({
+                                messageperso: {
+                                    resultat: combined,
+                                },
+                            });
+                        }
+                    }
+                );
             }
         }
     );

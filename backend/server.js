@@ -1,7 +1,21 @@
-const app = require("./app")
+const app = require('./app');
 
-// Variables d'environnement ou le port défini
-const PORT = process.env.PORT || 3001
+const normalizePort = val => {
+    const port = parseInt(val, 10);
 
-// Le serveur écoute sur le port définis
+    if (isNaN(port)) {
+        return val;
+    }
+    if (port >= 0) {
+        return port;
+    }
+    return false;
+};
+
+const PORT = normalizePort(process.env.PORT || '3001', () => {
+    console.log("Le serveur devrait démarrer sur le port 3001");
+});
+
 app.listen(PORT, () => console.log(`Serveur en route sur le port : ${PORT} `))
+
+
