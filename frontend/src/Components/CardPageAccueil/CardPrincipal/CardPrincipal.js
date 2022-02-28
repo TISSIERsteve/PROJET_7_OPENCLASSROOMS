@@ -105,7 +105,7 @@ import "./CardPrincipal.css";
 function CardPrincipal() {
 
     const navigate = useNavigate();
-    // let isAdmin = parseInt(localStorage.isAdmin, 10);
+    let isAdmin = parseInt(localStorage.isAdmin, 10);
 
     // Affichage de tous les messages et images postés
     const [post, setpost] = useState("");
@@ -124,6 +124,38 @@ function CardPrincipal() {
                 }
             });
     }, [navigate]);
+
+    // Fonction admin supprimer card img
+    const deleteCardImg = (e) => {
+        if (window.confirm("En tant qu'administrateur voulez vous vraiment supprimer cette image ?")) {
+            deleteCardImgDefini(e);
+        }
+    }
+    const deleteCardImgDefini = (id) => {
+        console.log(id);
+        Axios.delete("http://localhost:3001/api/posts/" + id)
+            .then(response => {
+                alert("En tant qu'administarteur vous avez bien supprimer l'image.");
+                window.location.reload();
+            });
+    }
+
+    // Fonction admin supprimer card message
+    const deleteCardMessage = (e) => {
+        if (window.confirm("En tant qu'administrateur voulez vous vraiment supprimer ce message ?")) {
+            deleteCardMessageDefini(e);
+        }
+    }
+    const deleteCardMessageDefini = (id) => {
+        console.log(id);
+        Axios.delete(
+            "http://localhost:3001/api/messagesPerso/" + id
+        ).then(response => {
+            alert("En tant qu'administrateur vous avez bien supprimer le message.");
+            window.location.reload();
+        });
+
+    }
 
     // JSX
     return (
@@ -162,13 +194,13 @@ function CardPrincipal() {
                                         {/* Components voir commentaire sur un message page accueil */}
                                         <GetComment messageid={x.message_perso_id} />
 
-                                        {/* Fonction administrateur
+                                        {/* { Fonction administrateur */}
                                         {
                                             isAdmin !== 1 ||
-                                            <button>
+                                            <button onClick={() => deleteCardMessage(x.message_perso_id)}>
                                                 <i className="fas fa-trash-alt poubelle" />
                                             </button>
-                                        } */}
+                                        }
 
                                     </article>
                                 </li>
@@ -215,6 +247,14 @@ function CardPrincipal() {
 
                                         {/* Components voir commentaire sur une image page accueil */}
                                         <CardGetAllCommentImage commentIdy={x.post_id} />
+
+                                        {/* { Fonction administrateur */}
+                                        {
+                                            isAdmin !== 1 ||
+                                            <button onClick={() => deleteCardImg(x.post_id)}>
+                                                <i className="fas fa-trash-alt poubelle" />
+                                            </button>
+                                        }
                                     </article>
                                 </li>
                             );

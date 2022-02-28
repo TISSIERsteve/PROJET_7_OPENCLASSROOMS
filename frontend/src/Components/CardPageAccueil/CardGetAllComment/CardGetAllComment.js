@@ -14,10 +14,8 @@ function CardGetComment(props) {
 
     let isAdmin = parseInt(localStorage.isAdmin, 10);
 
-
-
-    const [admin, setadmin] = useState("");
-    console.log(admin);
+    // const [admin, setadmin] = useState("");
+    // // console.log(admin);
 
 
     const [messageItem, setmessageItemModify] = useState("");
@@ -43,17 +41,18 @@ function CardGetComment(props) {
         },
         [props.messageid]
     );
-    // Requête pour administrateur
-    useEffect(
-        () => {
-            Axios.get(
-                `http://localhost:3001/api/auth/loginIsAdmin`
-            ).then(response => {
-                setadmin(response.data.result.map((x) => x.isAdmin));
-            });
-        },
-        []
-    );
+
+    // // Requête pour administrateur
+    // useEffect(
+    //     () => {
+    //         Axios.get(
+    //             `http://localhost:3001/api/auth/loginIsAdmin`
+    //         ).then(response => {
+    //             setadmin(response.data.result.map((x) => x.isAdmin));
+    //         });
+    //     },
+    //     []
+    // );
 
     // Fonctions supprimer commentaire page accueil
     const handleDelete = async id => {
@@ -125,6 +124,11 @@ function CardGetComment(props) {
                     {com && com.length
                         ? com.map(x => {
 
+                            const valide = authUser === x.user_id
+
+                            const valida = (valide || isAdmin)
+
+
                             return (
                                 <ul key={x.comment_id} className="getcomment" >
                                     <li className="getcomment_prenom">
@@ -136,7 +140,7 @@ function CardGetComment(props) {
 
 
                                     {/* Si user ou admin correspond pour modifier ou effacer commentaire page accueil*/}
-                                    {authUser === x.user_id || isAdmin !== 1 ||
+                                    {valida && valida ?
                                         <div>
                                             <div className={`section_modify_comment_accueil ${isModify}`}>
                                                 <label />
@@ -177,7 +181,7 @@ function CardGetComment(props) {
                                                 </button>
                                             </div>
                                         </div>
-                                    }
+                                        : <li></li>}
 
                                 </ul>
                             );
@@ -185,7 +189,7 @@ function CardGetComment(props) {
                         : <li>Vous avez aucun commentaire</li>}
                 </section>
             </fieldset>
-        </div >
+        </div>
     );
 
 }

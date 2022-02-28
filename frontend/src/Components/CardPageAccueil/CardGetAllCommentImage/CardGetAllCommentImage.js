@@ -5,7 +5,7 @@ import Axios from "axios";
 // ===== Components pour voir commentaires images dans card page accueil =====
 function CardGetAllCommentImage(props) {
 
-    // let isAdmin = parseInt(localStorage.isAdmin, 10);
+    let isAdmin = parseInt(localStorage.isAdmin, 10);
 
     const commentRegex = /(.*[A-Za-z]){5,30}/;
     const authUser = parseInt(localStorage.id, 10);
@@ -105,6 +105,11 @@ function CardGetAllCommentImage(props) {
                 <section className={`getsection ${isGetActive}`}>
                     {com && com.length
                         ? com.map(x => {
+
+                            const valide = authUser === x.user_id
+
+                            const valida = (valide || isAdmin)
+
                             return (
                                 <ul key={x.comment_id} className="getcomment">
                                     <li className="getcomment_prenom">
@@ -115,55 +120,58 @@ function CardGetAllCommentImage(props) {
 
                                         {/* Si user ou admin correspond pour modifier ou effacer commentaire page accueil*/}
                                         {
-                                            authUser === x.user_id &&
-                                            <div>
-                                                {/* Modifier commentaire image page accueil*/}
-                                                <div
-                                                    className={`section_modify_comment_accueil ${isModify}`}>
-                                                    <label />
-                                                    <input
-                                                        className="accueil_input"
-                                                        id="commentaires"
-                                                        type="text"
-                                                        placeholder="Modifier le message"
-                                                        onChange={event => {
-                                                            if (commentRegex.test(event.target.value)) {
-                                                                setmessageItemModify(event.target.value);
-                                                                return;
-                                                            }
-                                                        }}
-                                                    />
+                                            valida && valida ?
+
+                                                <div>
+                                                    {/* Modifier commentaire image page accueil*/}
+                                                    <div
+                                                        className={`section_modify_comment_accueil ${isModify}`}>
+                                                        <label />
+                                                        <input
+                                                            className="accueil_input"
+                                                            id="commentaires"
+                                                            type="text"
+                                                            placeholder="Modifier le message"
+                                                            onChange={event => {
+                                                                if (commentRegex.test(event.target.value)) {
+                                                                    setmessageItemModify(event.target.value);
+                                                                    return;
+                                                                }
+                                                            }}
+                                                        />
+                                                    </div>
+
+                                                    <div className="validate_accueil">
+                                                        {/* Boutton modifier message image page accueil */}
+                                                        <button className="deleModif" onClick={handleEdit}>
+                                                            <i className="fas fa-edit stylo" />
+                                                        </button>
+
+                                                        {/* Boutton effacer message iamge page accueil */}
+                                                        <button
+                                                            className="deleModif"
+                                                            onClick={() => handleDelete(x.comment_id)}>
+                                                            <i className="fas fa-trash-alt poubelle" />
+                                                        </button>
+
+                                                        {/* Boutton valider modification commentaire image */}
+                                                        <button
+                                                            className="deleModif"
+                                                            onClick={() => addModify(x.comment_id)}>
+                                                            <i className="fas fa-plus-circle accueil" />
+                                                        </button>
+                                                    </div>
                                                 </div>
-
-                                                <div className="validate_accueil">
-                                                    {/* Boutton modifier message image page accueil */}
-                                                    <button className="deleModif" onClick={handleEdit}>
-                                                        <i className="fas fa-edit stylo" />
-                                                    </button>
-
-                                                    {/* Boutton effacer message iamge page accueil */}
-                                                    <button
-                                                        className="deleModif"
-                                                        onClick={() => handleDelete(x.comment_id)}>
-                                                        <i className="fas fa-trash-alt poubelle" />
-                                                    </button>
-
-                                                    {/* Boutton valider modification commentaire image */}
-                                                    <button
-                                                        className="deleModif"
-                                                        onClick={() => addModify(x.comment_id)}>
-                                                        <i className="fas fa-plus-circle accueil" />
-                                                    </button>
-                                                </div>
-                                            </div>}
+                                                : <li></li>
+                                        }
                                     </li>
                                 </ul>
                             );
                         })
                         : <li>Vous avez aucun commentaire</li>}
                 </section>
-            </fieldset>
-        </div>
+            </fieldset >
+        </div >
     );
 }
 export default CardGetAllCommentImage;
