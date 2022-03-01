@@ -2,11 +2,17 @@ import React from 'react';
 import Axios from "axios"
 import { useState } from 'react';
 
+// Components
+import LoadingBox from '../../LoadingBox/LoadingBox';
+
 // CSS
 import "./PostMessage.css"
 
 // ===== Components barre pour poster un message =====
 function Search() {
+
+    // LoadSpinner
+    const [loading, setLoading] = useState(false)
 
     const storage = JSON.parse(localStorage.prenom)
     const [commentaire, setcommentaire] = useState("")
@@ -14,6 +20,7 @@ function Search() {
 
     // Fonction publication message 
     const addComment = () => {
+        setLoading(true)
         if (window.confirm(`${storage} voulez vous vraiment publier ce message ?`)) {
             addCommentDefini()
         }
@@ -40,31 +47,35 @@ function Search() {
     }
     // JSX
     return <div>
+        <form>
+            {/* Affichage du nom */}
+            <div className='profileScreenPrenom'>
+                <label htmlFor='commentaire'>Bonjour {storage} comment vas tu aujourd'hui ?</label>
+            </div>
 
-        {/* Affichage du nom */}
-        <div className='profileScreenPrenom'>
-            <label htmlFor='commentaire'>Bonjour {storage} comment vas tu aujourd'hui ?</label>
-        </div>
+            {/* Barre de publication message */}
+            <div className='profileScreen_BarreRecherche'>
+                <input className='profileScreenInput'
+                    id='commentaire'
+                    type="text"
+                    placeholder="Quoi de neuf, mettez votre message ici ?"
+                    onChange={(event) => {
+                        if (commentRegex.test(event.target.value)) {
+                            setcommentaire(event.target.value)
+                            return
+                        }
+                    }}
+                ></input>
 
-        {/* Barre de publication message */}
-        <div className='profileScreen_BarreRecherche'>
-            <input className='profileScreenInput'
-                id='commentaire'
-                type="text"
-                placeholder="Quoi de neuf, mettez votre message ici ?"
-                onChange={(event) => {
-                    if (commentRegex.test(event.target.value)) {
-                        setcommentaire(event.target.value)
-                        return
-                    }
-                }}
-            ></input>
+                <span>
+                    {loading ? (<LoadingBox></LoadingBox>) : (
 
-            <span>
-                <i className="far fa-plus-square add" onClick={addComment}></i>
-            </span>
+                        <i className="far fa-plus-square add" onClick={addComment}></i>
+                    )}
+                </span>
 
-        </div>
+            </div>
+        </form>
     </div>;
 }
 

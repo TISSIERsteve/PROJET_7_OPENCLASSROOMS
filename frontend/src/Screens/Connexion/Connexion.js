@@ -33,6 +33,7 @@ function Connexion() {
             localStorage.setItem("isAdmin", JSON.stringify(response.data.user.isAdmin));
 
             navigate("/ProfileScreen", { replace: true });
+
         } catch (err) {
             alert("E-mail ou mot de passe incorrect");
             window.location.reload();
@@ -68,7 +69,7 @@ function Connexion() {
                     <input
                         type="password"
                         id="password"
-                        placeholder="Enter password"
+                        placeholder="Entrer mot de passe"
                         required
                         onChange={event => setpassword(event.target.value)}
                         value={password}

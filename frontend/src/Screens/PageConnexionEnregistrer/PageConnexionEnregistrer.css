@@ -1,8 +1,15 @@
 /* Page de connexion*/
+.homeScreen {
+    max-width: 60rem;
+    margin: 15rem auto;
+    background-color: rgb(240,233,233);
+    padding: 1rem;
+}
+
 .homeScreen_navLink {
     display: flex;
     flex-direction: column;
-    margin-top: 20rem;
+    margin-top: 8rem;
 }
 
 .homeScreen_title,

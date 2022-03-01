@@ -16,7 +16,7 @@ const fs = require("fs")
 //         });
 // }
 
-// Récupère toutes mes images sur ma page perso 
+// Récupère toutes mes images sur ma page perso A MODIFIER POUR METTRE ORDRE IMG ET MESSAGES
 exports.getOnePost = (req, res, next) => {
     const id = req.params.id;
 

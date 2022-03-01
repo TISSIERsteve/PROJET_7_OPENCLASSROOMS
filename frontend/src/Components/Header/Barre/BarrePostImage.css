@@ -32,6 +32,7 @@ ul.profileScreenTele {
     color: green;
     margin-right: 0.5rem;
     cursor: pointer;
+    transition: 1s ease-in-out;
 }
 
 .fa-camera:hover::after {
@@ -40,40 +41,7 @@ ul.profileScreenTele {
     margin-left: 0.5rem;
 }
 
-.fa-video:hover::after {
-    content: "Ajouter une vidéo";
-    color: black;
-    margin-left: 0.5rem;
-}
-
-.fa-comments:hover::after {
-    content: "Envoyer un messages privés";
-    color: black;
-    margin-left: 0.5rem;
-}
-
-.fa-video {
-    color: red;
-    margin-right: 0.5rem;
-    cursor: pointer;
-}
-
-.fa-comments {
-    color: darkmagenta;
-    margin-right: 0.5rem;
-    cursor: pointer;
-}
-
-.fa-camera:hover,
-.fa-video:hover,
-.fa-comments:hover {
+.fa-camera:hover {
     transform: scale(1.1);
     transition: ease-out 3s ;
-}
-
-.sms {
-    border: 1px solid black;
-    padding: 0.5rem;
-    border-radius: 40%;
-    background-color: white;
 }

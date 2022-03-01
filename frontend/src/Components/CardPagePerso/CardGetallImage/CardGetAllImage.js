@@ -48,7 +48,7 @@ function CardGetAllImage() {
                                 <img
                                     className="profileCommentImage"
                                     src="./images/img1.png"
-                                    alt="logo Entreprise"
+                                    alt="Entreprise"
                                 />
                                 <h3 className="profileName">
                                     {x.prenom} à publier<br />
@@ -56,7 +56,7 @@ function CardGetAllImage() {
                                     <img
                                         className="getAllImage_image"
                                         src={x.media_url}
-                                        alt=""
+                                        alt="image_publier"
                                     />
                                 </h3>
                                 <p className="profileComment">

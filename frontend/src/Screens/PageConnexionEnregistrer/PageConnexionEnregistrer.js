@@ -11,7 +11,7 @@ function PageConnexionEnregistrer() {
             <main>
                 <nav className="homeScreen_navLink">
                     <div className="homeScreen_title">
-                        <h3>Vous n'êtes pas identifié</h3>
+                        <h2>Vous n'êtes pas identifié</h2>
                     </div>
                     <div className="homeScreen_navLink_item">
                         <Link to="/AccountScreen">Se connecter</Link> <strong>ou</strong>

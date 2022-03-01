@@ -21,8 +21,12 @@
     margin-top: 1rem;
 }
 
+/* .form {
+    width: 50%;
+} */
+
 .profilesComments.modify {
-    width: 70%;
+    width: 80%;
 }
 
 .profilesComments::placeholder {

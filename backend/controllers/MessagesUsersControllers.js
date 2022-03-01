@@ -59,7 +59,7 @@ exports.getAllMessages = (req, res, next) => {
     );
 };
 
-// Obtenir tous mes messages personnels publiés sur Page Perso
+// Obtenir tous mes messages personnels publiés sur Page Perso A MODIFIER POUR METTRE ORDRE IMG ET MESSAGES
 exports.getOneMessage = (req, res, next) => {
     const id = req.params.id;
     db.query(

@@ -52,6 +52,7 @@ function CardModifyComment() {
     // JSX
     return (
         <>
+
             <div className="pen">
                 <button onClick={handleShow}>
                     <i className="fas fa-edit stylo" />
@@ -59,6 +60,7 @@ function CardModifyComment() {
             </div>
 
             <div className={`profilesCommentsInput open ${isActive}`}>
+                {/* <form className='form'> */}
                 <label></label>
                 <input className="profilesComments modify"
                     id='commentaires'
@@ -71,10 +73,12 @@ function CardModifyComment() {
                         }
                     }}
                 ></input>
-                <button className='btn_modify'>
+                <button className='btn_modify'
+                    aria-label='valider'>
                     <i className="fas fa-plus-circle valide" onClick={addCommentModify}></i>
                 </button>
 
+                {/* </form> */}
             </div>
         </>
     )

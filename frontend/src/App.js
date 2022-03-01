@@ -24,12 +24,15 @@ function App() {
         minute: "numeric"
     });
 
+    // JSX
     return (
         <Router>
             <div className="grid-container">
                 <header>
                     <div className="entete">
-                        <h1>GROUPOMANIA</h1>
+                        <h1>
+                            <img className="logo_entreprise" src="../images/img4.png" alt="Logo entreprise"></img>
+                        </h1>
                     </div>
                 </header>
 

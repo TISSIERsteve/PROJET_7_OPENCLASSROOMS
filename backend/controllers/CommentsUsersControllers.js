@@ -16,7 +16,7 @@ exports.getAllComments = (req, res, next) => {
     );
 };
 
-// Récupérer commentaires message  page perso
+// Récupérer commentaires message  page perso 
 exports.getOneComment = (req, res, next) => {
     const id_message = req.params.id;
 

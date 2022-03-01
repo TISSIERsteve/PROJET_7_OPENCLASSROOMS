@@ -17,7 +17,6 @@ function CardGetComment(props) {
     // const [admin, setadmin] = useState("");
     // // console.log(admin);
 
-
     const [messageItem, setmessageItemModify] = useState("");
     const [com, setcom] = useState("");
 
@@ -72,10 +71,12 @@ function CardGetComment(props) {
             }
         }
     };
+    // ======
 
     // Fonction modifier commentaire
     const [isModify, setisModify] = useState("");
-    const handleEdit = () => {
+    const handleEdit = (id) => {
+        console.log(id);
         if (isModify === "active") {
             setisModify("");
         } else {
@@ -111,11 +112,12 @@ function CardGetComment(props) {
             alert("Veuillez insérer un minimum de 5 caractères");
         }
     };
+    // ======
 
     // JSX
 
     return (
-        <div className="get" >
+        <div className="get">
             <fieldset className="fieldset">
                 <legend className="getcomment_fieldset" onClick={openFieldset}>
                     Voir les commentaires
@@ -123,14 +125,11 @@ function CardGetComment(props) {
                 <section className={`getsection ${isGetActive}`}>
                     {com && com.length
                         ? com.map(x => {
-
-                            const valide = authUser === x.user_id
-
-                            const valida = (valide || isAdmin)
-
+                            const valide = authUser === x.user_id;
+                            const valida = valide || isAdmin;
 
                             return (
-                                <ul key={x.comment_id} className="getcomment" >
+                                <ul key={x.comment_id} className="getcomment">
                                     <li className="getcomment_prenom">
                                         {x.prenom} vous à commenter :
                                     </li>
@@ -138,11 +137,11 @@ function CardGetComment(props) {
                                         {x.content}
                                     </li>
 
-
                                     {/* Si user ou admin correspond pour modifier ou effacer commentaire page accueil*/}
-                                    {valida && valida ?
-                                        <div>
-                                            <div className={`section_modify_comment_accueil ${isModify}`}>
+                                    {valida && valida
+                                        ? <div>
+                                            <div
+                                                className={`section_modify_comment_accueil ${isModify}`}>
                                                 <label />
                                                 <input
                                                     className="accueil_input"
@@ -161,7 +160,8 @@ function CardGetComment(props) {
                                             <div className="validate_accueil">
 
                                                 {/* Boutton modifier message page accueil */}
-                                                <button className="deleModif" onClick={handleEdit}>
+                                                <button className="deleModif"
+                                                    onClick={() => handleEdit(x.comment_id)}>
                                                     <i className="fas fa-edit stylo" />
                                                 </button>
 
@@ -179,10 +179,10 @@ function CardGetComment(props) {
                                                         onClick={() => addModify(x.comment_id)}
                                                     />
                                                 </button>
+
                                             </div>
                                         </div>
-                                        : <li></li>}
-
+                                        : <li />}
                                 </ul>
                             );
                         })
@@ -191,6 +191,5 @@ function CardGetComment(props) {
             </fieldset>
         </div>
     );
-
 }
 export default CardGetComment;

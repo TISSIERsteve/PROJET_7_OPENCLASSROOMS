@@ -2,12 +2,17 @@ import React from 'react';
 import { useState } from "react"
 import Axios from 'axios';
 
+// Components
+import LoadingBox from '../../LoadingBox/LoadingBox';
+
 // CSS
 import "./CardPostComment.css"
 
 // ===== Components ajout commentaire sur un message dans card sur Page accueil =====
 function CardPostComment(props) {
 
+    // LoadSpinner
+    const [loading, setLoading] = useState(false)
 
     // Ouverture fenêtre 
     const [isActive, setisActive] = useState("")
@@ -28,6 +33,7 @@ function CardPostComment(props) {
 
     // Fonction ajout commentaire
     const addCommentUser = () => {
+        setLoading(true)
         if (window.confirm(`${prenom} êtes vous sur de vouloir publier votre commentaire`)) {
             addCommentUserDefini()
         } else {
@@ -73,7 +79,9 @@ function CardPostComment(props) {
                 ></input>
 
                 <button className='btn_modify'>
-                    <i className="fas fa-plus-circle valide" onClick={addCommentUser}></i>
+                    {loading ? (<LoadingBox></LoadingBox>) : (
+                        <i className="fas fa-plus-circle valide" onClick={addCommentUser}></i>
+                    )}
                 </button>
 
             </div>

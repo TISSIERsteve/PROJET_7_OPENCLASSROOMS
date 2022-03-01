@@ -13,7 +13,7 @@ function Bouton() {
     // JSX
     return (
         <div>
-            <button
+            <button aria-label="ouvrir"
                 onClick={open}
                 type="button"
                 className="open-sidebar button_sidebar">

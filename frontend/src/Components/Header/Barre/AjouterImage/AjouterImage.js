@@ -6,8 +6,9 @@ function AjouterImage() {
 
     return (
         <>
+            <li className='animation'>Attention à vos propos</li>
             <li>
-                <Link to="/AddPickItem">
+                <Link to="/AddPickItem" aria-label='ajouter image' >
                     <i className="fas fa-camera"></i>
                 </Link>
             </li>

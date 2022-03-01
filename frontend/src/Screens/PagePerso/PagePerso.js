@@ -7,11 +7,17 @@ import SeeComment from "../../Components/CardPagePerso/CardGetAllComment/CardGet
 import CardGetAllImage from "../../Components/CardPagePerso/CardGetallImage/CardGetAllImage";
 import CardModifyComment from "../../Components/CardPagePerso/CardModifyComment.js/CardModifyComment";
 
+// Components
+import LoadingBox from "../../Components/LoadingBox/LoadingBox";
+
 // CSS
 import "./PagePerso.css";
 
 // ===== Page perso voir touts mes posts (images ou messages) =====
 function PagePerso() {
+
+    // LoadSpinner
+    const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate();
 
@@ -39,6 +45,7 @@ function PagePerso() {
 
     // Supprimer un message
     const deleteCom = e => {
+        setLoading(true)
         if (window.confirm("Voulez vous vraiment supprimer ce message ?")) {
             deleteDefini(e);
         }
@@ -63,9 +70,9 @@ function PagePerso() {
             {/*  Partie dynamique mes messages perso   */}
             <section className="itemsPerso">
                 <div className="persoprofilescreen_prenom">
-                    <h3>
+                    <h2>
                         Voici vos publications {prenom}
-                    </h3>
+                    </h2>
                 </div>
 
                 {/* Component pour obtenir images page perso */}
@@ -99,7 +106,9 @@ function PagePerso() {
 
                                     <div className="trash">
                                         <button onClick={() => deleteCom(x.message_perso_id)}>
-                                            <i className="fas fa-trash-alt poubelle" />
+                                            {loading ? (<LoadingBox></LoadingBox>) : (
+                                                <i className="fas fa-trash-alt poubelle" />
+                                            )}
                                         </button>
                                     </div>
                                 </article>

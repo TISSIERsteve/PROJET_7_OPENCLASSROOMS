@@ -66,7 +66,7 @@ function Enregistrer() {
                         <label htmlFor="nom">Nom:</label>
                         <input
                             required
-                            placeholder="Entre nom"
+                            placeholder="Entrer nom"
                             id="nom"
                             type="text"
                             onChange={event => {

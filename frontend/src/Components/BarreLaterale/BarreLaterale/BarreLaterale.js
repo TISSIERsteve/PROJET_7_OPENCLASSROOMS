@@ -7,7 +7,9 @@ import "./BarreLaterale.css";
 
 // Components Aside
 function BarreLaterale() {
+
     const identite = JSON.parse(localStorage.id);
+    let isAdmin = JSON.parse(localStorage.isAdmin)
 
     // Fonction supprimer compte utilisateur
     const deleteUser = () => {
@@ -42,29 +44,51 @@ function BarreLaterale() {
     return (
         <div>
             <aside className="aside">
-                <ul>
-                    {/* Déconnexion */}
-                    <li className="aside_li" onClick={deconect}>
-                        <Link className="lienAside " to="#">
-                            {" "}Déconnection
-                        </Link>
-                        <i className="fas fa-power-off" />
-                    </li>
 
-                    {/* Voir mes Publications */}
-                    <li>
-                        <Link className="lienAside" to="/PersoProfileScreen">
-                            Voir mes publications
-                        </Link>
-                    </li>
+                {
+                    (isAdmin === 1)
+                        ?
+                        <ul>
+                            {/* Déconnexion */}
+                            <li className="aside_li" onClick={deconect}>
+                                <Link className="lienAside " to="#">
+                                    {" "}Déconnection
+                                </Link>
+                                <i className="fas fa-power-off" />
+                            </li>
 
-                    {/* Suppression compte */}
-                    <li>
-                        <Link to="#" className="lienAside" onClick={deleteUser}>
-                            Désactiver mon compte
-                        </Link>
-                    </li>
-                </ul>
+                            {/* Voir mes Publications */}
+                            <li>
+                                <Link className="lienAside" to="/PersoProfileScreen">
+                                    Voir mes publications
+                                </Link>
+                            </li>
+                        </ul>
+                        :
+                        <ul>
+                            {/* Déconnexion */}
+                            <li className="aside_li" onClick={deconect}>
+                                <Link className="lienAside " to="#">
+                                    {" "}Déconnection
+                                </Link>
+                                <i className="fas fa-power-off" />
+                            </li>
+
+                            {/* Voir mes Publications */}
+                            <li>
+                                <Link className="lienAside" to="/PersoProfileScreen">
+                                    Voir mes publications
+                                </Link>
+                            </li>
+
+                            {/* Suppression compte */}
+                            <li>
+                                <Link to="#" className="lienAside" onClick={deleteUser}>
+                                    Désactiver mon compte
+                                </Link>
+                            </li>
+                        </ul>
+                }
             </aside>
         </div>
     );

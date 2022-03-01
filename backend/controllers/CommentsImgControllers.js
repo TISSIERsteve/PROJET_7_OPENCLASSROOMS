@@ -20,7 +20,7 @@ exports.createCommentImg = (req, res, next) => {
         });
 };
 
-// Récupérer commentaires image des utilisateurs la page accueil
+// Récupérer commentaires image des utilisateurs page accueil
 exports.getAllCommentsImg = (req, res, next) => {
     const id_message = req.params.id;
 

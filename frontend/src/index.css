@@ -52,6 +52,11 @@ header {
     position: relative;
 }
 
+.logo_entreprise {
+    height: 25rem;
+    display: flex;
+}
+
 main {
     grid-area: main;
 }
@@ -67,10 +72,15 @@ footer {
     background: linear-gradient(70deg, rgba(18, 83, 119, 1), rgb(65, 129, 163));
 }
 
+.piedPage {
+    font-size: 1.5rem;
+}
+
 .profileScreenDate {
     position: absolute;
     right: 1rem;
     color: #fff;
+    font-size: 1.5rem;
 }
 
 @media screen and (max-width: 710px) {

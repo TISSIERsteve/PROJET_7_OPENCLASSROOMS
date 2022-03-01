@@ -1,9 +1,13 @@
 import React from 'react';
 import { useState } from "react"
 import Axios from 'axios';
+import LoadingBox from '../../LoadingBox/LoadingBox';
 
 // Component pour poster un commentaire sur image page accueil 
 function CardCommentOneImage(props) {
+
+    // LoadSpinner
+    const [loading, setLoading] = useState(false)
 
     // Ouverture fenêtre 
     const [isActive, setisActive] = useState("")
@@ -24,6 +28,7 @@ function CardCommentOneImage(props) {
 
     // Fonction ajout commentaire
     const addCommentImg = () => {
+        setLoading(true)
         if (window.confirm(`${prenom} êtes vous sur de vouloir publier votre commentaire`)) {
             addCommentImgDefini()
         } else {
@@ -69,7 +74,10 @@ function CardCommentOneImage(props) {
                 ></input>
 
                 <button className='btn_modify'>
-                    <i className="fas fa-plus-circle valide" onClick={addCommentImg}></i>
+                    {loading ? (<LoadingBox></LoadingBox>) : (
+
+                        <i className="fas fa-plus-circle valide" onClick={addCommentImg}></i>
+                    )}
                 </button>
 
             </div>
