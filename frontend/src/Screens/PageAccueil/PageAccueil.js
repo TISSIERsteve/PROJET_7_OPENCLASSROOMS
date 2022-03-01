@@ -1,4 +1,6 @@
 import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Axios from "axios";
 
 // Components
 import BarreLaterale from "../../Components/BarreLaterale/BarreLaterale/BarreLaterale";
@@ -13,6 +15,16 @@ import "./PageAccueil.css";
 // ===== Page principal accueil =====
 function PageAccueil() {
 
+    const [isAdmin, setIsAdmin] = useState(0);
+
+    useEffect(() => {
+        Axios
+            .get("http://localhost:3001/api/auth/loginIsAdmin/" + localStorage.id)
+            .then((res) => {
+                console.log(res.data);
+                setIsAdmin(res.data.isAdmin);
+            });
+    }, [setIsAdmin]);
     // Si token j'affiche la page accueil profil
     if (localStorage.bearer) {
 
@@ -37,7 +49,7 @@ function PageAccueil() {
                 </div>
 
                 {/*  Component card principal */}
-                <CardPrincipal />
+                <CardPrincipal isAdmin={isAdmin} />
             </div>
         );
 

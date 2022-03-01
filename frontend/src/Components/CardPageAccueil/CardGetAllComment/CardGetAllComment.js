@@ -12,7 +12,7 @@ function CardGetComment(props) {
     const prenom = JSON.parse(localStorage.prenom);
     const commentRegex = /(.*[A-Za-z]){5,30}/;
 
-    let isAdmin = parseInt(localStorage.isAdmin, 10);
+    // let isAdmin = parseInt(localStorage.isAdmin, 10);
 
     // const [admin, setadmin] = useState("");
     // // console.log(admin);
@@ -74,13 +74,12 @@ function CardGetComment(props) {
     // ======
 
     // Fonction modifier commentaire
-    const [isModify, setisModify] = useState("");
+    const [isModify, setisModify] = useState({ id: null, active: false });
     const handleEdit = (id) => {
-        console.log(id);
-        if (isModify === "active") {
-            setisModify("");
+        if (isModify.active) {
+            setisModify({ id, active: false });
         } else {
-            setisModify("active");
+            setisModify({ id, active: true });
         }
     };
 
@@ -126,7 +125,6 @@ function CardGetComment(props) {
                     {com && com.length
                         ? com.map(x => {
                             const valide = authUser === x.user_id;
-                            const valida = valide || isAdmin;
 
                             return (
                                 <ul key={x.comment_id} className="getcomment">
@@ -138,10 +136,10 @@ function CardGetComment(props) {
                                     </li>
 
                                     {/* Si user ou admin correspond pour modifier ou effacer commentaire page accueil*/}
-                                    {valida && valida
+                                    {valide && valide
                                         ? <div>
                                             <div
-                                                className={`section_modify_comment_accueil ${isModify}`}>
+                                                className={`section_modify_comment_accueil ${x.comment_id === isModify.id && isModify.active ? "active" : ""}`}>
                                                 <label />
                                                 <input
                                                     className="accueil_input"

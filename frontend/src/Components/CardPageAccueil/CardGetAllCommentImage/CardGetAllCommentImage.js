@@ -55,13 +55,12 @@ function CardGetAllCommentImage(props) {
     };
 
     // Fonction modifier commentaire page accueil sur image
-    const [isModify, setisModify] = useState("");
-
-    const handleEdit = () => {
-        if (isModify === "active") {
-            setisModify("");
+    const [isModify, setisModify] = useState({ id: null, active: false });
+    const handleEdit = (id) => {
+        if (isModify.active) {
+            setisModify({ id, active: false });
         } else {
-            setisModify("active");
+            setisModify({ id, active: true });
         }
     };
 
@@ -120,7 +119,7 @@ function CardGetAllCommentImage(props) {
                                             ? <div>
                                                 {/* Modifier commentaire image page accueil*/}
                                                 <div
-                                                    className={`section_modify_comment_accueil ${isModify}`}>
+                                                    className={`section_modify_comment_accueil ${x.comment_id === isModify.id && isModify.active ? "active" : ""}`}>
                                                     <label />
                                                     <input
                                                         className="accueil_input"
@@ -140,7 +139,7 @@ function CardGetAllCommentImage(props) {
                                                     {/* Boutton modifier message image page accueil */}
                                                     <button
                                                         className="deleModif"
-                                                        onClick={handleEdit}>
+                                                        onClick={() => handleEdit(x.comment_id)}>
                                                         <i className="fas fa-edit stylo" />
                                                     </button>
 

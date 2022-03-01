@@ -92,16 +92,19 @@ exports.dessactive = (req, res, next) => {
 
 // Connexion en tant administrateur
 exports.loginIsAdmin = (req, res, next) => {
+    const { id } = req.params;
+
     db.query(
-        `SELECT isAdmin FROM user `,
+        `SELECT isAdmin FROM user WHERE user_id = ?`,
+        [id],
         (err, result) => {
             if (err) {
                 console.log(err);
-                return res.status(403).json({ message: "Accès refusé à la connexion en tant Administrateur" });
-            } else {
-                return res.status(200).json({
-                    result
+                return res.status(403).json({
+                    message: "Accès refusé à la connexion en tant Administrateur",
                 });
+            } else {
+                return res.status(200).json({ isAdmin: result[0].isAdmin });
             }
         }
     );
