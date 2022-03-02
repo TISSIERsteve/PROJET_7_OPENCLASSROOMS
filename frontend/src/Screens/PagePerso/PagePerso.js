@@ -7,6 +7,7 @@ import SeeComment from "../../Components/CardPagePerso/CardGetAllComment/CardGet
 import CardGetAllImage from "../../Components/CardPagePerso/CardGetallImage/CardGetAllImage";
 import CardModifyComment from "../../Components/CardPagePerso/CardModifyComment.js/CardModifyComment";
 
+
 // CSS
 import "./PagePerso.css";
 
@@ -38,6 +39,7 @@ function PagePerso() {
 
     // Supprimer un message
     const deleteCom = e => {
+
         if (window.confirm("Voulez vous vraiment supprimer ce message ?")) {
             deleteDefini(e);
         }
@@ -98,7 +100,9 @@ function PagePerso() {
 
                                     <div className="trash">
                                         <button onClick={() => deleteCom(x.message_perso_id)}>
+
                                             <i className="fas fa-trash-alt poubelle" />
+
                                         </button>
                                     </div>
                                 </article>
