@@ -16,7 +16,7 @@ function CardLike() {
             <div>
 
                 <button className='btn_like up' onClick={addLike}>
-                    Up <i className="fas fa-thumbs-up"></i>
+                    Up <i className="fas fa-thumbs-up "></i>
                 </button>
             </div>
             <div>
