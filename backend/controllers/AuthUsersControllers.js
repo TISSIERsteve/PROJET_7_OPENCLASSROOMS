@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 // Création compte utilisateur
 exports.signup = (req, res, next) => {
+
     const nom = req.body.nom;
     const prenom = req.body.prenom;
     const password = req.body.password;
@@ -32,6 +33,7 @@ exports.signup = (req, res, next) => {
 
 // Connexion au compte utilisateur
 exports.login = (req, res, next) => {
+
     const password = req.body.password;
     const email = req.body.email;
 
@@ -54,7 +56,6 @@ exports.login = (req, res, next) => {
                         {
                             exp: Math.floor(Date.now() / 1000) + 60 * 60,
                             id: result[0].user_id,
-                            isAdmin: result.isAdmin // Administrateur
                         },
                         "RANDOM_PRIVATE_KEY"
                     );
@@ -66,7 +67,6 @@ exports.login = (req, res, next) => {
                             id: result[0].user_id,
                             email: result[0].email,
                             prenom: result[0].prenom,
-                            // isAdmin: result[0].isAdmin
                         }
                     });
                 }
@@ -79,6 +79,7 @@ exports.login = (req, res, next) => {
 
 // Désactiver compte utilisateur
 exports.dessactive = (req, res, next) => {
+
     const id = req.params.id;
 
     db.query("DELETE FROM user WHERE user_id = ?", [id], (err, result) => {
@@ -92,6 +93,7 @@ exports.dessactive = (req, res, next) => {
 
 // Connexion en tant administrateur
 exports.loginIsAdmin = (req, res, next) => {
+
     const { id } = req.params;
 
     db.query(

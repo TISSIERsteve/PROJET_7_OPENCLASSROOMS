@@ -1,6 +1,6 @@
 const db = require("../config/mysql");
 
-// Récupérer commentaires message page accueil
+// Récupérer tous les commentaires message page accueil
 exports.getAllComments = (req, res, next) => {
     db.query(
         `SELECT content, comment_id,user_id, prenom FROM comment JOIN User ON fk_id_user = user_id WHERE fk_id_message ORDER BY content DESC`,
@@ -16,7 +16,7 @@ exports.getAllComments = (req, res, next) => {
     );
 };
 
-// Récupérer commentaires message  page perso 
+// Récupérer mes commentaires message  page perso 
 exports.getOneComment = (req, res, next) => {
     const id_message = req.params.id;
 

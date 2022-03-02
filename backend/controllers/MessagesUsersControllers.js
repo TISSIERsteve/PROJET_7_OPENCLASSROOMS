@@ -1,26 +1,6 @@
 const db = require("../config/mysql");
 
-// Obtenir tous les messages publiés des utilisateurs sur Page accueil
-// exports.getAllMessages = (req, res, next) => {
-//     db.query(
-//         "SELECT message_perso_id,prenom,DATE_FORMAT(date, 'le %d %m %Y à %H:%i') AS date,commentaire, fk_id_user FROM messageperso ORDER BY date DESC ",
-//         (err, result) => {
-//             if (err) {
-//                 return res
-//                     .status(403)
-//                     .json({ message: "Accès refusé reception des messageperso(accueil)" });
-//             } else {
-//                 return res.status(200).json({
-//                     messageperso: {
-//                         resultat: result
-//                     }
-//                 });
-//             }
-//         }
-//     );
-// };
-
-// Obtenir tous les messages et images publiés des utilisateurs sur Page accueil
+// Obtenir tous les messages et images des utilisateurs sur Page accueil
 exports.getAllMessages = (req, res, next) => {
     db.query(
         "SELECT message_perso_id,prenom,date,commentaire, fk_id_user FROM messageperso  ORDER BY date DESC ",
@@ -59,7 +39,7 @@ exports.getAllMessages = (req, res, next) => {
     );
 };
 
-// Obtenir tous mes messages personnels publiés sur Page Perso A MODIFIER POUR METTRE ORDRE IMG ET MESSAGES
+// Obtenir tous mes messages et images personnels sur Page Perso 
 exports.getOneMessage = (req, res, next) => {
     const id = req.params.id;
     db.query(
@@ -100,24 +80,6 @@ exports.getOneMessage = (req, res, next) => {
         }
     );
 };
-// exports.getOneMessage = (req, res, next) => {
-//     const id = req.params.id;
-//     db.query(
-//         `SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %Y à %H:%i vous avez publier') AS date,commentaire, fk_id_user FROM messageperso WHERE fk_id_user = ? ORDER BY date DESC`,
-//         [id],
-//         (err, result) => {
-//             if (err) {
-//                 return res
-//                     .status(403)
-//                     .json({ message: "Accès refusé du post de messageperso(perso)" });
-//             } else {
-//                 return res.status(200).json({
-//                     result
-//                 });
-//             }
-//         }
-//     );
-// };
 
 // Créer un message sur Page accueil
 exports.createMessage = (req, res, next) => {

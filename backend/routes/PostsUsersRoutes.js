@@ -6,7 +6,6 @@ const token = require("../middleware/AuthTokenMiddleware")
 // ============================================ ROUTES ======================================================
 const postsCtrl = require("../controllers/PostsUsersControllers")
 
-router.get("/:id", token, postsCtrl.getOnePost) // Obtenir toutes les images perso sur page perso
 router.post("/", token, multer, postsCtrl.createPost) // Créer une image sur page accueil
 router.delete("/:id", token, postsCtrl.deletePost) // Effacer une image sur page perso
 router.put("/:id", token, multer, postsCtrl.updateCommentImg) // Modifier image perso sur page perso

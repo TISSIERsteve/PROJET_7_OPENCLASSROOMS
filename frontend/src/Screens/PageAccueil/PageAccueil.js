@@ -35,7 +35,7 @@ function PageAccueil() {
 
                 {/* Component Barre laterale */}
                 <div id="open" className="aside_form">
-                    <BarreLaterale />
+                    <BarreLaterale isAdmin={isAdmin} />
                 </div>
 
                 {/* Components barre poste de message */}
