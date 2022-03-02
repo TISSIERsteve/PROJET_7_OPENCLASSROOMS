@@ -9,7 +9,6 @@ router.get("/", token, commentsCtrl.getAllComments) // Obtenir un commentaire d'
 router.get("/:id", token, commentsCtrl.getOneComment) // Obtenir les commentaires d'un utilisateur sur un message perso sur page perso
 router.post("/", token, commentsCtrl.createComment) // Créer un commentaire sur un message sur page accueil
 router.delete("/:id", token, commentsCtrl.deleteComment) // Effacer un commentaire
-
 router.put("/:id", token, commentsCtrl.updateComment) // Modifier mes commentaires perso sur page accueil
 
 module.exports = router

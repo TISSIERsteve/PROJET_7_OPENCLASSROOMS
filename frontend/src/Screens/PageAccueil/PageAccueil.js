@@ -16,20 +16,20 @@ import "./PageAccueil.css";
 function PageAccueil() {
 
     const [isAdmin, setIsAdmin] = useState(0);
-
     useEffect(() => {
         Axios
             .get("http://localhost:3001/api/auth/loginIsAdmin/" + localStorage.id)
             .then((res) => {
-                console.log(res.data);
                 setIsAdmin(res.data.isAdmin);
             });
     }, [setIsAdmin]);
+
     // Si token j'affiche la page accueil profil
     if (localStorage.bearer) {
 
         return (
             <div>
+
                 {/* Component Bouton */}
                 <Bouton />
 

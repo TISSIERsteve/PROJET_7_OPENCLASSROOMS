@@ -65,6 +65,7 @@ exports.createPost = (req, res, next) => {
 // Modifier une image perso sur page perso
 exports.updateCommentImg = (req, res, next) => {
     const id = req.params.id
+    console.log(id);
 
     db.query("SELECT * FROM post WHERE fk_id_user = ?",
         [id],
@@ -77,7 +78,7 @@ exports.updateCommentImg = (req, res, next) => {
                 if (result[0].media_url !== "") {
                     const name = result[0].media_url.split("/images/")[1]
                     fs.unlink(`images/${name}`, (error) => {
-                        // console.log(error);
+                        console.log(error);
                     })
                 }
             }

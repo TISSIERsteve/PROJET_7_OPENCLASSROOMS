@@ -2,17 +2,16 @@ import React from 'react';
 import { useState } from "react"
 import Axios from 'axios';
 
-// Components
-import LoadingBox from '../../LoadingBox/LoadingBox';
-
 // CSS
 import "./CardPostComment.css"
 
 // ===== Components ajout commentaire sur un message dans card sur Page accueil =====
 function CardPostComment(props) {
 
-    // LoadSpinner
-    const [loading, setLoading] = useState(false)
+    const compte = JSON.parse(localStorage.id)
+    const prenom = JSON.parse(localStorage.prenom)
+    const [commentaires, setcommentaires] = useState('')
+    const commentRegex = /(.*[A-Za-z]){5,30}/;
 
     // Ouverture fenêtre 
     const [isActive, setisActive] = useState("")
@@ -25,15 +24,8 @@ function CardPostComment(props) {
         }
     }
 
-    const compte = JSON.parse(localStorage.id)
-    const prenom = JSON.parse(localStorage.prenom)
-    const [commentaires, setcommentaires] = useState('')
-
-    const commentRegex = /(.*[A-Za-z]){5,30}/;
-
     // Fonction ajout commentaire
     const addCommentUser = () => {
-        setLoading(true)
         if (window.confirm(`${prenom} êtes vous sur de vouloir publier votre commentaire`)) {
             addCommentUserDefini()
         } else {
@@ -79,9 +71,7 @@ function CardPostComment(props) {
                 ></input>
 
                 <button className='btn_modify'>
-                    {loading ? (<LoadingBox></LoadingBox>) : (
-                        <i className="fas fa-plus-circle valide" onClick={addCommentUser}></i>
-                    )}
+                    <i className="fas fa-plus-circle valide" onClick={addCommentUser}></i>
                 </button>
 
             </div>

@@ -66,7 +66,7 @@ exports.login = (req, res, next) => {
                             id: result[0].user_id,
                             email: result[0].email,
                             prenom: result[0].prenom,
-                            isAdmin: result[0].isAdmin
+                            // isAdmin: result[0].isAdmin
                         }
                     });
                 }

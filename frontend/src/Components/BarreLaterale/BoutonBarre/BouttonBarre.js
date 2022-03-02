@@ -5,6 +5,7 @@ import "./Bouton.css";
 
 // ===== Components Bouton ouvrir barre latérale =====
 function Bouton() {
+
     // Open boutton
     const open = () => {
         document.getElementById("open").classList.toggle("active");

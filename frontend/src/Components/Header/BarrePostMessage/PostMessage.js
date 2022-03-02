@@ -2,17 +2,11 @@ import React from 'react';
 import Axios from "axios"
 import { useState } from 'react';
 
-// Components
-import LoadingBox from '../../LoadingBox/LoadingBox';
-
 // CSS
 import "./PostMessage.css"
 
 // ===== Components barre pour poster un message =====
 function Search() {
-
-    // LoadSpinner
-    const [loading, setLoading] = useState(false)
 
     const storage = JSON.parse(localStorage.prenom)
     const [commentaire, setcommentaire] = useState("")
@@ -20,7 +14,6 @@ function Search() {
 
     // Fonction publication message 
     const addComment = () => {
-        setLoading(true)
         if (window.confirm(`${storage} voulez vous vraiment publier ce message ?`)) {
             addCommentDefini()
         }
@@ -68,10 +61,7 @@ function Search() {
                 ></input>
 
                 <span>
-                    {loading ? (<LoadingBox></LoadingBox>) : (
-
-                        <i className="far fa-plus-square add" onClick={addComment}></i>
-                    )}
+                    <i className="far fa-plus-square add" onClick={addComment}></i>
                 </span>
 
             </div>

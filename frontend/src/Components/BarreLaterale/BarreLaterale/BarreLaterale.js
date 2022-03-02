@@ -6,10 +6,10 @@ import Axios from "axios";
 import "./BarreLaterale.css";
 
 // Components Aside
-function BarreLaterale() {
+function BarreLaterale(props) {
 
     const identite = JSON.parse(localStorage.id);
-    let isAdmin = JSON.parse(localStorage.isAdmin)
+    let isAdmin = (props.isAdmin);
 
     // Fonction supprimer compte utilisateur
     const deleteUser = () => {

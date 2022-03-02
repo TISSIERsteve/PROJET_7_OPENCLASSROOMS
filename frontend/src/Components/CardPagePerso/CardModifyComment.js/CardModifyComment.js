@@ -8,8 +8,6 @@ function CardModifyComment() {
     const idy = JSON.parse(localStorage.id)
     const prenom = JSON.parse(localStorage.prenom)
     const [message, setmessageModify] = useState('')
-
-
     const commentRegex = /(.*[A-Za-z]){5,30}/;
 
     // Ouverture fenêtre
@@ -52,7 +50,6 @@ function CardModifyComment() {
     // JSX
     return (
         <>
-
             <div className="pen">
                 <button onClick={handleShow}>
                     <i className="fas fa-edit stylo" />

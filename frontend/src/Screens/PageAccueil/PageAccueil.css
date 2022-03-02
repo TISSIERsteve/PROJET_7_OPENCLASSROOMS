@@ -59,4 +59,10 @@
     flex-wrap: wrap;
 }
 
+.admin_img_card {
+    display: flex;
+    justify-content: flex-end;
+    width: 80%;
+    margin: 1rem auto;
+}
 

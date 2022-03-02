@@ -8,15 +8,11 @@ import "./CardGetComment.css";
 // ===== Components pour voir commentaires messages dans card page accueil =====
 function CardGetComment(props) {
 
+    let isAdmin = (props.isAdmin);
+
     const authUser = parseInt(localStorage.id, 10);
     const prenom = JSON.parse(localStorage.prenom);
     const commentRegex = /(.*[A-Za-z]){5,30}/;
-
-    // let isAdmin = parseInt(localStorage.isAdmin, 10);
-
-    // const [admin, setadmin] = useState("");
-    // // console.log(admin);
-
     const [messageItem, setmessageItemModify] = useState("");
     const [com, setcom] = useState("");
 
@@ -40,18 +36,6 @@ function CardGetComment(props) {
         },
         [props.messageid]
     );
-
-    // // Requête pour administrateur
-    // useEffect(
-    //     () => {
-    //         Axios.get(
-    //             `http://localhost:3001/api/auth/loginIsAdmin`
-    //         ).then(response => {
-    //             setadmin(response.data.result.map((x) => x.isAdmin));
-    //         });
-    //     },
-    //     []
-    // );
 
     // Fonctions supprimer commentaire page accueil
     const handleDelete = async id => {
@@ -125,6 +109,7 @@ function CardGetComment(props) {
                     {com && com.length
                         ? com.map(x => {
                             const valide = authUser === x.user_id;
+                            const valida = valide || isAdmin;
 
                             return (
                                 <ul key={x.comment_id} className="getcomment">
@@ -136,7 +121,7 @@ function CardGetComment(props) {
                                     </li>
 
                                     {/* Si user ou admin correspond pour modifier ou effacer commentaire page accueil*/}
-                                    {valide && valide
+                                    {valida || valide
                                         ? <div>
                                             <div
                                                 className={`section_modify_comment_accueil ${x.comment_id === isModify.id && isModify.active ? "active" : ""}`}>

@@ -1,13 +1,14 @@
 import React from 'react';
 import { useState } from "react"
 import Axios from 'axios';
-import LoadingBox from '../../LoadingBox/LoadingBox';
 
 // Component pour poster un commentaire sur image page accueil 
 function CardCommentOneImage(props) {
 
-    // LoadSpinner
-    const [loading, setLoading] = useState(false)
+    const compte = JSON.parse(localStorage.id)
+    const prenom = JSON.parse(localStorage.prenom)
+    const commentRegex = /(.*[A-Za-z]){5,30}/;
+    const [commentaires, setcommentaires] = useState('')
 
     // Ouverture fenêtre 
     const [isActive, setisActive] = useState("")
@@ -20,15 +21,8 @@ function CardCommentOneImage(props) {
         }
     }
 
-    const compte = JSON.parse(localStorage.id)
-    const prenom = JSON.parse(localStorage.prenom)
-    const [commentaires, setcommentaires] = useState('')
-
-    const commentRegex = /(.*[A-Za-z]){5,30}/;
-
     // Fonction ajout commentaire
     const addCommentImg = () => {
-        setLoading(true)
         if (window.confirm(`${prenom} êtes vous sur de vouloir publier votre commentaire`)) {
             addCommentImgDefini()
         } else {
@@ -74,10 +68,7 @@ function CardCommentOneImage(props) {
                 ></input>
 
                 <button className='btn_modify'>
-                    {loading ? (<LoadingBox></LoadingBox>) : (
-
-                        <i className="fas fa-plus-circle valide" onClick={addCommentImg}></i>
-                    )}
+                    <i className="fas fa-plus-circle valide" onClick={addCommentImg}></i>
                 </button>
 
             </div>

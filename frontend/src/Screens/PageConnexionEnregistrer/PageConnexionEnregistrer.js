@@ -6,6 +6,7 @@ import "./PageConnexionEnregistrer.css";
 
 // Page pour choisir soit connexion soit création compte
 function PageConnexionEnregistrer() {
+
     return (
         <div className="homeScreen">
             <main>

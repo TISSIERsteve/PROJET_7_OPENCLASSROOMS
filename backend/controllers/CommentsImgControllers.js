@@ -56,22 +56,3 @@ exports.getOneCommentImg = (req, res, next) => {
         }
     );
 };
-
-// // Modifier un commentaire image perso sur page accueil
-// exports.updateCommentImg = (req, res, next) => {
-//     console.log(req.params);
-//     console.log("yes");
-//     const id = req.params.id
-//     const commentaire = req.body.commentaire;
-
-//     db.query(`UPDATE comment SET content = ? WHERE comment_id = ${id}`,
-//         [commentaire],
-//         (err, result) => {
-//             if (err) {
-//                 return res.status(403).json({ message: "Accés refusé pour la modification de l'image" })
-//             } else {
-//                 return res.status(200).json({ message: "Message modifié" })
-//             }
-//         }
-//     )
-// }

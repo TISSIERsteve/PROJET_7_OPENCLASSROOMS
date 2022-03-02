@@ -8,16 +8,16 @@ import GetComment from "../CardGetAllComment/CardGetAllComment";
 import ImageOneComment from "../CardCommentOneImage/CardCommentOneImage";
 import CardLike from "../CardLike/CardLike";
 import CardGetAllCommentImage from "../CardGetAllCommentImage/CardGetAllCommentImage";
+import CardModifyCommentAdmin from "../ModifyCommentAdmin/ModifyCommentAdmin";
+import CardModifyImgAdmin from "../CardModifyImgAdmin/CardModifyImgAdmin";
 
 // CSS
 import "./CardPrincipal.css";
 
 // ===== Components Card Page principal accueil =====
-function CardPrincipal() {
+function CardPrincipal({ isAdmin }) {
 
     const navigate = useNavigate();
-
-    let isAdmin = parseInt(localStorage.isAdmin, 10);
 
     // Affichage de tous les messages et images postés
     const [post, setpost] = useState("");
@@ -51,7 +51,6 @@ function CardPrincipal() {
         }
     };
     const deleteCardImgDefini = id => {
-        console.log(id);
         Axios.delete("http://localhost:3001/api/posts/" + id).then(response => {
             alert("En tant qu'administarteur vous avez bien supprimer l'image.");
             window.location.reload();
@@ -70,7 +69,6 @@ function CardPrincipal() {
         }
     };
     const deleteCardMessageDefini = id => {
-        console.log(id);
         Axios.delete(
             "http://localhost:3001/api/messagesPerso/" + id
         ).then(response => {
@@ -117,15 +115,24 @@ function CardPrincipal() {
                                         </div>
 
                                         {/* Components voir commentaire sur un message page accueil */}
-                                        <GetComment messageid={x.message_perso_id} />
+                                        <GetComment isAdmin={isAdmin} messageid={x.message_perso_id} />
 
                                         {/* { Fonction administrateur */}
                                         {isAdmin !== 1 ||
-                                            <button
-                                                aria-label="effacer"
-                                                onClick={() => deleteCardMessage(x.message_perso_id)}>
-                                                <i className="fas fa-trash-alt poubelle" />
-                                            </button>}
+                                            <>
+                                                <div className="admin_img_card">
+
+                                                    <button
+                                                        aria-label="effacer"
+                                                        onClick={() => deleteCardMessage(x.message_perso_id)}>
+                                                        <i className="fas fa-trash-alt poubelle" />
+                                                    </button>
+
+                                                    <CardModifyCommentAdmin adminComment={x.fk_id_user}></CardModifyCommentAdmin>
+
+                                                </div>
+                                            </>
+                                        }
                                     </article>
                                 </li>
                             );
@@ -169,15 +176,24 @@ function CardPrincipal() {
                                         </div>
 
                                         {/* Components voir commentaire sur une image page accueil */}
-                                        <CardGetAllCommentImage commentIdy={x.post_id} />
+                                        <CardGetAllCommentImage isAdmin={isAdmin} commentIdy={x.post_id} />
 
                                         {/* { Fonction administrateur */}
                                         {isAdmin !== 1 ||
-                                            <button
-                                                aria-label="effacer"
-                                                onClick={() => deleteCardImg(x.post_id)}>
-                                                <i className="fas fa-trash-alt poubelle" />
-                                            </button>}
+                                            <>
+                                                <div className="admin_img_card">
+
+                                                    <button
+                                                        aria-label="effacer"
+                                                        onClick={() => deleteCardImg(x.post_id)}>
+                                                        <i className="fas fa-trash-alt poubelle" />
+                                                    </button>
+
+                                                    <CardModifyImgAdmin adminImg={x.fk_id_user}></CardModifyImgAdmin>
+
+                                                </div>
+                                            </>
+                                        }
                                     </article>
                                 </li>
                             );

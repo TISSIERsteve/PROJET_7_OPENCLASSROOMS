@@ -9,9 +9,7 @@ import "./AjouterImage.css";
 function AjouterImageItem() {
 
     const navigate = useNavigate();
-
     const imgRegex = /(.*[a-z]){5,30}/;
-
     const [legende, setlegende] = useState("");
     const [postPicture, setPostPicture] = useState(null);
 
@@ -93,12 +91,14 @@ function AjouterImageItem() {
                             }}
                         />
                         <div className="addPickItem_item">
+
                             <button className="brt" onClick={addImg}>
                                 Valider
                             </button>
                             <button className="brt" onClick={removeImg}>
                                 Anuler
                             </button>
+
                         </div>
                     </div>
                 </form>

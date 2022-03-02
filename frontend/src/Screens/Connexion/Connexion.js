@@ -7,8 +7,8 @@ import "./Connexion.css";
 
 // ===== Page de connexion =====
 function Connexion() {
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
 
@@ -30,7 +30,6 @@ function Connexion() {
             localStorage.setItem("id", JSON.stringify(response.data.user.id));
             localStorage.setItem("bearer", response.data.token);
             localStorage.setItem("prenom", JSON.stringify(response.data.user.prenom));
-            localStorage.setItem("isAdmin", JSON.stringify(response.data.user.isAdmin));
 
             navigate("/ProfileScreen", { replace: true });
 
