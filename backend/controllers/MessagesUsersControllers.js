@@ -63,21 +63,61 @@ exports.getAllMessages = (req, res, next) => {
 exports.getOneMessage = (req, res, next) => {
     const id = req.params.id;
     db.query(
-        `SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %Y à %H:%i vous avez publier') AS date,commentaire, fk_id_user FROM messageperso WHERE fk_id_user = ? ORDER BY date DESC`,
+        "SELECT message_perso_id,prenom,date,commentaire, fk_id_user FROM messageperso WHERE fk_id_user = ?  ORDER BY date DESC ",
         [id],
-        (err, result) => {
+        (err, resultMessages) => {
             if (err) {
-                return res
-                    .status(403)
-                    .json({ message: "Accès refusé du post de messageperso(perso)" });
-            } else {
-                return res.status(200).json({
-                    result
+                return res.status(403).json({
+                    message: "Accès refusé reception des messageperso(accueil)",
                 });
+            } else {
+                db.query(
+                    "SELECT post_id, title, fk_id_user, media_url, content, created_at AS date FROM post WHERE fk_id_user = ?",
+                    [id],
+                    (err, resultPosts) => {
+                        if (err) {
+                            return res
+                                .status(403)
+                                .json({ message: "Accès refusé reception des posts image" });
+                        } else {
+                            const combined = resultMessages.concat(resultPosts);
+
+                            combined.sort(
+                                (message, post) => new Date(message.date) - new Date(post.date)
+                            );
+
+                            combined.reverse();
+
+                            return res.status(200).json({
+                                messageperso: {
+                                    resultat: combined,
+                                },
+                            });
+                        }
+                    }
+                );
             }
         }
     );
 };
+// exports.getOneMessage = (req, res, next) => {
+//     const id = req.params.id;
+//     db.query(
+//         `SELECT message_perso_id,prenom,DATE_FORMAT(date, 'Le %d %m %Y à %H:%i vous avez publier') AS date,commentaire, fk_id_user FROM messageperso WHERE fk_id_user = ? ORDER BY date DESC`,
+//         [id],
+//         (err, result) => {
+//             if (err) {
+//                 return res
+//                     .status(403)
+//                     .json({ message: "Accès refusé du post de messageperso(perso)" });
+//             } else {
+//                 return res.status(200).json({
+//                     result
+//                 });
+//             }
+//         }
+//     );
+// };
 
 // Créer un message sur Page accueil
 exports.createMessage = (req, res, next) => {

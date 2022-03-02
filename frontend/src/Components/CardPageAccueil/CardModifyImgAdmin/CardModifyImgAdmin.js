@@ -65,14 +65,13 @@ function CardModifyImgAdmin({ adminImg }) {
     };
 
     return (
-        <div>
-            <div className="pen">
-                <button onClick={modifyImg}>
-                    <i className="fas fa-edit stylo_img" />
-                </button>
-            </div>
+        <div className='cardModifyCommentAdmin'>
 
-            <div>
+            <button onClick={modifyImg}>
+                <i className="fas fa-edit stylo_img" />
+            </button>
+
+            <div className='fond'>
                 <div className={`addPickItem modify_img ${isActive}`}>
                     <h2 className="addPickItem_titre">Modifier l'image</h2>
                     <form className="addPickItem_form_modify">

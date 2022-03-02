@@ -2,6 +2,9 @@ import React from 'react'
 import { useState } from "react"
 import Axios from 'axios';
 
+// CSS
+import "../ModifyCommentAdmin/ModifyCommentAdmin.css"
+
 function ModifyCommentAdmin({ adminComment }) {
 
     const [message, setmessageModify] = useState('')
@@ -47,32 +50,32 @@ function ModifyCommentAdmin({ adminComment }) {
 
     // JSX
     return (
-        <div>
+        <div className='cardModifyCommentAdmin'>
             <button onClick={AdminModifyComment}>
                 <i className="fas fa-edit stylo" />
             </button>
 
             <div className={`profilesCommentsInput open ${isActive}`}>
 
-                {/* <form className='form'> */}
-                <label></label>
-                <input className="profilesComments modify"
-                    id='commentaires'
-                    type="text"
-                    placeholder="Modifier le message en tant qu'administrateur"
-                    onChange={(event) => {
-                        if (commentRegex.test(event.target.value)) {
-                            setmessageModify(event.target.value)
-                            return
-                        }
-                    }}
-                ></input>
-                <button className='btn_modify'
-                    aria-label='valider'>
-                    <i className="fas fa-plus-circle valide" onClick={() => addCommentModify(adminComment)}></i>
-                </button>
+                <form className='form'>
+                    <label></label>
+                    <input className="input_admin"
+                        id='commentaires'
+                        type="text"
+                        placeholder="Modifier le message en tant qu'administrateur"
+                        onChange={(event) => {
+                            if (commentRegex.test(event.target.value)) {
+                                setmessageModify(event.target.value)
+                                return
+                            }
+                        }}
+                    ></input>
+                    <button className='btn_modify'
+                        aria-label='valider'>
+                        <i className="fas fa-plus-circle valide" onClick={() => addCommentModify(adminComment)}></i>
+                    </button>
 
-                {/* </form> */}
+                </form>
             </div>
         </div>
     )

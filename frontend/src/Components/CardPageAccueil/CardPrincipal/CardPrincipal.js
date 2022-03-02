@@ -125,7 +125,7 @@ function CardPrincipal({ isAdmin }) {
                                                     <button
                                                         aria-label="effacer"
                                                         onClick={() => deleteCardMessage(x.message_perso_id)}>
-                                                        <i className="fas fa-trash-alt poubelle" />
+                                                        <i className="fas fa-trash-alt poubelle admin_poubelle" />
                                                     </button>
 
                                                     <CardModifyCommentAdmin adminComment={x.fk_id_user}></CardModifyCommentAdmin>
