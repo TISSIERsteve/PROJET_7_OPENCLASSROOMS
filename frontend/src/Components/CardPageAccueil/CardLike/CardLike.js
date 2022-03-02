@@ -12,9 +12,20 @@ function CardLike() {
 
     // JSX
     return (
-        <button className='btn_like' onClick={addLike}>
-            <p className="boutton_commenter">J'aime</p>
-        </button>
+        <div className='like_dislike'>
+            <div>
+
+                <button className='btn_like up' onClick={addLike}>
+                    Up <i className="fas fa-thumbs-up"></i>
+                </button>
+            </div>
+            <div>
+
+                <button className='btn_like'>
+                    Down <i className="fas fa-thumbs-down down"></i>
+                </button>
+            </div>
+        </div>
     )
 }
 
