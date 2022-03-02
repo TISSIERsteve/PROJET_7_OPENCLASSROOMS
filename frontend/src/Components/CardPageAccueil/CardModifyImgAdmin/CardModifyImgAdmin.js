@@ -35,7 +35,7 @@ function CardModifyImgAdmin({ adminImg }) {
     const addImgItem = () => {
         if (imgRegex.test(legende)) {
             const formData = new FormData();
-            formData.append("fk_id_user", localStorage.id);
+            formData.append("fk_id_user", adminImg);
             formData.append("legende", legende);
             formData.append("image", postPicture);
             Axios.put(`http://localhost:3001/api/posts/${adminImg}`, formData)
